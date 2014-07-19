@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<schema xmlns="http://www.w3.org/2001/XMLSchema"
+        targetNamespace="http://www.example.com/weapons"
+        xmlns:tns="http://www.example.com/weapons"
+        elementFormDefault="qualified">
+    
+    
+    <element name="weapons">
+        <complexType>
+            <sequence>
+                <element ref="tns:weapon" minOccurs="3" maxOccurs="unbounded"/>
+            </sequence>
+        </complexType>
+    </element>   
+    
+    <complexType name="Weapon">
+        <sequence>
+            <element name="name" type="string"/>
+            <element name="country" type="string"/>
+            <element name="rate" type="positiveInteger"/>
+        </sequence>
+        <attribute name="id" type="tns:Id" use="required"/>
+    </complexType>
+    
+    <simpleType name="Id">
+        <restriction base="ID">
+            <pattern value="[\w]+[\d]+-[\d]+"/>
+        </restriction>
+    </simpleType>
+    
+    <complexType name="Gun">
+        <complexContent>
+            <extension base="tns:Weapon">
+                <sequence>
+                    <element name="compmass" type="tns:Mass"/>
+                </sequence>
+                <attribute name="type" use="optional" default="intermediate">
+                    <simpleType>
+                        <restriction base="string">
+                            <enumeration value="revolver"></enumeration>
+                            <enumeration value="pistol"></enumeration>
+                            <enumeration value="submachinegun"></enumeration>
+                            <enumeration value="autorifle"></enumeration>
+                            <enumeration value="selfloadrifle"></enumeration>
+                            <enumeration value="machinegun"></enumeration>
+                            <enumeration value="missilegun"></enumeration>         
+                            <enumeration value="intermediate"></enumeration>               
+                        </restriction>
+                    </simpleType>
+                </attribute>
+            </extension>
+        </complexContent>
+    </complexType>
+    <complexType name="Equip">
+        <complexContent>
+            <extension base="tns:Weapon">
+                <sequence>
+                    <element name="mass" type="double"/>
+                    <element name="arcgrad" type="positiveInteger"/>
+                </sequence>
+                <attribute name="type" use="optional" default="sight">
+                    <simpleType>
+                        <restriction base="string">
+                            <enumeration value="sight"></enumeration>
+                            <enumeration value="light"></enumeration>             
+                        </restriction>
+                    </simpleType>
+                </attribute>
+            </extension>
+        </complexContent>
+    </complexType>
+    <complexType name="Mass">
+        <sequence>    
+            <element name="complected" type="double"/>      
+            <element name="uncomplected" type="double"/>
+        </sequence>
+    </complexType>
+    
+    <element name="weapon" type="tns:Weapon" abstract="true"></element>
+    <element name="gun" type="tns:Gun" substitutionGroup="tns:weapon"></element>
+    <element name="equip" type="tns:Equip" substitutionGroup="tns:weapon"></element>
+    
+</schema>

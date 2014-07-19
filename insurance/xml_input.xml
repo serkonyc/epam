@@ -1,0 +1,95 @@
+<?xml version="1.0"?>
+
+<insurance>
+    
+<obligation object="property">
+<name>Пакет Имущественный 1000</name>
+<benefit>1000</benefit>
+<price>25</price>
+<risk>16</risk>
+<term>2</term>
+<kind>Киностудия</kind>
+</obligation>
+
+<obligation object="property">
+<name>Пакет Имущественный 2000</name>
+<benefit>2000</benefit>
+<price>45</price>
+<risk>11</risk>
+<term>3</term>
+<kind>Квартира</kind>
+</obligation>
+
+<obligation object="property">
+<name>Пакет Имущественный 3000</name>
+<benefit>3000</benefit>
+<price>60</price>
+<risk>4</risk>
+<term>4</term>
+<kind>Жилой дом</kind>
+</obligation>
+
+<obligation object="harm">
+<name>Пакет За Вред 1500</name>
+<benefit>1500</benefit>
+<price>30</price>
+<risk>14</risk>
+<term>2</term>
+<iss>15</iss>
+</obligation>
+
+<obligation object="harm">
+<name>Пакет За Вред 2500</name>
+<benefit>2500</benefit>
+<price>40</price>
+<risk>9</risk>
+<term>3</term>
+<iss>45</iss>
+</obligation>
+
+<obligation object="harm">
+<name>Пакет За Вред 4000</name>
+<benefit>4000</benefit>
+<price>55</price>
+<risk>4</risk>
+<term>4</term>
+<iss>75</iss>
+</obligation>
+
+<obligation object="responsibility">
+<name>Пакет По Ответственности 700</name>
+<benefit>700</benefit>
+<price>25</price>
+<risk>20</risk>
+<term>2</term>
+<gamma>0.9</gamma>
+</obligation>
+
+<obligation object="responsibility">
+<name>Пакет По Ответственности</name>
+<benefit>1200</benefit>
+<price>35</price>
+<risk>16</risk>
+<term>3</term>
+<gamma>0.95</gamma>
+</obligation>
+
+<obligation object="responsibility">
+<name>Пакет По Ответственности</name>
+<benefit>1800</benefit>
+<price>50</price>
+<risk>9</risk>
+<term>4</term>
+<gamma>1.05</gamma>
+</obligation>
+
+<obligation object="new">
+<name>Пакет По Быдлокоду</name>
+<benefit>3002</benefit>
+<price>58</price>
+<risk>99</risk>
+<term>40</term>
+<othertype>What is this?</othertype>
+</obligation>
+
+</insurance>

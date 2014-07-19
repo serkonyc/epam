@@ -1,0 +1,53 @@
+<?xml version='1.0' encoding='UTF-8' ?> 
+<!-- was: no XML declaration present -->
+<weapons xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xmlns="http://www.example.com/weapons"
+         xsi:schemaLocation="http://www.example.com/weapons weapon.xsd">
+    
+    <gun id="S1-12" type="selfloadrifle">
+        <name>СВУ</name>
+        <country>РФ</country>
+        <rate>800</rate>
+        <compmass>
+            <complected>4.4</complected>
+            <uncomplected>3.7</uncomplected>
+        </compmass>
+    </gun>
+    
+    <gun id="M1-56" type="autorifle">
+        <name>М82</name>
+        <country>Финляндия</country>
+        <rate>300</rate>
+        <compmass>
+            <complected>3.3</complected>
+            <uncomplected>2.7</uncomplected>
+        </compmass>
+    </gun>
+    
+    <gun id="BM1-3" type="pistol">
+        <name>Minimi</name>
+        <country>Бельгия</country>
+        <rate>800</rate>
+        <compmass>
+            <complected>6.87</complected>
+            <uncomplected>4.6</uncomplected>
+        </compmass>
+    </gun>
+    
+    <equip id="RT2-14" type="sight">
+        <name>ПСО-1М</name>
+        <country>РБ</country>
+        <rate>1300</rate>       
+        <mass>0.58</mass>
+        <arcgrad>6</arcgrad>
+    </equip>
+        
+    <equip id="GU2-2" type="light">
+        <name>GN1</name>
+        <country>UK</country>
+        <rate>200</rate>        
+        <mass>0.39</mass>
+        <arcgrad>40</arcgrad>
+    </equip>
+    
+</weapons>
