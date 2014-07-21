@@ -9,7 +9,6 @@ import java.util.List;
 import java.util.Set;
 import java.util.concurrent.ConcurrentLinkedQueue;
 import java.util.concurrent.Semaphore;
-import java.util.concurrent.TimeUnit;
 import org.apache.log4j.Logger;
 import org.epam.bursethread.control.Main;
 import org.epam.bursethread.data.StocksData;
@@ -124,7 +123,7 @@ public class Burse {
                             }
                         }
                         SEMAPHORE.release();
-                        Thread.sleep(10);
+                        Thread.sleep(20);
                     }
                 }
                 sounder.appendTradeResult(stocks);
