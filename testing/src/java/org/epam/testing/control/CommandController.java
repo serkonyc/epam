@@ -27,7 +27,7 @@ import org.epam.testing.prophandler.PropertyHandler;
  */
 public class CommandController extends HttpServlet {
 
-    public static final Logger LOGGER = Logger.getLogger("console-file");
+    private static final Logger LOGGER = Logger.getLogger(CommandController.class.getSimpleName());
 
     public CommandController() {
         super();
@@ -35,30 +35,37 @@ public class CommandController extends HttpServlet {
 
     protected void processRequest(HttpServletRequest request, HttpServletResponse response) {
         RequestDispatcher reqDispatch = null;
+        String errorMessage = null;
         try {
             if (request.getParameter("command") != null) {
                 AbstractCommand cmd = CommandFactory.getCommandByName(request.getParameter("command"));
                 reqDispatch = request.getRequestDispatcher(cmd.perform(request));
-            } else {
-                AbstractCommand cmd = CommandFactory.getCommandByName("login");
-                reqDispatch = request.getRequestDispatcher(cmd.perform(request));
             }
 
         } catch (LogicException | TechException exception) {
-            request.setAttribute("errorMess", exception.getMessage());
-            reqDispatch = request.getRequestDispatcher("/jspview/error.jsp");
+            errorMessage = exception.getMessage();
             LOGGER.error(exception);
-
+            request.getSession().setAttribute("errorMess", exception.getMessage());
         } finally {
             try {
-                if (reqDispatch == null) {
-                    reqDispatch = request.getRequestDispatcher("/jspview/error.jsp");
+                if (errorMessage != null) {
+                    response.sendRedirect("testing/jsp/error.jsp");
                 }
-                request.setAttribute("path", request.getContextPath());
-                reqDispatch.forward(request, response);
+                if (request.getParameter("progress") == null) {
+                    if (reqDispatch != null) {
+                        request.setAttribute("path", request.getContextPath());
+                        reqDispatch.forward(request, response);
+                    } else {
+                        request.getSession().setAttribute("errorMess", errorMessage);
+                        response.sendRedirect("testing/jsp/error.jsp");
+                    }
+                } else {
+                    response.sendRedirect("/testing");
+                }
 
             } catch (ServletException | IOException ex) {
                 LOGGER.error(new TechException("Servlet exception with requestDispatcher", ex.getCause()));
+                request.getSession().setAttribute("errorMess", ex.getMessage());
             }
         }
     }

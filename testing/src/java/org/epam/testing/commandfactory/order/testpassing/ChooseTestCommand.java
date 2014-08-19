@@ -25,9 +25,15 @@ public class ChooseTestCommand extends AbstractCommand {
         AbstractDao dao = new DaoFactory().getDaoByName("quest");
         ArrayList<Quest> bothQuestsAnswers = dao.selectAllByParameter(request.getParameter("data"));
 
-        request.setAttribute("testid", bothQuestsAnswers.get(0).getTestId());
+        request.getSession().setAttribute("result", null);
+        if (!bothQuestsAnswers.isEmpty()) {
+            request.setAttribute("testid", bothQuestsAnswers.get(0).getTestId());
+        }
+        else {
+            throw new LogicException("Test does not exist.");
+        }
         request.setAttribute("data", bothQuestsAnswers);
-        return "jspview/passtest.jsp";
+        return "/jsp/passtest.jsp";
     }
 
 }

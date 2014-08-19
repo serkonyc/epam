@@ -42,7 +42,7 @@ public class ChooseSubjectCommand extends AbstractCommand {
         
         request.setAttribute("wascommand", "themes");
         request.setAttribute("subjid", subjectId);
-        return "/jspview/addtest.jsp";
+        return "/jsp/addtest.jsp";
     }
 
 }

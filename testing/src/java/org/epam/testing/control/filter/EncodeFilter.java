@@ -13,8 +13,7 @@ import javax.servlet.FilterConfig;
 import javax.servlet.ServletException;
 import javax.servlet.ServletRequest;
 import javax.servlet.ServletResponse;
-import javax.servlet.http.HttpServletRequest;
-import org.epam.testing.control.CommandController;
+import org.apache.log4j.Logger;
 import org.epam.testing.exception.TechException;
 
 /**
@@ -23,7 +22,7 @@ import org.epam.testing.exception.TechException;
  */
 public class EncodeFilter implements Filter {
 
-    private static final org.apache.log4j.Logger LOGGER = CommandController.LOGGER;
+    private static final org.apache.log4j.Logger LOGGER = Logger.getLogger(EncodeFilter.class.getSimpleName());
     private String code;
 
     @Override
@@ -43,9 +42,9 @@ public class EncodeFilter implements Filter {
             chain.doFilter(request, response);
 
         } catch (UnsupportedEncodingException ex) {
-            LOGGER.error(new TechException("Unsupported encoding in EncodeFilter.", ex.getCause()));;
+            LOGGER.error(new TechException("Unsupported encoding in EncodeFilter.", ex.getCause()));
         } catch (IOException | ServletException ex) {
-            LOGGER.error(new TechException("Trouble with doFilter in EncodeFilter.", ex.getCause()));;
+            LOGGER.error(new TechException("Trouble with doFilter in EncodeFilter.", ex.getCause()));
         }
 
     }

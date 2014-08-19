@@ -6,15 +6,11 @@
 package org.epam.testing.commandfactory.order.testpassing;
 
 import java.util.ArrayList;
-import java.util.TreeSet;
 import javax.servlet.http.HttpServletRequest;
 import org.epam.testing.commandfactory.order.AbstractCommand;
 import org.epam.testing.daofactory.DaoFactory;
 import org.epam.testing.daofactory.dao.AbstractDao;
 import org.epam.testing.daofactory.entity.Answer;
-import org.epam.testing.daofactory.entity.Subject;
-import org.epam.testing.daofactory.entity.Test;
-import org.epam.testing.daofactory.entity.Theme;
 import org.epam.testing.exception.LogicException;
 import org.epam.testing.exception.TechException;
 
@@ -26,36 +22,31 @@ public class PassTestCommand extends AbstractCommand {
 
     @Override
     public String perform(HttpServletRequest request) throws LogicException, TechException {
-        AbstractDao dao = new DaoFactory().getDaoByName("answer");
-        ArrayList<Answer> answers = dao.selectAllByParameter(request.getParameter("testid"));
-        float result = 1;
-        for (Answer answer : answers) {
-            if (request.getParameter(String.valueOf(answer.getQuestId())) != null) {
-                if (answer.getId() != Integer.parseInt(request.getParameter(String.valueOf(answer.getQuestId())))) {
+        if (request.getSession().getAttribute("result") == null) {
+            AbstractDao dao = new DaoFactory().getDaoByName("answer");
+            ArrayList<Answer> answers = dao.selectAllByParameter(request.getParameter("testid"));
+            float result = 1;
+            for (Answer answer : answers) {
+                if (request.getParameter(String.valueOf(answer.getQuestId())) != null) {
+                    if (answer.getId() != Integer.parseInt(request.getParameter(String.valueOf(answer.getQuestId())))) {
+                        result = result - 1.0f / answers.size();
+                    }
+                } else {
                     result = result - 1.0f / answers.size();
                 }
-            } else {
-                result = result - 1.0f / answers.size();
             }
-        }
 
-        dao = new DaoFactory().getDaoByName("test");
-        ArrayList<Test> tests = dao.selectAll();
-        TreeSet<Subject> subjs = new TreeSet<>();
-        TreeSet<Theme> themes = new TreeSet<>();
-        for (Test test : tests) {
-            subjs.add(test.getTheme().getSubj());
-            themes.add(test.getTheme());
+            request.getSession().setAttribute("result",
+                    "Your result of passing test is "
+                    + String.format("%.2f", result * 100)
+                    + "%");
+            return "jsp/passtest.jsp";
+            
+        } else {
+            
+            request.getSession().setAttribute("result", null);
+            return "jsp/postlog.jsp";
         }
-
-        request.setAttribute("result",
-                "Your result of passing test is "
-                + String.format("%.2f", result * 100)
-                + "%");
-        request.setAttribute("subjs", subjs);
-        request.setAttribute("themes", themes);
-        request.setAttribute("tests", tests);
-        return "jspview/postlog.jsp";
     }
 
 }

@@ -38,7 +38,7 @@ public class ChangeTestCommand extends AbstractCommand {
         request.setAttribute("subjs", subjs);
         request.setAttribute("themes", themes);
         request.setAttribute("tests", tests);
-        return "/jspview/postlog.jsp";
+        return "/jsp/postlog.jsp";
     }
 
 }

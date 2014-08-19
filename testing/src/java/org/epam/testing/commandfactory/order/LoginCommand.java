@@ -31,7 +31,7 @@ public class LoginCommand extends AbstractCommand {
 
         if (request.getSession().getAttribute("id") == null) {
             if (request.getParameter("login") == null && request.getParameter("pass") == null) {
-                return "/jspview/welcome.jsp";
+                return "index.jsp";
             }
             dao = new DaoFactory().getDaoByName("user");
             ArrayList<User> users = dao.selectAll();
@@ -56,7 +56,7 @@ public class LoginCommand extends AbstractCommand {
                         request.setAttribute("subjs", subjs);
                         request.setAttribute("themes", themes);
                         request.setAttribute("tests", tests);
-                        return "/jspview/postlog.jsp";
+                        return "/jsp/postlog.jsp";
                     }
                 }
             }
@@ -73,7 +73,7 @@ public class LoginCommand extends AbstractCommand {
             request.setAttribute("subjs", subjs);
             request.setAttribute("themes", themes);
             request.setAttribute("tests", tests);
-            return "/jspview/postlog.jsp";
+            return "/jsp/postlog.jsp";
         }
 
         if (ifLoginExists) {
@@ -83,7 +83,7 @@ public class LoginCommand extends AbstractCommand {
             request.setAttribute("logorreg", "logfailure");
         }
 
-        return "/jspview/welcome.jsp";
+        return "index.jsp";
     }
 
 }

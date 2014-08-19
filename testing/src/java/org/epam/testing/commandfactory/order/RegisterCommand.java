@@ -38,7 +38,7 @@ public class RegisterCommand extends AbstractCommand {
         for (User user : users) {
             if (user.getNick().equals(args[0])) {
                 request.setAttribute("logorreg", "regexfailure");
-                return "/jspview/welcome.jsp";
+                return "index.jsp";
             }
         }
         args[2] = "student";
@@ -60,6 +60,6 @@ public class RegisterCommand extends AbstractCommand {
             request.setAttribute("themes", themes);
             request.setAttribute("tests", tests);
         }
-        return "/jspview/postlog.jsp";
+        return "/jsp/postlog.jsp";
     }
 }

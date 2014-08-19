@@ -18,7 +18,7 @@ public class NeedLoginCommand extends AbstractCommand {
     @Override
     public String perform(HttpServletRequest request) throws LogicException, TechException {
         request.setAttribute("logorreg", "login");
-        return "/jspview/welcome.jsp";
+        return "index.jsp";
     }
 
 }

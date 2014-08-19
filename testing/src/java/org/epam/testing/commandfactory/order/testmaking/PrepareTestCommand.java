@@ -27,7 +27,7 @@ public class PrepareTestCommand extends AbstractCommand {
         
         request.setAttribute("wascommand", "prepare");
         request.setAttribute("subjs", subjects);
-        return "/jspview/addtest.jsp";
+        return "/jsp/addtest.jsp";
     }
 
 }

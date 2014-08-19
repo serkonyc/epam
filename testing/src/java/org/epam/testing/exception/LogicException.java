@@ -11,14 +11,12 @@ package org.epam.testing.exception;
  */
 public class LogicException extends Exception {
 
-    private static final String TYPE = "LOGIC: ";
-
     public LogicException() {
         super();
     }
 
     public LogicException(String message) {
-        super(TYPE + message);
+        super(message);
     }
 
     public LogicException(Throwable exception) {
@@ -26,7 +24,7 @@ public class LogicException extends Exception {
     }
 
     public LogicException(String message, Throwable exception) {
-        super(TYPE + message, exception);
+        super(message, exception);
     }
 
 }

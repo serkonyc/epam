@@ -27,19 +27,8 @@ public class DeleteChosenTestCommand extends AbstractCommand {
     public String perform(HttpServletRequest request) throws LogicException, TechException {
         AbstractDao dao = new DaoFactory().getDaoByName("test");
         dao.deleteByParameter(request.getParameter("data"));
-        ArrayList<Test> tests = dao.selectAll();
-        TreeSet<Subject> subjs = new TreeSet<>();
-        TreeSet<Theme> themes = new TreeSet<>();
-        for (Test test : tests) {
-            subjs.add(test.getTheme().getSubj());
-            themes.add(test.getTheme());
-        }
 
-        request.setAttribute("wascommand", "delete");
-        request.setAttribute("subjs", subjs);
-        request.setAttribute("themes", themes);
-        request.setAttribute("tests", tests);
-        return "/jspview/postlog.jsp";
+        return "/jsp/postlog.jsp";
     }
 
 }

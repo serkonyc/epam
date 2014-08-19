@@ -19,7 +19,8 @@ public class BeginCommand extends AbstractCommand {
     public String perform(HttpServletRequest request) throws LogicException, TechException {
         request.getSession().setAttribute("id", null);
         request.getSession().setAttribute("nick", null);
-                return "/jspview/welcome.jsp";
+        request.getSession().setAttribute("result", null);
+                return "index.jsp";
     }
 
 }

@@ -11,14 +11,12 @@ package org.epam.testing.exception;
  */
 public class TechException extends Exception {
 
-    private static final String TYPE = "TECH: ";
-
     public TechException() {
         super();
     }
 
     public TechException(String message) {
-        super(TYPE + message);
+        super(message);
     }
 
     public TechException(Throwable cause) {
@@ -26,6 +24,6 @@ public class TechException extends Exception {
     }
 
     public TechException(String message, Throwable cause) {
-        super(TYPE + message, cause);
+        super(message, cause);
     }
 }

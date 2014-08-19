@@ -3,25 +3,37 @@
  
 <log4j:configuration debug="false" xmlns:log4j="http://jakarta.apache.org/log4j/">
 
-<appender name="ConsoleAppender" class="org.apache.log4j.ConsoleAppender">
+    <appender name="ConsoleAppender" class="org.apache.log4j.ConsoleAppender">
         <param name="Encoding" value="UTF-8"/>
         <layout class="org.apache.log4j.PatternLayout">
             <param name="ConversionPattern" value="%d{ISO8601} [%5p] %c %m at %l%n" />
         </layout>
     </appender>
 	
-	<appender name="FileAppender" class="org.apache.log4j.FileAppender">
+    <appender name="FileAppender" class="org.apache.log4j.FileAppender">
         <param name="Encoding" value="UTF-8"/>
-		<param name="file" value="insurance.log"/>
+        <param name="file" value="/Users/Sergiusz/Documents/NetBeansProjects/testing/log/testing.log"/>
         <layout class="org.apache.log4j.PatternLayout">
             <param name="ConversionPattern" value="%d{ISO8601} [%5p] %c %m at %l%n" />
         </layout>
     </appender>
  
-   <logger name="console-file">
+    <logger name="CommandController">
         <level value="WARN"/>
         <appender-ref ref="ConsoleAppender"/>
-		<appender-ref ref="FileAppender"/>
+        <appender-ref ref="FileAppender"/>
+    </logger>
+    
+    <logger name="NoCommandFilter">
+        <level value="WARN"/>
+        <appender-ref ref="ConsoleAppender"/>
+        <appender-ref ref="FileAppender"/>
+    </logger>
+    
+    <logger name="EncodeFilter">
+        <level value="WARN"/>
+        <appender-ref ref="ConsoleAppender"/>
+        <appender-ref ref="FileAppender"/>
     </logger>
 	
-	</log4j:configuration>
+</log4j:configuration>

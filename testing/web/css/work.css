@@ -1,0 +1,190 @@
+/*
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+*/
+/* 
+    Created on : Jul 31, 2014, 7:47:12 PM
+    Author     : Sergiusz
+*/
+
+body{
+    font-family: Ubuntu;
+    color: #16347a;
+    background-image: url(jpeg/backwork.jpg);
+    background-position: center;
+    background-attachment: fixed;
+}
+
+h1{
+    color: #1c75a1; 
+    text-align: center;      
+    font-family:  ALGERIAN;
+}
+.header {
+    font-size: 70px;
+}
+
+div{    
+
+}
+#menu-block {
+    position: absolute; /* Абсолютное позиционирование */
+    left: 18%; /* Положение слоя от левого края */
+    top: 35%; /* Положение слоя от верхнего края */
+}
+#private {
+    position: absolute; /* Абсолютное позиционирование */
+    right: 27%; /* Положение слоя от левого края */
+    top: 35%; /* Положение слоя от верхнего края */
+}
+#button {
+    position: absolute; /* Абсолютное позиционирование */
+    left: 43%; /* Положение слоя от левого края */
+    top: 85%; /* Положение слоя от верхнего края */
+}
+
+
+#menu-block {
+    padding: 0;
+    margin: 0;
+    width: 700px;
+}
+/*стили всего блока меню, пунктов и ссылок*/
+.vertical-menu {
+    font-family: Ubuntu;
+    display: block;
+    background: #f2f4fa;
+    border: solid 1px #a2b8eb;
+    border-radius: 5px;
+    padding: 0;
+    margin: 0;
+    width: 200px; /*ширина меню и выпадающих блоков*/
+}
+.vertical-menu li {
+    font-family: Ubuntu;
+    position: relative;
+    list-style: none;
+    outline: none;
+    background: #f2f4fa;
+    border: solid 1px #8199d1;
+    border-radius: 5px;
+    padding: 4px;
+    margin: 2px;
+}
+.vertical-menu li:hover {
+    background: #f2f4fa;
+    border: solid 1px #8199d1;
+    border-radius: 5px;
+    margin: 2px 4px;
+}
+.drop-link:hover {
+    background: #8199d1; /*выделяем ссылку родитель выпадающего блока*/
+}
+/*стили для уголков*/
+.drop-link:after,
+.drop-link:before {
+    content: '';
+    position: absolute;
+    right: 0;
+    top: 0;
+    padding: 0;
+    margin: 0;
+}
+.drop-link:before {
+    border: solid 14px;
+    border-color: #8199d1 transparent transparent transparent;
+    margin: 0 12px 0 0;
+}
+.drop-link:after {
+    border: solid 10px;
+    border-color: #8199d1 transparent transparent transparent;
+    margin: 0 15px 0 0;
+}
+.drop-link:hover:before {
+    border: solid 16px;
+    border-color: transparent #8199d1 transparent transparent;
+    margin: -3px 0 0 0;
+}
+.drop-link:hover:after {
+    border: solid 12px;
+    border-color: transparent #495a85 transparent transparent;
+    margin-right: 0;
+}
+.drop-block {
+    font-family: Ubuntu;
+    display: block;
+    position: absolute;
+    z-index: 1000;
+    left: 100%; /*если меню справа - right: 100%;*/
+    top: -9999em; /*скрываем выпадающие блоки*/
+    background: #f2f4fa;
+    border: solid 1px #495a85;
+    border-radius: 5px;
+    box-shadow: 0.5em 1em 1em #495a85; /*если меню справа - box-shadow: -0.5em 1em 1em #666;*/
+    opacity: 0;
+    padding: 0;
+    margin-top: -27px;
+    min-width: 258px; /*обычная ширина*/
+    width: auto; /*ширина если строка без пробелов и переносов*/
+}
+
+.drop-link:hover > .drop-block {
+    top: 0; /*показываем выпадающие блоки*/
+    opacity: 1;
+}
+
+#form1 {
+    font-family: Ubuntu;
+    margin:1em 0;
+    background: no-repeat 0 0;
+}
+#form1 fieldset {
+    font-family: Ubuntu;
+    margin:0;
+    padding:0;
+    border:none;
+    float:left;
+    display:inline;
+    width:260px;
+    margin-left:25px;
+}		
+#form1 p {margin:.5em 0;}
+#form1 label {display:block;}
+#form1 input, #form1 textarea {
+    font-family: Ubuntu;
+    width:118px;
+    border:1px solid #ddd;
+    -moz-border-radius:.3em;
+    -webkit-border-radius:.3em;
+    border-radius:.3em;
+    background:#fff repeat-x;
+    padding:3px;
+}
+#form1 textarea {
+    font-family: Ubuntu;
+    height:125px;
+    overflow:auto;
+}
+#form1 p.submit {
+    font-family: Ubuntu;
+    clear:both;
+    background: no-repeat 0 100%;
+    margin:0;
+    text-align:right;
+}
+#form1 button {
+    font-family: Ubuntu;
+    width:220px;
+    height:37px;
+    line-height:37px;
+    border:none;
+    background: no-repeat 0 0;
+    color:#495a85;
+    cursor:pointer;
+    text-align:center;
+}
+@font-face {
+    font-family: Ubuntu;
+    src: url("../fonts/ubuntu.ttf");
+}

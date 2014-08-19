@@ -40,6 +40,6 @@ public class ChooseThemeCommand extends AbstractCommand {
         request.setAttribute("questnum", questNum);
         request.setAttribute("wascommand", "questions");
         request.setAttribute("themeid", themeId);
-        return "/jspview/addtest.jsp";
+        return "/jsp/addtest.jsp";
     }
 }

@@ -6,16 +6,12 @@
 package org.epam.testing.commandfactory.order.testmanaging;
 
 import java.util.ArrayList;
-import java.util.TreeSet;
 import javax.servlet.http.HttpServletRequest;
 import org.epam.testing.commandfactory.order.AbstractCommand;
 import org.epam.testing.daofactory.DaoFactory;
 import org.epam.testing.daofactory.dao.AbstractDao;
 import org.epam.testing.daofactory.entity.Answer;
 import org.epam.testing.daofactory.entity.Quest;
-import org.epam.testing.daofactory.entity.Subject;
-import org.epam.testing.daofactory.entity.Test;
-import org.epam.testing.daofactory.entity.Theme;
 import org.epam.testing.exception.LogicException;
 import org.epam.testing.exception.TechException;
 
@@ -36,7 +32,7 @@ public class ChangeChosenTestCommand extends AbstractCommand {
             request.setAttribute("questnum", bothQuestsAnswers.size());
             request.setAttribute("olddata", request.getParameter("data"));
             request.setAttribute("data", bothQuestsAnswers);
-            return "jspview/changetest.jsp";
+            return "jsp/changetest.jsp";
         } else {
 
             dao = new DaoFactory().getDaoByName("quest");
@@ -49,20 +45,7 @@ public class ChangeChosenTestCommand extends AbstractCommand {
                 }
             }
 
-            dao = new DaoFactory().getDaoByName("test");
-            ArrayList<Test> tests = dao.selectAll();
-            TreeSet<Subject> subjs = new TreeSet<>();
-            TreeSet<Theme> themes = new TreeSet<>();
-            for (Test test : tests) {
-                subjs.add(test.getTheme().getSubj());
-                themes.add(test.getTheme());
-            }
-
-            request.setAttribute("wascommand", "change");
-            request.setAttribute("subjs", subjs);
-            request.setAttribute("themes", themes);
-            request.setAttribute("tests", tests);
-            return "/jspview/postlog.jsp";
+            return "/jsp/postlog.jsp";
         }
     }
 

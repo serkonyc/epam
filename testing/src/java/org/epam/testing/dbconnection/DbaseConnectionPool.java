@@ -10,9 +10,6 @@ import java.sql.DriverManager;
 import java.sql.SQLException;
 import java.util.Iterator;
 import java.util.concurrent.LinkedBlockingQueue;
-import java.util.logging.Level;
-import org.apache.log4j.Logger;
-import org.epam.testing.control.CommandController;
 import org.epam.testing.exception.TechException;
 import org.epam.testing.prophandler.PropertyHandler;
 
@@ -22,7 +19,6 @@ import org.epam.testing.prophandler.PropertyHandler;
  */
 public class DbaseConnectionPool {
 
-    private static final Logger LOGGER = CommandController.LOGGER;
     private final int POOL_LIMIT;
     private LinkedBlockingQueue<Connection> allConnections;
     private LinkedBlockingQueue<Connection> usedConnections;

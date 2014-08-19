@@ -18,7 +18,7 @@ public class NeedRegisterCommand extends AbstractCommand {
     @Override
     public String perform(HttpServletRequest request) throws LogicException, TechException {
         request.setAttribute("logorreg", "register");
-        return "/jspview/welcome.jsp";
+        return "index.jsp";
     }
 
 }
