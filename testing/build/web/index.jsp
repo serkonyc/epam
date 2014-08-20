@@ -33,7 +33,7 @@
                                 <br>
                                 <input type="password" required placeholder="*Password" name="pass">
                                 <br>
-                                <button value="login" name="command"><b>SIGN IN</b></button>                                
+                                <button value="login" name="command"><b>SIGN IN</b></button>   
                             </form>
                             <form method="post" id="form1" action="/testing/enter">
                                 <button value="needregister" name="command">Sign up</button>
@@ -47,10 +47,27 @@
                                 <br>
                                 <input type="password" required placeholder="*Incorrect Password!" name="pass">
                                 <br>
-                                <button value="login" name="command"><b>SIGN IN</b></button>                                
+                                <button value="login" name="command"><b>SIGN IN</b></button>     
                             </form>
                             <form method="post" id="form1" action="/testing/enter">
                                 <button value="needregister" name="command">Sign up</button>
+                            </form>
+                        </td>
+                    </c:when>
+                    <c:when test="${logorreg == 'regexfailure'}"> 
+                        <td>                    
+                            <form method="post" id="form1" type="err" action="/testing/enter" autocomplete="off">
+                                <input type="text" pattern="[A-Za-z0-9_]{4,16}" required placeholder="*Nick already exists" name="login">
+                                <input type="email" placeholder="Email" name="email">
+                                <br>
+                                <input type="password" required placeholder="*Password" name="pass1">
+                                <input type="password" required placeholder="*Repeat Password" name="pass2">
+                                <br>
+                                <button value="register" name="command"><b>SIGN UP</b></button>
+                            </form>
+                            <form method="post" id="form1" action="/testing/enter">
+                                <button value="needlogin" name="command">Sign in</button>
+                                <input type="hidden" name="progress" value="final">
                             </form>
                         </td>
                     </c:when>
@@ -67,6 +84,7 @@
                             </form>
                             <form method="post" id="form1" action="/testing/enter">
                                 <button value="needlogin" name="command">Sign in</button>
+                                <input type="hidden" name="progress" value="final">
                             </form>
                         </td>
                     </c:when>
@@ -77,7 +95,7 @@
                                 <br>
                                 <input type="password" required placeholder="*Password" name="pass">
                                 <br>
-                                <button value="login" name="command"><b>SIGN IN</b></button>                                
+                                <button value="login" name="command"><b>SIGN IN</b></button>     
                             </form>
                             <form method="post" id="form1" action="/testing/enter">
                                 <button value="needregister" name="command">Sign up</button>

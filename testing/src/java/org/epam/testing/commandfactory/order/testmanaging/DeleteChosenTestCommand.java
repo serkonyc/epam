@@ -5,15 +5,10 @@
  */
 package org.epam.testing.commandfactory.order.testmanaging;
 
-import java.util.ArrayList;
-import java.util.TreeSet;
 import javax.servlet.http.HttpServletRequest;
 import org.epam.testing.commandfactory.order.AbstractCommand;
 import org.epam.testing.daofactory.DaoFactory;
 import org.epam.testing.daofactory.dao.AbstractDao;
-import org.epam.testing.daofactory.entity.Subject;
-import org.epam.testing.daofactory.entity.Test;
-import org.epam.testing.daofactory.entity.Theme;
 import org.epam.testing.exception.LogicException;
 import org.epam.testing.exception.TechException;
 
@@ -28,7 +23,7 @@ public class DeleteChosenTestCommand extends AbstractCommand {
         AbstractDao dao = new DaoFactory().getDaoByName("test");
         dao.deleteByParameter(request.getParameter("data"));
 
-        return "/jsp/postlog.jsp";
+        return null;
     }
 
 }

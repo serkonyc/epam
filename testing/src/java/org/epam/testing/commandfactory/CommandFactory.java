@@ -6,6 +6,7 @@
 package org.epam.testing.commandfactory;
 
 import org.epam.testing.commandfactory.order.*;
+import org.epam.testing.commandfactory.order.statistics.*;
 import org.epam.testing.commandfactory.order.testmaking.*;
 import org.epam.testing.commandfactory.order.testmanaging.*;
 import org.epam.testing.commandfactory.order.testpassing.*;
@@ -50,6 +51,10 @@ public class CommandFactory {
                     return new DeleteChosenTestCommand();
                 case CHANGECHOSENTEST:
                     return new ChangeChosenTestCommand();
+                case LOOKSTAT:
+                    return new LookPassStatCommand();
+                case LOOKMAKESTAT:
+                    return new LookMakeStatCommand();
                 default:
                     throw new LogicException("Trouble with CommandList enum");
             }

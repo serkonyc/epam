@@ -13,23 +13,32 @@
         <title>JSP Page</title>
     </head>
     <body>
-        <div id="button">
-            <button type="reset">Выберите предмет</button>
+        <div id="label">
+            <form id="form1">            
+                <button type="button">Выберите предмет</button>            
+            </form>
         </div>
         <div id="sublist">
-            <ul class='vertical-menu'>
-                <c:forEach var="subj" items="${subjs}">
+            <form action="/testing/maketest" method="post" id="form1" autocomplete="off">
+                <ul class='vertical-menu'>
+                    <c:forEach var="subj" items="${subjs}">
+                        <li>
+                            <input type="submit" value="${subj.name}" name="input"> 
+                            <input type="hidden" value="choosesubject" name="command">
+                        </li>
+                    </c:forEach>
+                </ul>
+            </form>
+            <form action="/testing/maketest" method="post" id="form1" autocomplete="off">
+                <ul class='vertical-menu' >
                     <li>
-                        <input type="submit" value="${subj.name}" name="input"> 
+                        <input type="iftext" pattern="[A-я -]{2,16}" required placeholder="Введите название..." name="input"> 
+                        <input type="submit" value="Добавить"> 
                         <input type="hidden" value="choosesubject" name="command">
+                        <input type="hidden" value="yes" name="newsubject">
                     </li>
-                </c:forEach>
-                <li>
-                    <input type="iftext" pattern="[A-я ]{4,16}" optional placeholder="Введите название..." name="input"> 
-                    <input type="submit" value="Добавить"> 
-                    <input type="hidden" value="choosesubject" name="command">
-                </li>
-            </ul>
+                </ul>
+            </form>
         </div>
         <br/>
     </body>

@@ -19,7 +19,7 @@ import org.epam.testing.exception.TechException;
  * @author Sergiusz
  */
 public class PassTestCommand extends AbstractCommand {
-
+    
     @Override
     public String perform(HttpServletRequest request) throws LogicException, TechException {
         if (request.getSession().getAttribute("result") == null) {
@@ -35,17 +35,21 @@ public class PassTestCommand extends AbstractCommand {
                     result = result - 1.0f / answers.size();
                 }
             }
+            dao = new DaoFactory().getDaoByName("passhistory");
+            dao.insertNew(
+                    request.getParameter("testid"),
+                    request.getSession().getAttribute("id").toString(),
+                    String.valueOf(result)
+            );
 
             request.getSession().setAttribute("result",
                     "Your result of passing test is "
                     + String.format("%.2f", result * 100)
                     + "%");
             return "jsp/passtest.jsp";
-            
         } else {
-            
-            request.getSession().setAttribute("result", null);
-            return "jsp/postlog.jsp";
+            request.getSession().setAttribute("result", null);            
+            return null;
         }
     }
 

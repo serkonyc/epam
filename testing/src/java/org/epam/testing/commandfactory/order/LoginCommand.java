@@ -25,65 +25,69 @@ public class LoginCommand extends AbstractCommand {
 
     @Override
     public String perform(HttpServletRequest request) throws LogicException, TechException {
-        String login = null;
-        boolean ifLoginExists = false;
-        AbstractDao dao = null;
+        if (request.getParameter("progress") == null) {
+            String login;
+            boolean ifLoginExists = false;
+            AbstractDao dao;
 
-        if (request.getSession().getAttribute("id") == null) {
-            if (request.getParameter("login") == null && request.getParameter("pass") == null) {
-                return "index.jsp";
-            }
-            dao = new DaoFactory().getDaoByName("user");
-            ArrayList<User> users = dao.selectAll();
-            login = request.getParameter("login");
-            String pass = request.getParameter("pass");
-            for (User user : users) {
-                if (user.getNick().equals(login)) {
-                    ifLoginExists = true;
-                    if (user.getPass().equals(pass)) {
-                        int id = user.getId();
-                        dao = new DaoFactory().getDaoByName("test");
-                        ArrayList<Test> tests = dao.selectAll();
-                        TreeSet<Subject> subjs = new TreeSet<>();
-                        TreeSet<Theme> themes = new TreeSet<>();
-                        for (Test test : tests) {
-                            subjs.add(test.getTheme().getSubj());
-                            themes.add(test.getTheme());
+            request.getSession().setAttribute("errorMess", null);
+            if (request.getSession().getAttribute("id") == null) {
+                if (request.getParameter("login") == null && request.getParameter("pass") == null) {
+                    return "index.jsp";
+                }
+                dao = new DaoFactory().getDaoByName("user");
+                ArrayList<User> users = dao.selectAll();
+                login = request.getParameter("login");
+                String pass = request.getParameter("pass");
+                for (User user : users) {
+                    if (user.getNick().equals(login)) {
+                        ifLoginExists = true;
+                        if (user.getPass().equals(pass)) {
+                            int id = user.getId();
+                            dao = new DaoFactory().getDaoByName("test");
+                            ArrayList<Test> tests = dao.selectAll();
+                            TreeSet<Subject> subjs = new TreeSet<>();
+                            TreeSet<Theme> themes = new TreeSet<>();
+                            for (Test test : tests) {
+                                subjs.add(test.getTheme().getSubj());
+                                themes.add(test.getTheme());
+                            }
+
+                            request.getSession().setAttribute("id", id);
+                            request.getSession().setAttribute("nick", login);
+                            request.setAttribute("subjs", subjs);
+                            request.setAttribute("themes", themes);
+                            request.setAttribute("tests", tests);
+                            return "/jsp/postlog.jsp";
                         }
-
-                        request.getSession().setAttribute("id", id);
-                        request.getSession().setAttribute("nick", login);
-                        request.setAttribute("subjs", subjs);
-                        request.setAttribute("themes", themes);
-                        request.setAttribute("tests", tests);
-                        return "/jsp/postlog.jsp";
                     }
                 }
+            } else {
+                dao = new DaoFactory().getDaoByName("test");
+                ArrayList<Test> tests = dao.selectAll();
+                TreeSet<Subject> subjs = new TreeSet<>();
+                TreeSet<Theme> themes = new TreeSet<>();
+                for (Test test : tests) {
+                    subjs.add(test.getTheme().getSubj());
+                    themes.add(test.getTheme());
+                }
+
+                request.setAttribute("subjs", subjs);
+                request.setAttribute("themes", themes);
+                request.setAttribute("tests", tests);
+                return "/jsp/postlog.jsp";
             }
-        } else {
-            dao = new DaoFactory().getDaoByName("test");
-            ArrayList<Test> tests = dao.selectAll();
-            TreeSet<Subject> subjs = new TreeSet<>();
-            TreeSet<Theme> themes = new TreeSet<>();
-            for (Test test : tests) {
-                subjs.add(test.getTheme().getSubj());
-                themes.add(test.getTheme());
+
+            if (ifLoginExists) {
+                request.setAttribute("nick", login);
+                request.setAttribute("logorreg", "logexfailure");
+            } else {
+                request.setAttribute("logorreg", "logfailure");
             }
 
-            request.setAttribute("subjs", subjs);
-            request.setAttribute("themes", themes);
-            request.setAttribute("tests", tests);
-            return "/jsp/postlog.jsp";
-        }
-
-        if (ifLoginExists) {
-            request.setAttribute("nick", login);
-            request.setAttribute("logorreg", "logexfailure");
+            return "index.jsp";
         } else {
-            request.setAttribute("logorreg", "logfailure");
+            return null;
         }
-
-        return "index.jsp";
     }
-
 }

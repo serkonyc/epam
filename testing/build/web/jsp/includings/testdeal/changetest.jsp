@@ -51,6 +51,7 @@
             </form>
             <form method="post" id="form1" action="${path}/enter">
                 <input type="hidden" name="command" value="login">
+                <input type="hidden" value="final" name="progress">
                 <button>Пройти тест</button>
             </form>    
             <form id="form1">
@@ -65,6 +66,7 @@
             <form method="post" id="form1" action="${path}/enter">
                 <input type="hidden" name="command" value="begin">
                 <button>Бежим отсюда!</button>
+                <input type="hidden" name="progress" value="final">
             </form>
         </div>
     </body>

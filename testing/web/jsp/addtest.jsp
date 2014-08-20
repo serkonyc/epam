@@ -15,8 +15,7 @@
         <title>Add Test</title>
     </head>
     <body>
-        <div>
-            <form action="/testing/maketest" method="post" id="form1" autocomplete="off">
+        <div>            
                 <c:if test="${wascommand == 'prepare'}"> 
                     <%@ include file="includings/testmake/subchoose.jsp" %>
                 </c:if>    
@@ -26,7 +25,6 @@
                 <c:if test="${wascommand == 'questions'}"> 
                     <%@ include file="includings/testmake/testmake.jsp" %>             
                 </c:if>                
-            </form>
         </div>
     </body>
 </html>

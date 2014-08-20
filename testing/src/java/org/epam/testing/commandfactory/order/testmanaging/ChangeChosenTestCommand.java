@@ -45,7 +45,7 @@ public class ChangeChosenTestCommand extends AbstractCommand {
                 }
             }
 
-            return "/jsp/postlog.jsp";
+            return null;
         }
     }
 

@@ -20,6 +20,7 @@ public class BeginCommand extends AbstractCommand {
         request.getSession().setAttribute("id", null);
         request.getSession().setAttribute("nick", null);
         request.getSession().setAttribute("result", null);
+        request.getSession().setAttribute("jsppath", null);
                 return "index.jsp";
     }
 

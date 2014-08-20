@@ -14,10 +14,10 @@ import javax.servlet.ServletException;
 import javax.servlet.ServletRequest;
 import javax.servlet.ServletResponse;
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 import org.apache.log4j.Logger;
 import org.epam.testing.commandfactory.CommandFactory;
 import org.epam.testing.commandfactory.order.AbstractCommand;
-import org.epam.testing.control.CommandController;
 import org.epam.testing.exception.LogicException;
 import org.epam.testing.exception.TechException;
 import org.epam.testing.prophandler.PropertyHandler;
@@ -38,14 +38,22 @@ public class NoCommandFilter implements Filter {
     public void doFilter(ServletRequest request,
             ServletResponse response, FilterChain chain) {
         try {
-            PropertyHandler.setInput(request.getServletContext().getRealPath(""));
-            AbstractCommand cmd = CommandFactory.getCommandByName("login");
-            RequestDispatcher reqDispatch = request.getRequestDispatcher(cmd.perform((HttpServletRequest) request));
-            if (reqDispatch == null) {
-                reqDispatch = request.getRequestDispatcher("/jsp/error.jsp");
+            HttpServletRequest filterRequest = (HttpServletRequest) request;
+            HttpSession session = filterRequest.getSession(true);
+            RequestDispatcher reqDispatch;
+            if (session.getAttribute("jsppath") == null) {
+                PropertyHandler.setInput(request.getServletContext().getRealPath(""));
+                AbstractCommand cmd = CommandFactory.getCommandByName("login");
+                reqDispatch = request.getRequestDispatcher(cmd.perform((HttpServletRequest) request));
+                if (reqDispatch == null) {
+                    reqDispatch = request.getRequestDispatcher("/jsp/error.jsp");
+                }
+            } else {
+                reqDispatch = request.getRequestDispatcher(session.getAttribute("jsppath").toString());
             }
             request.setAttribute("path", request.getServletContext().getContextPath());
             reqDispatch.forward(request, response);
+            session.setAttribute("jsppath", null);
 
             chain.doFilter(request, response);
 

@@ -6,6 +6,7 @@
 package org.epam.testing.commandfactory.order.testpassing;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import javax.servlet.http.HttpServletRequest;
 import org.epam.testing.commandfactory.order.AbstractCommand;
 import org.epam.testing.daofactory.DaoFactory;
@@ -28,6 +29,9 @@ public class ChooseTestCommand extends AbstractCommand {
         request.getSession().setAttribute("result", null);
         if (!bothQuestsAnswers.isEmpty()) {
             request.setAttribute("testid", bothQuestsAnswers.get(0).getTestId());
+            for(Quest quest: bothQuestsAnswers) {
+                Collections.shuffle(quest.getAnswers());
+            }
         }
         else {
             throw new LogicException("Test does not exist.");

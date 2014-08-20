@@ -13,12 +13,24 @@ public class PassHistory extends AbstractEntity {
 
     private int testId;
     private int userId;
-    private float result;
+    private int result;
 
     public PassHistory(float result, int... args) {
         super(args[0]);
         this.testId = args[1];
         this.userId = args[2];
-        this.result = result;
+        this.result = (int) result;
+    }
+
+    public int getTestId() {
+        return testId;
+    }
+
+    public int getUserId() {
+        return userId;
+    }
+
+    public int getResult() {
+        return result;
     }
 }

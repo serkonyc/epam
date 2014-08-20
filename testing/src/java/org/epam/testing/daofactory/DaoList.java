@@ -11,5 +11,5 @@ package org.epam.testing.daofactory;
  */
 public enum DaoList {
 
-    USER, SUBJECT, THEME, TEST, QUEST, ANSWER
+    USER, SUBJECT, THEME, TEST, QUEST, ANSWER, PASSHISTORY
 }

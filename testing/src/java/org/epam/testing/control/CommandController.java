@@ -36,10 +36,12 @@ public class CommandController extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response) {
         RequestDispatcher reqDispatch = null;
         String errorMessage = null;
+        String cmdPerformMessage = null;
         try {
             if (request.getParameter("command") != null) {
                 AbstractCommand cmd = CommandFactory.getCommandByName(request.getParameter("command"));
-                reqDispatch = request.getRequestDispatcher(cmd.perform(request));
+                cmdPerformMessage = cmd.perform(request);
+                reqDispatch = request.getRequestDispatcher(cmdPerformMessage);
             }
 
         } catch (LogicException | TechException exception) {
@@ -49,7 +51,8 @@ public class CommandController extends HttpServlet {
         } finally {
             try {
                 if (errorMessage != null) {
-                    response.sendRedirect("testing/jsp/error.jsp");
+                    request.getSession().setAttribute("jsppath", "jsp/error.jsp");
+                    response.sendRedirect("/testing/error");
                 }
                 if (request.getParameter("progress") == null) {
                     if (reqDispatch != null) {
@@ -57,9 +60,11 @@ public class CommandController extends HttpServlet {
                         reqDispatch.forward(request, response);
                     } else {
                         request.getSession().setAttribute("errorMess", errorMessage);
-                        response.sendRedirect("testing/jsp/error.jsp");
+                        request.getSession().setAttribute("jsppath", "jsp/error.jsp");
+                        response.sendRedirect("/testing/error");
                     }
-                } else {
+                } else {                    
+                    request.getSession().setAttribute("jsppath", cmdPerformMessage);
                     response.sendRedirect("/testing");
                 }
 

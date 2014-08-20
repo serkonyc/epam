@@ -26,5 +26,15 @@
                 <%@ include file="includings/testdeal/passtest.jsp" %>
             </c:otherwise>
         </c:choose>
+        <div id="statistics">
+            <form method="post" id="form1" action="${path}/statistics">
+                <button>Статистика прохождений</button>
+                <input type="hidden" value="lookstat" name="command">
+            </form>
+            <form method="post" id="form1" action="${path}/statistics">
+                <button>Статистика добавлений</button>
+                <input type="hidden" value="lookmakestat" name="command">
+            </form>
+        </div>
     </body>
 </html>

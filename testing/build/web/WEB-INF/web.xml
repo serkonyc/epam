@@ -18,6 +18,7 @@
         <url-pattern>/passtest</url-pattern>
         <url-pattern>/deltest</url-pattern>
         <url-pattern>/chatest</url-pattern>
+        <url-pattern>/statistics</url-pattern>
     </servlet-mapping>
        
     <filter>

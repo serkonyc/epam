@@ -29,6 +29,8 @@ public class DaoFactory {
                     return new QuestDao();
                 case ANSWER:
                     return new AnswerDao();
+                case PASSHISTORY:
+                    return new PassHistoryDao();
                 default:
                     throw new LogicException("Trouble with DaoList enum");
             }

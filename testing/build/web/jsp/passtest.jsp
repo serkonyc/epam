@@ -54,6 +54,7 @@
                         <button>Закончить тест</button>
                         <input type="hidden" value="${testid}" name="testid">
                         <input type="hidden" value=passtest name="command">
+                         <input type="hidden" value=final name="progress">
                     </div>        
                     <div id='help' align="justify">
                         <br/>
@@ -74,7 +75,7 @@
                     <div div id='result'>
                         <button>А я так и знал!</button>
                         <input type="hidden" value=passtest name="command">
-                        <input type="hidden" value="final" name="progress">
+                        <input type="hidden" value=final name="progress">
                     </div>        
                 </c:if>
             </form>
