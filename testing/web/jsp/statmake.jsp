@@ -41,8 +41,8 @@
                 <br/>
                 <div id="statbutt">
                     <button>Вернуться</button>   
-                    <input type="hidden" value="final" name="progress">
                     <input type="hidden" value=login name="command">
+                    <input type="hidden" value=final name="progress">
                 </div>
             </form>
         </div>

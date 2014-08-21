@@ -6,8 +6,11 @@
 package org.epam.testing.commandfactory.order;
 
 import javax.servlet.http.HttpServletRequest;
+import static org.epam.testing.commandfactory.order.AbstractCommand.localePropertyHandler;
 import org.epam.testing.exception.LogicException;
 import org.epam.testing.exception.TechException;
+import org.epam.testing.prophandler.PropertyHandler;
+import org.epam.testing.utils.I18nDealer;
 
 /**
  *
@@ -18,7 +21,8 @@ public class NeedLoginCommand extends AbstractCommand {
     @Override
     public String perform(HttpServletRequest request) throws LogicException, TechException {
         request.setAttribute("logorreg", "login");
-        return "index.jsp";
+        new I18nDealer(this.getClass().getSimpleName()).assignLocale(request);
+        return flowPagePropertyHandler.getPropertyValue(this.getClass().getSimpleName());
     }
 
 }

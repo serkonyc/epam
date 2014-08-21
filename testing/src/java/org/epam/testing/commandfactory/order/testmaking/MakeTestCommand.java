@@ -42,9 +42,13 @@ public class MakeTestCommand extends AbstractCommand {
                     "true"
             );
             for (int j = 2; j <= 5; j++) {
+                String answer = request.getParameter(i + "-" + j);
+                if (answer == null) {
+                    answer = "";
+                }
                 adao.insertNew(
                         String.valueOf(lastIdQu),
-                        request.getParameter(i + "-" + j),
+                        answer,
                         "false"
                 );
             }

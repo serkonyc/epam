@@ -34,7 +34,7 @@ public class LookMakeStatCommand extends AbstractCommand {
                 }
             }
             request.setAttribute("posttestlist", posttestlist);
-            return "/jsp/statmake.jsp";
+            return flowPagePropertyHandler.getPropertyValue(this.getClass().getSimpleName());
         } else {
             return null;
         }

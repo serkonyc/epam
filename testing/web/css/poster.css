@@ -7,6 +7,21 @@ and open the template in the editor.
     Created on : Jul 31, 2014, 6:05:43 PM
     Author     : Sergiusz
 */
+
+div {
+
+}
+#locale1 {
+    position: fixed;
+    left: 2%; 
+    top: 0%; 
+}
+#locale2 {
+    position: fixed;
+    left: 4%; 
+    top: 0%; 
+}
+
 html{
     overflow-y: hidden;
 }
@@ -74,7 +89,7 @@ h6 {
 }
 #form1 button {
     font-family: Ubuntu;
-    width:400px;
+    width:auto;
     height:37px;
     line-height:37px;
     border:none;

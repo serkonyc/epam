@@ -14,6 +14,7 @@ import org.epam.testing.daofactory.entity.Subject;
 import org.epam.testing.daofactory.entity.Theme;
 import org.epam.testing.exception.LogicException;
 import org.epam.testing.exception.TechException;
+import org.epam.testing.utils.I18nDealer;
 
 /**
  *
@@ -23,6 +24,7 @@ public class ChooseThemeCommand extends AbstractCommand {
 
     @Override
     public String perform(HttpServletRequest request) throws LogicException, TechException {
+        new I18nDealer(this.getClass().getSimpleName()).assignLocale(request);
         int themeId = 0;
         AbstractDao dao = new DaoFactory().getDaoByName("theme");
         if (!dao.isExist(request.getParameter("input"))) {
@@ -42,7 +44,6 @@ public class ChooseThemeCommand extends AbstractCommand {
             request.setAttribute("questnum", questNum);
             request.setAttribute("wascommand", "questions");
             request.setAttribute("themeid", themeId);
-            return "/jsp/addtest.jsp";
         } else {
             int subjectId = 0;
             dao = new DaoFactory().getDaoByName("theme");
@@ -60,7 +61,7 @@ public class ChooseThemeCommand extends AbstractCommand {
             request.setAttribute("themes", themes);
             request.setAttribute("wascommand", "themes");
             request.setAttribute("subjid", subjectId);
-            return "/jsp/addtest.jsp";
         }
+        return flowPagePropertyHandler.getPropertyValue(this.getClass().getSimpleName());
     }
 }

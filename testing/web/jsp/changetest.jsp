@@ -32,12 +32,21 @@
                                 <td>
                                 <td>
                                     <table>
-                                        <c:forEach var="ans" items="${dat.answers}">
-                                            <tr>
-                                                <td>
-                                                    <input type="text" name="answer${ans.id}" value="${ans.text}" required>
-                                                </td>
-                                            </tr>
+                                        <c:forEach var="ans" varStatus="status" items="${dat.answers}">
+                                            <c:if test="${varStatus <= 2}">
+                                                <tr>
+                                                    <td>
+                                                        <input type="text" name="answer${ans.id}" value="${ans.text}" required>
+                                                    </td>
+                                                </tr>
+                                            </c:if>
+                                            <c:if test="${varStatus>2}"> 
+                                                <tr>
+                                                    <td>
+                                                        <input type="text" name="answer${ans.id}" value="${ans.text}" >
+                                                    </td>
+                                                </tr>
+                                            </c:if>
                                         </c:forEach>
                                     </table>
                                 </td>

@@ -32,9 +32,8 @@ public class ChangeChosenTestCommand extends AbstractCommand {
             request.setAttribute("questnum", bothQuestsAnswers.size());
             request.setAttribute("olddata", request.getParameter("data"));
             request.setAttribute("data", bothQuestsAnswers);
-            return "jsp/changetest.jsp";
+            return flowPagePropertyHandler.getPropertyValue(this.getClass().getSimpleName());
         } else {
-
             dao = new DaoFactory().getDaoByName("quest");
             ArrayList<Quest> bothQuestsAnswers = dao.selectAllByParameter(request.getParameter("olddata"));
             AbstractDao adao = new DaoFactory().getDaoByName("answer");

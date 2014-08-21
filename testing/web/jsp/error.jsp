@@ -37,6 +37,7 @@
                 <td height="100px">
                     <form method="post" id="form1" action="/testing/enter">
                         <input type="hidden" name="command" value="login">
+                        <input type="hidden" name="progress" value="final">
                         <button><b>Вернуться обратно</b></button>
                     </form>
                 </td>

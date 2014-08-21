@@ -13,16 +13,18 @@ import org.epam.testing.daofactory.dao.AbstractDao;
 import org.epam.testing.daofactory.entity.Answer;
 import org.epam.testing.exception.LogicException;
 import org.epam.testing.exception.TechException;
+import org.epam.testing.utils.I18nDealer;
 
 /**
  *
  * @author Sergiusz
  */
 public class PassTestCommand extends AbstractCommand {
-    
+
     @Override
     public String perform(HttpServletRequest request) throws LogicException, TechException {
         if (request.getSession().getAttribute("result") == null) {
+            new I18nDealer(this.getClass().getSimpleName()).assignLocale(request);
             AbstractDao dao = new DaoFactory().getDaoByName("answer");
             ArrayList<Answer> answers = dao.selectAllByParameter(request.getParameter("testid"));
             float result = 1;
@@ -46,9 +48,9 @@ public class PassTestCommand extends AbstractCommand {
                     "Your result of passing test is "
                     + String.format("%.2f", result * 100)
                     + "%");
-            return "jsp/passtest.jsp";
+            return flowPagePropertyHandler.getPropertyValue(this.getClass().getSimpleName());
         } else {
-            request.getSession().setAttribute("result", null);            
+            request.getSession().setAttribute("result", null);
             return null;
         }
     }

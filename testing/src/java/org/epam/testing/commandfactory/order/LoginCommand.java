@@ -16,6 +16,7 @@ import org.epam.testing.daofactory.entity.Theme;
 import org.epam.testing.daofactory.entity.User;
 import org.epam.testing.exception.LogicException;
 import org.epam.testing.exception.TechException;
+import org.epam.testing.utils.I18nDealer;
 
 /**
  *
@@ -25,15 +26,27 @@ public class LoginCommand extends AbstractCommand {
 
     @Override
     public String perform(HttpServletRequest request) throws LogicException, TechException {
+        new I18nDealer(this.getClass().getSimpleName()).assignLocale(request);
         if (request.getParameter("progress") == null) {
             String login;
             boolean ifLoginExists = false;
-            AbstractDao dao;
 
+            AbstractDao dao = new DaoFactory().getDaoByName("test");
+            ArrayList<Test> tests = dao.selectAll();
+            TreeSet<Subject> subjs = new TreeSet<>();
+            TreeSet<Theme> themes = new TreeSet<>();
+            for (Test test : tests) {
+                subjs.add(test.getTheme().getSubj());
+                themes.add(test.getTheme());
+            }
+            request.setAttribute("subjs", subjs);
+            request.setAttribute("themes", themes);
+            request.setAttribute("tests", tests);
             request.getSession().setAttribute("errorMess", null);
+
             if (request.getSession().getAttribute("id") == null) {
                 if (request.getParameter("login") == null && request.getParameter("pass") == null) {
-                    return "index.jsp";
+                    return flowPagePropertyHandler.getPropertyValue(this.getClass().getSimpleName().concat("err"));
                 }
                 dao = new DaoFactory().getDaoByName("user");
                 ArrayList<User> users = dao.selectAll();
@@ -44,38 +57,15 @@ public class LoginCommand extends AbstractCommand {
                         ifLoginExists = true;
                         if (user.getPass().equals(pass)) {
                             int id = user.getId();
-                            dao = new DaoFactory().getDaoByName("test");
-                            ArrayList<Test> tests = dao.selectAll();
-                            TreeSet<Subject> subjs = new TreeSet<>();
-                            TreeSet<Theme> themes = new TreeSet<>();
-                            for (Test test : tests) {
-                                subjs.add(test.getTheme().getSubj());
-                                themes.add(test.getTheme());
-                            }
 
                             request.getSession().setAttribute("id", id);
                             request.getSession().setAttribute("nick", login);
-                            request.setAttribute("subjs", subjs);
-                            request.setAttribute("themes", themes);
-                            request.setAttribute("tests", tests);
-                            return "/jsp/postlog.jsp";
+                            return /*flowPagePropertyHandler.getPropertyValue(this.getClass().getSimpleName())*/ null;
                         }
                     }
                 }
             } else {
-                dao = new DaoFactory().getDaoByName("test");
-                ArrayList<Test> tests = dao.selectAll();
-                TreeSet<Subject> subjs = new TreeSet<>();
-                TreeSet<Theme> themes = new TreeSet<>();
-                for (Test test : tests) {
-                    subjs.add(test.getTheme().getSubj());
-                    themes.add(test.getTheme());
-                }
-
-                request.setAttribute("subjs", subjs);
-                request.setAttribute("themes", themes);
-                request.setAttribute("tests", tests);
-                return "/jsp/postlog.jsp";
+                return flowPagePropertyHandler.getPropertyValue(this.getClass().getSimpleName());
             }
 
             if (ifLoginExists) {
@@ -84,10 +74,9 @@ public class LoginCommand extends AbstractCommand {
             } else {
                 request.setAttribute("logorreg", "logfailure");
             }
-
-            return "index.jsp";
+            return flowPagePropertyHandler.getPropertyValue(this.getClass().getSimpleName().concat("err"));
         } else {
-            return null;
+            return /*flowPagePropertyHandler.getPropertyValue(this.getClass().getSimpleName());*/ null;
         }
     }
 }

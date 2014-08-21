@@ -41,7 +41,7 @@ public class LookPassStatCommand extends AbstractCommand {
             }
             request.setAttribute("posttestlist", posttestlist);
             request.setAttribute("history", history);
-            return "/jsp/statpass.jsp";
+            return flowPagePropertyHandler.getPropertyValue(this.getClass().getSimpleName());
         } else {
             return null;
         }

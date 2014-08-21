@@ -16,6 +16,7 @@ import javax.servlet.ServletResponse;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 import org.apache.log4j.Logger;
+import org.apache.log4j.xml.DOMConfigurator;
 import org.epam.testing.commandfactory.CommandFactory;
 import org.epam.testing.commandfactory.order.AbstractCommand;
 import org.epam.testing.exception.LogicException;
@@ -37,6 +38,10 @@ public class NoCommandFilter implements Filter {
     @Override
     public void doFilter(ServletRequest request,
             ServletResponse response, FilterChain chain) {
+
+        DOMConfigurator.configure(request.getServletContext().getRealPath("\\logger\\log4j.xml"));
+        PropertyHandler.setInput(request.getServletContext().getRealPath(""));
+
         try {
             HttpServletRequest filterRequest = (HttpServletRequest) request;
             HttpSession session = filterRequest.getSession(true);

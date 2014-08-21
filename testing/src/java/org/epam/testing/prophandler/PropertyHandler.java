@@ -9,6 +9,8 @@ import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.InputStream;
+import java.util.ArrayList;
+import java.util.Enumeration;
 import java.util.Properties;
 import org.epam.testing.exception.TechException;
 
@@ -25,12 +27,16 @@ public class PropertyHandler {
 
     public PropertyHandler(String propertyFileName) throws TechException {
         try {
-            input = new FileInputStream(path = path.concat(propertyFileName));
+            /* if(propertyFileName == null) {
+             throw new TechException("There is no filename!");
+             } */
+            String localpath = path.concat(propertyFileName);
+            input = new FileInputStream(localpath);
             prop = new Properties();
             prop.load(input);
 
         } catch (FileNotFoundException ex) {
-            throw new TechException("Look for properties file regexs!", ex);
+            throw new TechException("Look for properties file!", ex);
         } catch (IOException ex) {
             throw new TechException("Some trouble with loading properties.", ex);
         } finally {
@@ -48,7 +54,7 @@ public class PropertyHandler {
         if (prop.getProperty(propName) != null) {
             return prop.getProperty(propName);
         } else {
-            throw new TechException("Nonexistent property!");
+            throw new TechException("Nonexistent property propName!");
         }
     }
 

@@ -22,12 +22,7 @@
                                 <table>
                                     <tr class="trquestion">
                                         <td class="tdquestion">
-                                            <textarea name="quest${quest}" required>
-Почему метеорологические камни
-столь жестоки к пользователям
-и не очень честно показывают 
-прогноз?
-                                            </textarea>
+                                            <textarea name="quest${quest}" required placeholder="Почему метеорологические камни столь жестоки к пользователям и не очень честно показывают прогноз?"></textarea>
                                         </td>
                                     </tr>
                                 </table>
@@ -36,13 +31,18 @@
                                 <table>
                                     <tr>
                                         <td>
-                                            <input type="text" placeholder="Правильный вариант ответа" required name="${quest}-1" value="Откуда мне знать? Я ж не учёный.">
+                                            <input type="text" placeholder="Правильный вариант ответа" required name="${quest}-1">
                                         </td>
                                     </tr>
-                                    <c:forEach var="test" begin="2" end="5">
+                                    <tr>
+                                        <td>
+                                            <input type="text" placeholder="Неверная альтернатива" required name="${quest}-2">
+                                        </td>
+                                    </tr>
+                                    <c:forEach var="test" begin="3" end="5">
                                         <tr>
                                             <td>
-                                                <input type="text" placeholder="Неверная альтернатива" required name="${quest}-${test}" value="Асереге. А. Еге. Арена-макарена. Буйдидипи.">
+                                                <input type="text" placeholder="Неверная альтернатива" name="${quest}-${test}">
                                             </td>
                                         </tr>
                                     </c:forEach>

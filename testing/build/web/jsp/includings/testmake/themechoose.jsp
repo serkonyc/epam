@@ -15,24 +15,24 @@
     <body>
         <div id="label">
             <form id="form1">  
-                <button type="button">Выберите тему</button>
+                <button type="button">${local["themechoose"]}</button>
             </form>
         </div>
         <div id="themelist">
             <form action="/testing/maketest" method="post" id="form1" autocomplete="off">
                 <div id="button">
-                    <button type="reset">Количество вопросов</button>
+                    <button type="reset">${local["questnumber"]}</button>
                     <br/>
                     <button type="button">
                         <select name="questnum">
-                            <option value="3">Три</option>
-                            <option value="4">Четыре</option>
-                            <option selected value="5">Пять</option>
-                            <option value="6">Шесть</option>
-                            <option value="7">Семь</option>
-                            <option value="8">Восемь</option>
-                            <option value="9">Девять</option>
-                            <option value="10">Десять</option>
+                            <option value="3">${local["3"]}</option>
+                            <option value="4">${local["4"]}</option>
+                            <option selected value="5">${local["5"]}</option>
+                            <option value="6">${local["6"]}</option>
+                            <option value="7">${local["7"]}</option>
+                            <option value="8">${local["8"]}</option>
+                            <option value="9">${local["9"]}</option>
+                            <option value="10">${local["10"]}</option>
                         </select>
                     </button>
                     <br/>
@@ -50,8 +50,8 @@
             <form action="/testing/maketest" method="post" id="form1" autocomplete="off">
                 <ul class='vertical-menu'>
                     <li>
-                        <input type="text" pattern="[A-я -]{4,24}" required placeholder="Создать новую..." name="input"> 
-                        <input type="submit" value="Добавить"> 
+                        <input type="text" pattern="[A-я -]{4,24}" required placeholder="${local["chooseplaceholder"]}" name="input"> 
+                        <input type="submit" value="${local["add"]}"> 
                         <input type="hidden" value="${subjid}" name="inputid">
                         <input type="hidden" value="yes" name="newtheme">
                         <input type="hidden" value="choosetheme" name="command">

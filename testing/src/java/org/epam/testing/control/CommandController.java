@@ -13,13 +13,11 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import org.apache.log4j.Logger;
-import org.apache.log4j.xml.DOMConfigurator;
 import org.epam.testing.commandfactory.CommandFactory;
 import org.epam.testing.commandfactory.order.AbstractCommand;
 import org.epam.testing.dbconnection.DbaseConnectionPool;
 import org.epam.testing.exception.LogicException;
 import org.epam.testing.exception.TechException;
-import org.epam.testing.prophandler.PropertyHandler;
 
 /**
  *
@@ -53,20 +51,27 @@ public class CommandController extends HttpServlet {
                 if (errorMessage != null) {
                     request.getSession().setAttribute("jsppath", "jsp/error.jsp");
                     response.sendRedirect("/testing/error");
-                }
-                if (request.getParameter("progress") == null) {
-                    if (reqDispatch != null) {
+                } else if (cmdPerformMessage == null) {
+                    request.getSession().setAttribute("jsppath", null);
+                    response.sendRedirect("/testing");
+                } //else if (request.getParameter("progress") == null) {
+                else if (reqDispatch != null) {
+                    if (request.getParameter("progress") == null) {
                         request.setAttribute("path", request.getContextPath());
                         reqDispatch.forward(request, response);
                     } else {
-                        request.getSession().setAttribute("errorMess", errorMessage);
-                        request.getSession().setAttribute("jsppath", "jsp/error.jsp");
-                        response.sendRedirect("/testing/error");
+                        request.getSession().setAttribute("jsppath", cmdPerformMessage);
+                        response.sendRedirect("/testing");
                     }
-                } else {                    
-                    request.getSession().setAttribute("jsppath", cmdPerformMessage);
-                    response.sendRedirect("/testing");
+                } else {
+                    request.getSession().setAttribute("errorMess", errorMessage);
+                    request.getSession().setAttribute("jsppath", "jsp/error.jsp");
+                    response.sendRedirect("/testing/error");
                 }
+                /*} else {
+                 request.getSession().setAttribute("jsppath", cmdPerformMessage);
+                 response.sendRedirect("/testing");
+                 }*/
 
             } catch (ServletException | IOException ex) {
                 LOGGER.error(new TechException("Servlet exception with requestDispatcher", ex.getCause()));
@@ -94,13 +99,6 @@ public class CommandController extends HttpServlet {
 
     @Override
     public void init(ServletConfig config) {
-        try {
-            super.init(config);
-            DOMConfigurator.configure(getServletContext().getRealPath("\\logger\\log4j.xml"));
-            PropertyHandler.setInput(getServletContext().getRealPath(""));
-        } catch (ServletException ex) {
-            LOGGER.error(new TechException("Servlet exception with init!", ex.getCause()));
-        }
     }
 
     @Override

@@ -15,6 +15,20 @@
         <title>Work Room</title>
     </head>
     <body>
+        <div id='locale1'>
+            <form method="post" id="form1" action="/testing/enter">
+                <button type="local" value="changelocale" name="command">RU</button>
+                <input type="hidden" name="lang" value="label_ru">
+                <input type="hidden" name="progress" value="final">
+            </form>
+        </div>
+        <div id='locale2'>
+            <form method="post" id="form1" action="/testing/enter">
+                <button type="local" value="changelocale" name="command">EN</button>
+                <input type="hidden" name="lang" value="label_en">
+                <input type="hidden" name="progress" value="final">
+            </form>
+        </div>
         <c:choose>
             <c:when test="${wascommand == 'delete'}">
                 <%@ include file="includings/testdeal/deletetest.jsp" %>
@@ -28,11 +42,11 @@
         </c:choose>
         <div id="statistics">
             <form method="post" id="form1" action="${path}/statistics">
-                <button>Статистика прохождений</button>
+                <button>${local["statpass"]}</button>
                 <input type="hidden" value="lookstat" name="command">
             </form>
             <form method="post" id="form1" action="${path}/statistics">
-                <button>Статистика добавлений</button>
+                <button>${local["statmake"]}</button>
                 <input type="hidden" value="lookmakestat" name="command">
             </form>
         </div>

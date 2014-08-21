@@ -15,7 +15,7 @@
     <body>
         <div id="label">
             <form id="form1">            
-                <button type="button">Выберите предмет</button>            
+                <button type="button">${local["subchoose"]}</button>            
             </form>
         </div>
         <div id="sublist">
@@ -32,8 +32,8 @@
             <form action="/testing/maketest" method="post" id="form1" autocomplete="off">
                 <ul class='vertical-menu' >
                     <li>
-                        <input type="iftext" pattern="[A-я -]{2,16}" required placeholder="Введите название..." name="input"> 
-                        <input type="submit" value="Добавить"> 
+                        <input type="iftext" pattern="[A-я -]{2,16}" required placeholder="${local["chooseplaceholder"]}" name="input"> 
+                        <input type="submit" value=${local["add"]}> 
                         <input type="hidden" value="choosesubject" name="command">
                         <input type="hidden" value="yes" name="newsubject">
                     </li>

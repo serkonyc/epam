@@ -16,6 +16,7 @@ import org.epam.testing.daofactory.entity.Test;
 import org.epam.testing.daofactory.entity.Theme;
 import org.epam.testing.exception.LogicException;
 import org.epam.testing.exception.TechException;
+import org.epam.testing.utils.I18nDealer;
 
 /**
  *
@@ -25,6 +26,7 @@ public class ChangeTestCommand extends AbstractCommand {
 
     @Override
     public String perform(HttpServletRequest request) throws LogicException, TechException {
+        new I18nDealer(this.getClass().getSimpleName()).assignLocale(request);
         AbstractDao dao = new DaoFactory().getDaoByName("test");
         ArrayList<Test> tests = dao.selectAll();
         TreeSet<Subject> subjs = new TreeSet<>();
@@ -38,7 +40,7 @@ public class ChangeTestCommand extends AbstractCommand {
         request.setAttribute("subjs", subjs);
         request.setAttribute("themes", themes);
         request.setAttribute("tests", tests);
-        return "/jsp/postlog.jsp";
+        return flowPagePropertyHandler.getPropertyValue(this.getClass().getSimpleName());
     }
 
 }

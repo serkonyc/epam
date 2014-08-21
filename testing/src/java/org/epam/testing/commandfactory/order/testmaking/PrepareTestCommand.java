@@ -13,6 +13,7 @@ import org.epam.testing.daofactory.dao.AbstractDao;
 import org.epam.testing.daofactory.entity.Subject;
 import org.epam.testing.exception.LogicException;
 import org.epam.testing.exception.TechException;
+import org.epam.testing.utils.I18nDealer;
 
 /**
  *
@@ -22,12 +23,13 @@ public class PrepareTestCommand extends AbstractCommand {
 
     @Override
     public String perform(HttpServletRequest request) throws LogicException, TechException {
+        new I18nDealer(this.getClass().getSimpleName()).assignLocale(request);
         AbstractDao dao = new DaoFactory().getDaoByName("subject");
         ArrayList<Subject> subjects = dao.selectAll();
         
         request.setAttribute("wascommand", "prepare");
         request.setAttribute("subjs", subjects);
-        return "/jsp/addtest.jsp";
+        return flowPagePropertyHandler.getPropertyValue(this.getClass().getSimpleName());
     }
 
 }

@@ -55,6 +55,8 @@ public class CommandFactory {
                     return new LookPassStatCommand();
                 case LOOKMAKESTAT:
                     return new LookMakeStatCommand();
+                case CHANGELOCALE:
+                    return new ChangeLocaleCommand();
                 default:
                     throw new LogicException("Trouble with CommandList enum");
             }

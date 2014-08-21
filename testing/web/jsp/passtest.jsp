@@ -34,11 +34,13 @@
                                     <td>
                                         <table>
                                             <c:forEach var="ans" items="${dat.answers}">
+                                                <c:if test="${ans.text != ''}">
                                                 <tr>
                                                     <td>
                                                         <input type="radio" name="${ans.questId}" value="${ans.id}">${ans.text}
                                                     </td>
                                                 </tr>
+                                                </c:if>
                                             </c:forEach>
                                         </table>
                                     </td>
@@ -54,8 +56,8 @@
                         <button>Закончить тест</button>
                         <input type="hidden" value="${testid}" name="testid">
                         <input type="hidden" value=passtest name="command">
-                         <input type="hidden" value=final name="progress">
-                    </div>        
+                        <input type="hidden" value=final name="progress">
+                    </div>
                     <div id='help' align="justify">
                         <br/>
                         &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;

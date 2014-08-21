@@ -14,6 +14,7 @@ import org.epam.testing.daofactory.dao.AbstractDao;
 import org.epam.testing.daofactory.entity.Quest;
 import org.epam.testing.exception.LogicException;
 import org.epam.testing.exception.TechException;
+import org.epam.testing.utils.I18nDealer;
 
 /**
  *
@@ -23,6 +24,7 @@ public class ChooseTestCommand extends AbstractCommand {
 
     @Override
     public String perform(HttpServletRequest request) throws LogicException, TechException {
+        new I18nDealer(this.getClass().getSimpleName()).assignLocale(request);
         AbstractDao dao = new DaoFactory().getDaoByName("quest");
         ArrayList<Quest> bothQuestsAnswers = dao.selectAllByParameter(request.getParameter("data"));
 
@@ -37,7 +39,7 @@ public class ChooseTestCommand extends AbstractCommand {
             throw new LogicException("Test does not exist.");
         }
         request.setAttribute("data", bothQuestsAnswers);
-        return "/jsp/passtest.jsp";
+        return flowPagePropertyHandler.getPropertyValue(this.getClass().getSimpleName());
     }
 
 }

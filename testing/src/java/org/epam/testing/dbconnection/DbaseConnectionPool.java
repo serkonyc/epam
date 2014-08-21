@@ -50,10 +50,17 @@ public class DbaseConnectionPool {
         private static DbaseConnectionPool instance = null;
 
         private static DbaseConnectionPool getInstance() throws TechException {
-            if (instance == null) {
-                instance = new DbaseConnectionPool();
+
+            DbaseConnectionPool localInstance = instance;
+            if (localInstance == null) {
+                synchronized (DbaseConnectionPool.class) {
+                    localInstance = instance;
+                    if (localInstance == null) {
+                        instance = localInstance = new DbaseConnectionPool();
+                    }
+                }
             }
-            return instance;
+            return localInstance;
         }
 
     }
