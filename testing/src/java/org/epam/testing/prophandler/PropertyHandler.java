@@ -9,9 +9,9 @@ import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.InputStream;
-import java.util.ArrayList;
-import java.util.Enumeration;
 import java.util.Properties;
+import java.util.Set;
+import java.util.TreeSet;
 import org.epam.testing.exception.TechException;
 
 /**
@@ -56,6 +56,12 @@ public class PropertyHandler {
         } else {
             throw new TechException("Nonexistent property propName!");
         }
+    }
+
+    public Set getKeysSet() {
+        TreeSet keys = new TreeSet();
+        keys.addAll(prop.keySet());
+        return keys;
     }
 
     public static void setInput(String servPath) {

@@ -15,6 +15,11 @@
         <title>Work Room</title>
     </head>
     <body>
+        <div align="center">
+            <h1 class="header" align="center">
+                Hello ${nick}! Your id: ${id}.
+            </h1>   
+        </div>
         <div id='locale1'>
             <form method="post" id="form1" action="/testing/enter">
                 <button type="local" value="changelocale" name="command">RU</button>
@@ -42,13 +47,22 @@
         </c:choose>
         <div id="statistics">
             <form method="post" id="form1" action="${path}/statistics">
-                <button>${local["statpass"]}</button>
+                <button>${local["CFpassst"]}</button>
                 <input type="hidden" value="lookstat" name="command">
             </form>
-            <form method="post" id="form1" action="${path}/statistics">
-                <button>${local["statmake"]}</button>
-                <input type="hidden" value="lookmakestat" name="command">
-            </form>
+            <c:if test="${role == 'tutor' || role == 'admin'}">
+                <form method="post" id="form1" action="${path}/statistics">
+                    <button>${local["CGmakest"]}</button>
+                    <input type="hidden" value="lookmakestat" name="command">
+                </form>
+            </c:if>
+            <c:if test="${role == 'admin'}">
+                <form method="post" id="form1" action="${path}/userdeal">
+                    <button>${local["CIdeal"]}</button>
+                    <input type="hidden" value="userdeal" name="command">
+                    <input type="hidden" value="final" name="progress">
+                </form>
+            </c:if>
         </div>
     </body>
 </html>

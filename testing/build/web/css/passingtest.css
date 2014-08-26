@@ -13,6 +13,7 @@ body{
     background-image: url(jpeg/backwork.jpg);
     background-position: center;
     background-attachment: fixed;
+    background-size: 117%;
     font-family: Ubuntu;
 }
 
@@ -78,9 +79,10 @@ div{
 #help {
     position: fixed;
     left: 66%; /* Положение слоя от левого края */
-    top: 4%;
+    top: 14%;
     font-size: 90%;
     text-align: justify;
+    width: 32%;
 }
 #menu-block {
     position: absolute; /* Абсолютное позиционирование */

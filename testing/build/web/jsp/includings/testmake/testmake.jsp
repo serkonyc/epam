@@ -22,7 +22,8 @@
                                 <table>
                                     <tr class="trquestion">
                                         <td class="tdquestion">
-                                            <textarea name="quest${quest}" required placeholder="Почему метеорологические камни столь жестоки к пользователям и не очень честно показывают прогноз?"></textarea>
+                                            <textarea name="quest${quest}" required placeholder="lg2 = lg8 - lgx
+x = ?"></textarea>
                                         </td>
                                     </tr>
                                 </table>
@@ -31,18 +32,18 @@
                                 <table>
                                     <tr>
                                         <td>
-                                            <input type="text" placeholder="Правильный вариант ответа" required name="${quest}-1">
+                                            <input type="text" placeholder="${local["DFcorrect"]}" required name="${quest}-1">
                                         </td>
                                     </tr>
                                     <tr>
                                         <td>
-                                            <input type="text" placeholder="Неверная альтернатива" required name="${quest}-2">
+                                            <input type="text" placeholder="${local["DEincorr"]}" required name="${quest}-2">
                                         </td>
                                     </tr>
                                     <c:forEach var="test" begin="3" end="5">
                                         <tr>
                                             <td>
-                                                <input type="text" placeholder="Неверная альтернатива" name="${quest}-${test}">
+                                                <input type="text" placeholder="${local["DEincorr"]}" name="${quest}-${test}">
                                             </td>
                                         </tr>
                                     </c:forEach>
@@ -57,7 +58,7 @@
                 <br/>  
             </div>
             <div div id='bottom'>
-                <button>Добавить тест </button>
+                <button>${local["DKaddtest"]}</button>
                 <input type="hidden" value="${questnum}" name="questnum">
                 <input type="hidden" value="${questarr}" name="questarr">
                 <input type="hidden" value="${themeid}" name="inputid">
@@ -67,15 +68,9 @@
             <div id='help' align="justify">
                 <br/>
                 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                Заполните все поля для создания теста согласно
-                <br/> шаблонам:
-                <br/> левая часть отводится для вопроса и составляет 
-                <br/> эшульме-мешульме символов,
-                <br/> правая часть включает в себя пять вариантов ответа,
-                <br/> верхний из которых является единственно правильным.
+                ${local["DGfirstadv"]}
                 <br/> <br/> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
-                Все поля обязательны к заполнению, 
-                <br/> а не то как дам щас.
+                ${local["DHsecadv"]}
             </div>     
         </form>
     </body>

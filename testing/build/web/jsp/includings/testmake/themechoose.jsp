@@ -15,24 +15,24 @@
     <body>
         <div id="label">
             <form id="form1">  
-                <button type="button">${local["themechoose"]}</button>
+                <button type="button">${local["DCchtheme"]}</button>
             </form>
         </div>
         <div id="themelist">
             <form action="/testing/maketest" method="post" id="form1" autocomplete="off">
                 <div id="button">
-                    <button type="reset">${local["questnumber"]}</button>
+                    <button type="reset">${local["DDquestnum"]}</button>
                     <br/>
                     <button type="button">
                         <select name="questnum">
-                            <option value="3">${local["3"]}</option>
-                            <option value="4">${local["4"]}</option>
-                            <option selected value="5">${local["5"]}</option>
-                            <option value="6">${local["6"]}</option>
-                            <option value="7">${local["7"]}</option>
-                            <option value="8">${local["8"]}</option>
-                            <option value="9">${local["9"]}</option>
-                            <option value="10">${local["10"]}</option>
+                            <option value="3">${local["E3"]}</option>
+                            <option value="4">${local["E4"]}</option>
+                            <option selected value="5">${local["E5"]}</option>
+                            <option value="6">${local["E6"]}</option>
+                            <option value="7">${local["E7"]}</option>
+                            <option value="8">${local["E8"]}</option>
+                            <option value="9">${local["E9"]}</option>
+                            <option value="10">${local["E10"]}</option>
                         </select>
                     </button>
                     <br/>
@@ -50,8 +50,8 @@
             <form action="/testing/maketest" method="post" id="form1" autocomplete="off">
                 <ul class='vertical-menu'>
                     <li>
-                        <input type="text" pattern="[A-я -]{4,24}" required placeholder="${local["chooseplaceholder"]}" name="input"> 
-                        <input type="submit" value="${local["add"]}"> 
+                        <input type="text" pattern="[A-я -]{4,24}" required placeholder="${local["DBinput"]}" name="input"> 
+                        <input type="submit" value="${local["ZAadd"]}"> 
                         <input type="hidden" value="${subjid}" name="inputid">
                         <input type="hidden" value="yes" name="newtheme">
                         <input type="hidden" value="choosetheme" name="command">

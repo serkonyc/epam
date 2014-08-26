@@ -29,21 +29,29 @@
                                             </td>
                                         </tr>
                                     </table>
-                                <td>
+                                </td>
                                 <td>
                                     <table>
                                         <c:forEach var="ans" varStatus="status" items="${dat.answers}">
-                                            <c:if test="${varStatus <= 2}">
+                                            
+                                            <c:if test="${status.index+1 == 1}">
                                                 <tr>
                                                     <td>
-                                                        <input type="text" name="answer${ans.id}" value="${ans.text}" required>
+                                                        <input type="text" placeholder="${local["DFcorrect"]}" name="answer${ans.id}" value="${ans.text}" required>
                                                     </td>
                                                 </tr>
                                             </c:if>
-                                            <c:if test="${varStatus>2}"> 
+                                                <c:if test="${status.index+1 == 2}">
                                                 <tr>
                                                     <td>
-                                                        <input type="text" name="answer${ans.id}" value="${ans.text}" >
+                                                        <input type="text" placeholder="${local["DEincorr"]}" name="answer${ans.id}" value="${ans.text}" required>
+                                                    </td>
+                                                </tr>
+                                            </c:if>
+                                            <c:if test="${status.index+1 > 2}"> 
+                                                <tr>
+                                                    <td>
+                                                        <input type="text" placeholder="${local["DEincorr"]}" name="answer${ans.id}" value="${ans.text}" >
                                                     </td>
                                                 </tr>
                                             </c:if>
@@ -59,7 +67,7 @@
                     <br/>  
                 </div>
                 <div div id='bottom'>
-                    <button>Изменить тест</button>
+                    <button>${local["DLchatest"]}</button>
                     <input type="hidden" value="${testid}" name="testid">
                     <input type="hidden" value=changechosentest name="command">
                     <input type="hidden" value=finally name="phase">
@@ -68,17 +76,10 @@
                     <input type="hidden" value="${olddata}" name="olddata">
                 </div>        
                 <div id='help' align="justify">
-                    <br/>
                     &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                    Заполните все поля для создания теста согласно
-                    <br/> шаблонам:
-                    <br/> левая часть отводится для вопроса и составляет 
-                    <br/> эшульме-мешульме символов,
-                    <br/> правая часть включает в себя пять вариантов ответа,
-                    <br/> верхний из которых является единственно правильным.
-                    <br/> <br/> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
-                    Все поля обязательны к заполнению, 
-                    <br/> а не то как дам щас.
+                ${local["DGfirstadv"]}
+                <br/> <br/> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+                ${local["DHsecadv"]}
                 </div>   
             </form>
         </div>

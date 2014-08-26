@@ -19,6 +19,7 @@
         <url-pattern>/deltest</url-pattern>
         <url-pattern>/chatest</url-pattern>
         <url-pattern>/statistics</url-pattern>
+        <url-pattern>/userdeal</url-pattern>
     </servlet-mapping>
        
     <filter>
@@ -61,6 +62,12 @@
         <error-code>404</error-code>
         <location>/jsp/error.jsp</location>
     </error-page>
+    
+    <error-page>
+        <exception-type>RuntimeException</exception-type>
+        <location>/jsp/error.jsp</location>
+    </error-page>
+
     
     <resource-ref>
         <res-ref-name>jdbc/testing_db</res-ref-name>

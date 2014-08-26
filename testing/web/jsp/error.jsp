@@ -27,21 +27,23 @@
                 <td height="100px">
                     <h6>
                         <c:if test="${errorMess == null}">
-                            Page is not found. Maybe it was removed few seconds ago.
+                            Site/page is unavailable right now. Please, come back later.
                         </c:if>
                         ${errorMess}
                     </h6>
                 </td>
             </tr>
-            <tr align="center">
-                <td height="100px">
-                    <form method="post" id="form1" action="/testing/enter">
-                        <input type="hidden" name="command" value="login">
-                        <input type="hidden" name="progress" value="final">
-                        <button><b>Вернуться обратно</b></button>
-                    </form>
-                </td>
-            </tr>
+            <c:if test="${errorMess != null}">
+                <tr align="center">
+                    <td height="100px">
+                        <form method="post" id="form1" action="/testing/enter">
+                            <input type="hidden" name="command" value="login">
+                            <input type="hidden" name="progress" value="final">
+                            <button><b>Вернуться обратно</b></button>
+                        </form>
+                    </td>
+                </tr>
+            </c:if>
         </table>
     </body>
 </html>

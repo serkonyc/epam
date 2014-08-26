@@ -13,8 +13,8 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import org.apache.log4j.Logger;
-import org.epam.testing.commandfactory.CommandFactory;
-import org.epam.testing.commandfactory.order.AbstractCommand;
+import org.epam.testing.command.factory.CommandFactory;
+import org.epam.testing.command.common.AbstractCommand;
 import org.epam.testing.dbconnection.DbaseConnectionPool;
 import org.epam.testing.exception.LogicException;
 import org.epam.testing.exception.TechException;
@@ -36,8 +36,16 @@ public class CommandController extends HttpServlet {
         String errorMessage = null;
         String cmdPerformMessage = null;
         try {
-            if (request.getParameter("command") != null) {
-                AbstractCommand cmd = CommandFactory.getCommandByName(request.getParameter("command"));
+            System.out.println(request.getParameter("command"));
+            if (request.getParameter("command") != null
+                    || request.getSession().getAttribute("needfwd") != null) {
+                AbstractCommand cmd;
+                if (request.getParameter("command") != null) {
+                    cmd = CommandFactory.getCommandByName(request.getParameter("command"));
+                    request.getSession().setAttribute("needfwd", null);
+                } else {
+                    cmd = CommandFactory.getCommandByName(request.getSession().getAttribute("needfwd").toString());
+                }
                 cmdPerformMessage = cmd.perform(request);
                 reqDispatch = request.getRequestDispatcher(cmdPerformMessage);
             }
@@ -54,24 +62,16 @@ public class CommandController extends HttpServlet {
                 } else if (cmdPerformMessage == null) {
                     request.getSession().setAttribute("jsppath", null);
                     response.sendRedirect("/testing");
-                } //else if (request.getParameter("progress") == null) {
-                else if (reqDispatch != null) {
-                    if (request.getParameter("progress") == null) {
-                        request.setAttribute("path", request.getContextPath());
-                        reqDispatch.forward(request, response);
-                    } else {
-                        request.getSession().setAttribute("jsppath", cmdPerformMessage);
-                        response.sendRedirect("/testing");
-                    }
+                } else if (request.getParameter("progress") == null && reqDispatch != null) {
+                    request.setAttribute("path", request.getContextPath());
+                    reqDispatch.forward(request, response);
+                } else if (request.getAttribute("smartredir") != null) {
+                    request.getSession().setAttribute("needfwd", request.getAttribute("smartredir"));
+                    response.sendRedirect("/testing/" + request.getAttribute("smartredir"));
                 } else {
-                    request.getSession().setAttribute("errorMess", errorMessage);
-                    request.getSession().setAttribute("jsppath", "jsp/error.jsp");
-                    response.sendRedirect("/testing/error");
+                    request.getSession().setAttribute("jsppath", cmdPerformMessage);
+                    response.sendRedirect("/testing");
                 }
-                /*} else {
-                 request.getSession().setAttribute("jsppath", cmdPerformMessage);
-                 response.sendRedirect("/testing");
-                 }*/
 
             } catch (ServletException | IOException ex) {
                 LOGGER.error(new TechException("Servlet exception with requestDispatcher", ex.getCause()));

@@ -14,7 +14,7 @@
         <link rel="shortcut icon" href="/testing/css/ico/icon.ico" >
         <title>Add Test</title>
     </head>
-    <body>
+    <body>                 
         <div>            
                 <c:if test="${wascommand == 'prepare'}"> 
                     <%@ include file="includings/testmake/subchoose.jsp" %>

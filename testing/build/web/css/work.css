@@ -14,6 +14,7 @@ body{
     background-image: url(jpeg/backwork.jpg);
     background-position: center;
     background-attachment: fixed;
+    background-size: 117%;
 }
 
 h1{
@@ -52,7 +53,7 @@ div{
 #menu-subblock {
     position: relative; /* Абсолютное позиционирование */
     left: 19%; /* Положение слоя от левого края */
-    top: -5%; /* Положение слоя от верхнего края */
+    top: -2%; /* Положение слоя от верхнего края */
 }
 #private {
     position: absolute; /* Абсолютное позиционирование */

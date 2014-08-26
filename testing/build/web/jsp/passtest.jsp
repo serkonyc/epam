@@ -53,7 +53,7 @@
                         <br/>  
                     </div>
                     <div div id='bottom'>
-                        <button>Закончить тест</button>
+                        <button>${local["DMpasstest"]}</button>
                         <input type="hidden" value="${testid}" name="testid">
                         <input type="hidden" value=passtest name="command">
                         <input type="hidden" value=final name="progress">
@@ -61,15 +61,7 @@
                     <div id='help' align="justify">
                         <br/>
                         &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                        Заполните все поля для создания теста согласно
-                        <br/> шаблонам:
-                        <br/> левая часть отводится для вопроса и составляет 
-                        <br/> эшульме-мешульме символов,
-                        <br/> правая часть включает в себя пять вариантов ответа,
-                        <br/> верхний из которых является единственно правильным.
-                        <br/> <br/> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
-                        Все поля обязательны к заполнению, 
-                        <br/> а не то как дам щас.
+                        ${local["DIpassadv"]}
                     </div>   
                 </c:if>
                 <c:if test="${result != null}">

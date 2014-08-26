@@ -11,16 +11,11 @@
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
     </head>
     <body>
-        <div align="center">
-            <h1 class="header" align="center">
-                Hello ${nick}! Your id: ${id} :)
-            </h1>   
-        </div>
         <div id='menu-block'>
             <br><br><br>
             <div id='menu-subblock'
                  <ul class='vertical-menu'>
-                    <c:forEach var="subj" items="${subjs}">
+                    <c:forEach var="subj" items="${subjs}">                        
                         <li class='drop-link'>${subj.name}
                             <ul class='drop-block'>
                                 <c:forEach var="theme" items="${themes}">
@@ -31,7 +26,7 @@
                                                     <form method="post" id="form1" action="${path}/chootest">
                                                         <c:forEach var="test" items="${tests}">
                                                             <c:if test="${theme.id == test.themeId}"> 
-                                                                <button type="list" name="data" value="${test.id}">${local["testlabel"]} ${test.themeId}-${test.id}</button>
+                                                                <button type="list" name="data" value="${test.id}">${local["CAtlabel"]} ${test.themeId}-${test.id}</button>
                                                                 <input type="hidden" value="choosetest" name="command">
                                                             </c:if>    
                                                         </c:forEach> 
@@ -47,26 +42,30 @@
             </div>
         </div>
         <div id='private'>
-            <form method="post" id="form1" action="${path}/addtest">
-                <input type="hidden" name="command" value="preparetest">
-                <button>${local["addtest"]}</button>
-            </form>
+            <c:if test="${role == 'tutor' || role == 'admin'}">
+                <form method="post" id="form1" action="${path}/addtest">
+                    <input type="hidden" name="command" value="preparetest">
+                    <button>${local["CBadd"]}</button>
+                </form>
+            </c:if>
             <form id="form1">
-                <button type="button"><b>${local["passtest"]}</b></button>
+                <button type="button"><b>${local["CCpass"]}</b></button>
             </form>  
-            <form method="post" id="form1" action="${path}/chatest">
-                <input type="hidden" name="command" value="changetest">
-                <button>${local["changetest"]}</button>
-            </form>
-            <form method="post" id="form1" action="${path}/deltest">
-                <input type="hidden" name="command" value="deletetest">
-                <button>${local["deletetest"]}</button>
-            </form>            
+            <c:if test="${role == 'tutor' || role == 'admin'}">
+                <form method="post" id="form1" action="${path}/chatest">
+                    <input type="hidden" name="command" value="changetest">
+                    <button>${local["CDchange"]}</button>
+                </form>
+                <form method="post" id="form1" action="${path}/deltest">
+                    <input type="hidden" name="command" value="deletetest">
+                    <button>${local["CEdelete"]}</button>
+                </form>         
+            </c:if>
         </div>
         <div id='button' align="center">
             <form method="post" id="form1" action="${path}/enter">
                 <input type="hidden" name="command" value="begin">
-                <button>${local["goaway"]}</button>
+                <button>${local["CHgoaway"]}</button>
                 <input type="hidden" name="progress" value="final">
             </form>
         </div>

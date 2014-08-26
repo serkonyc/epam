@@ -43,14 +43,14 @@
                     <c:when test="${logorreg == 'logfailure'}"> 
                         <td>                    
                             <form method="post" id="form1" type="err" action="/testing/enter" autocomplete="off">
-                                <input type="text" pattern="[A-Za-z0-9_]{4,16}" required placeholder="${local["authnickplaceholdererror"]}" name="login">
+                                <input type="text" pattern="[A-Za-z0-9_]{4,16}" required placeholder="${local["ACnickherror"]}" name="login">
                                 <br>
-                                <input type="password" required placeholder="${local["authpasswordplaceholder"]}" name="pass">
+                                <input type="password" required placeholder="${local["ABpassholder"]}" name="pass">
                                 <br>
-                                <button value="login" name="command"><b>${local["authsignin"]}</b></button>   
+                                <button value="login" name="command"><b>${local["AEsignin"]}</b></button>   
                             </form>
                             <form method="post" id="form1" action="/testing/enter">
-                                <button value="needregister" name="command">${local["authsignup"]}</button>
+                                <button value="needregister" name="command">${local["AFsignup"]}</button>
                             </form>
                         </td>
                     </c:when>
@@ -59,58 +59,58 @@
                             <form method="post" id="form1" type="err" action="/testing/enter" autocomplete="off">
                                 <input type="text" pattern="[A-Za-z0-9_]{4,16}" required value="${nick}" name="login">
                                 <br>
-                                <input type="password" required placeholder="${local["passwordplaceholdererror"]}" name="pass">
+                                <input type="password" required placeholder="${local["ADpassherror"]}" name="pass">
                                 <br>
-                                <button value="login" name="command"><b>${local["authsignin"]}</b></button>    
+                                <button value="login" name="command"><b>${local["AEsignin"]}</b></button>    
                             </form>
                             <form method="post" id="form1" action="/testing/enter">
-                                <button value="needregister" name="command">${local["authsignup"]}</button>
+                                <button value="needregister" name="command">${local["AFsignup"]}</button>
                             </form>
                         </td>
                     </c:when>
                     <c:when test="${logorreg == 'regexfailure'}"> 
                         <td>                    
                             <form method="post" id="form1" type="err" action="/testing/enter" autocomplete="off">
-                                <input type="text" pattern="[A-Za-z0-9_]{4,16}" required placeholder="${local["regnickplaceholdererror"]}" name="login">
-                                <input type="email" placeholder="${local["emailplaceholder"]}" name="email">
+                                <input type="text" pattern="[A-Za-z0-9_]{4,16}" required placeholder="${local["BEnickherror"]}" name="login">
+                                <input type="email" placeholder="${local["BBemail"]}" name="email">
                                 <br>
-                                <input type="password" required placeholder="${local["regpasswordplaceholder"]}" name="pass1">
-                                <input type="password" required placeholder="${local["passwordrepeatplaceholder"]}" name="pass2">
+                                <input type="password" required placeholder="${local["BCpassholder"]}" name="pass1">
+                                <input type="password" required placeholder="${local["BDreppassholder"]}" name="pass2">
                                 <br>
-                                <button value="register" name="command"><b>${local["regsignup"]}</b></button>
+                                <button value="register" name="command"><b>${local["BGsignup"]}</b></button>
                             </form>
                             <form method="post" id="form1" action="/testing/enter">
-                                <button value="needlogin" name="command">${local["regsignin"]}</button>
+                                <button value="needlogin" name="command">${local["BFsignin"]}</button>
                             </form>
                         </td>
                     </c:when>
                     <c:when test="${logorreg == 'register'}"> 
                         <td>                    
                             <form method="post" id="form1" action="/testing/enter" autocomplete="off">
-                                <input type="text" pattern="[A-Za-z0-9_]{4,16}" required placeholder="${local["regnickplaceholder"]}" name="login">
-                                <input type="email" placeholder="${local["emailplaceholder"]}" name="email">
+                                <input type="text" pattern="[A-Za-z0-9_]{4,16}" required placeholder="${local["BAnickholder"]}" name="login">
+                                <input type="email" placeholder="${local["BBemail"]}" name="email">
                                 <br>
-                                <input type="password" required placeholder="${local["regpasswordplaceholder"]}" name="pass1">
-                                <input type="password" required placeholder="${local["passwordrepeatplaceholder"]}" name="pass2">
+                                <input type="password" required placeholder="${local["BCpassholder"]}" name="pass1">
+                                <input type="password" required placeholder="${local["BDreppassholder"]}" name="pass2">
                                 <br>
-                                <button value="register" name="command"><b>${local["regsignup"]}</b></button>
+                                <button value="register" name="command"><b>${local["BGsignup"]}</b></button>
                             </form>
                             <form method="post" id="form1" action="/testing/enter">
-                                <button value="needlogin" name="command">${local["regsignin"]}</button>
+                                <button value="needlogin" name="command">${local["BFsignin"]}</button>
                             </form>
                         </td>
                     </c:when>
                     <c:otherwise>
                         <td>                    
                             <form method="post" id="form1" action="/testing/enter" autocomplete="off">
-                                <input type="text" pattern="[A-Za-z0-9_]{4,16}" required placeholder="${local["authnickplaceholder"]}" name="login">
+                                <input type="text" pattern="[A-Za-z0-9_]{4,16}" required placeholder="${local["AAnickholder"]}" name="login">
                                 <br>
-                                <input type="password" required placeholder="${local["authpasswordplaceholder"]}" name="pass">
+                                <input type="password" required placeholder="${local["ABpassholder"]}" name="pass">
                                 <br>
-                                <button value="login" name="command"><b>${local["authsignin"]}</b></button>     
+                                <button value="login" name="command"><b>${local["AEsignin"]}</b></button>     
                             </form>
                             <form method="post" id="form1" action="/testing/enter">
-                                <button value="needregister" name="command">${local["authsignup"]}</button>
+                                <button value="needregister" name="command">${local["AFsignup"]}</button>
                             </form>
                         </td>
                     </c:otherwise>
