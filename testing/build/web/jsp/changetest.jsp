@@ -15,6 +15,7 @@
         <title>Pass test</title>
     </head>
     <body>
+        <%@ include file="/jsp/includings/header.jsp"%>
         <div>
             <form action="/testing/passtest" method="post" id="form1" autocomplete="off">
                 <div id='questlist'>
@@ -32,16 +33,20 @@
                                 </td>
                                 <td>
                                     <table>
-                                        <c:forEach var="ans" varStatus="status" items="${dat.answers}">
-                                            
+                                        <c:forEach var="ans" varStatus="status" items="${dat.answers}">                                            
                                             <c:if test="${status.index+1 == 1}">
                                                 <tr>
                                                     <td>
                                                         <input type="text" placeholder="${local["DFcorrect"]}" name="answer${ans.id}" value="${ans.text}" required>
                                                     </td>
                                                 </tr>
+                                                <tr>
+                                                    <td>
+                                                        <input type="text" placeholder="${local["DFcorrect"]}" name="answer${ans.id}-1.5" value="${ans.textAdv}">
+                                                    </td>
+                                                </tr>    
                                             </c:if>
-                                                <c:if test="${status.index+1 == 2}">
+                                            <c:if test="${status.index+1 == 2}">
                                                 <tr>
                                                     <td>
                                                         <input type="text" placeholder="${local["DEincorr"]}" name="answer${ans.id}" value="${ans.text}" required>
@@ -77,9 +82,9 @@
                 </div>        
                 <div id='help' align="justify">
                     &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                ${local["DGfirstadv"]}
-                <br/> <br/> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
-                ${local["DHsecadv"]}
+                    ${local["DGfirstadv"]}
+                    <br/> <br/> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+                    ${local["DHsecadv"]}
                 </div>   
             </form>
         </div>

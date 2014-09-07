@@ -22,6 +22,10 @@ public class Test extends AbstractEntity {
         this.theme = theme;
     }
 
+    public Test(int id) {
+        super(id);
+    }
+
     public int getThemeId() {
         return themeId;
     }

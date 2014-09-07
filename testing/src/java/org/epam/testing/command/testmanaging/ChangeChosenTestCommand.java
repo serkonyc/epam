@@ -42,7 +42,15 @@ public class ChangeChosenTestCommand extends AbstractCommand {
             for (Quest quest : bothQuestsAnswers) {
                 dao.updateByParameter(String.valueOf(quest.getId()), request.getParameter("quest" + quest.getId()));
                 for (Answer answer : quest.getAnswers()) {
-                    adao.updateByParameter(String.valueOf(answer.getId()), request.getParameter("answer" + answer.getId()));
+                    if (request.getParameter("answer" + answer.getId() + "-1.5") == null
+                            || "".equals(request.getParameter("answer" + answer.getId() + "-1.5"))) {
+                        adao.updateByParameter(String.valueOf(answer.getId()), request.getParameter("answer" + answer.getId()));
+                    } else {
+                        adao.updateByParameter(String.valueOf(answer.getId()),
+                                request.getParameter("answer" + answer.getId())
+                                + "!webtest!"
+                                + request.getParameter("answer" + answer.getId() + "-1.5"));
+                    }
                 }
             }
 

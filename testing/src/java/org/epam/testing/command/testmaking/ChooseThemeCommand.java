@@ -27,10 +27,10 @@ public class ChooseThemeCommand extends AbstractCommand {
         new I18nDealer(this.getClass().getSimpleName()).assignLocale(request);
         int themeId = 0;
         AbstractDao dao = new DaoFactory().getDaoByName("theme");
-        if (!dao.isExist(request.getParameter("input"))) {
-            dao.insertNew(request.getParameter("inputid"), request.getParameter("input"));
-        }
-        if (request.getParameter("newtheme") == null) {
+        if (request.getParameter("letter") == null) {
+            if (!dao.isExist(request.getParameter("input"))) {
+                dao.insertNew(request.getParameter("inputid"), request.getParameter("input"));
+            }
             int questNum = Integer.parseInt(request.getParameter("questnum"));
             ArrayList<Theme> themes = dao.selectAll();
             for (Theme theme : themes) {
@@ -39,15 +39,25 @@ public class ChooseThemeCommand extends AbstractCommand {
                     break;
                 }
             }
-
             request.setAttribute("questarr", new ArrayList(questNum));
             request.setAttribute("questnum", questNum);
             request.setAttribute("wascommand", "questions");
             request.setAttribute("themeid", themeId);
         } else {
             int subjectId = 0;
-            dao = new DaoFactory().getDaoByName("theme");
-            ArrayList<Theme> themes = dao.selectAllByParameter(request.getParameter("oldinput"));
+            ArrayList<Theme> themes;
+            ArrayList<Theme> earlyThemes = dao.selectAllByParameter(request.getParameter("oldinput"));
+            String bigLetter = request.getParameter("letter").toUpperCase();
+            String litLetter = request.getParameter("letter").toLowerCase();
+            themes = new ArrayList();
+            for (Theme theme : earlyThemes) {
+                if (theme.getName().startsWith(bigLetter)
+                        || theme.getName().startsWith(litLetter)) {
+                    themes.add(theme);
+                }
+            }
+            request.setAttribute("themes", themes);
+            request.setAttribute("wascommand", "themes");
             dao = new DaoFactory().getDaoByName("subject");
             ArrayList<Subject> subjects = dao.selectAll();
             for (Subject subject : subjects) {
@@ -56,11 +66,10 @@ public class ChooseThemeCommand extends AbstractCommand {
                     break;
                 }
             }
-
             request.setAttribute("oldinput", request.getParameter("oldinput"));
-            request.setAttribute("themes", themes);
-            request.setAttribute("wascommand", "themes");
             request.setAttribute("subjid", subjectId);
+            request.setAttribute("latAB", lat);
+            request.setAttribute("kirAB", kir);
         }
         return flowPagePropertyHandler.getPropertyValue(this.getClass().getSimpleName());
     }

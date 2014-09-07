@@ -8,12 +8,13 @@ package org.epam.testing.command.common;
 import java.util.ArrayList;
 import java.util.TreeSet;
 import javax.servlet.http.HttpServletRequest;
-import org.epam.testing.dao.factory.DaoFactory;
+import org.apache.commons.codec.digest.DigestUtils;
 import org.epam.testing.dao.AbstractDao;
 import org.epam.testing.dao.entity.Subject;
 import org.epam.testing.dao.entity.Test;
 import org.epam.testing.dao.entity.Theme;
 import org.epam.testing.dao.entity.User;
+import org.epam.testing.dao.factory.DaoFactory;
 import org.epam.testing.exception.LogicException;
 import org.epam.testing.exception.TechException;
 import org.epam.testing.utils.I18nDealer;
@@ -51,7 +52,7 @@ public class LoginCommand extends AbstractCommand {
                 dao = new DaoFactory().getDaoByName("user");
                 ArrayList<User> users = dao.selectAll();
                 login = request.getParameter("login");
-                String pass = request.getParameter("pass");
+                String pass = DigestUtils.md5Hex(request.getParameter("pass"));
                 for (User user : users) {
                     if (user.getNick().equals(login)) {
                         ifLoginExists = true;

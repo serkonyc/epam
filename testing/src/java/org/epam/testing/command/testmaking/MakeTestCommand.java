@@ -36,11 +36,19 @@ public class MakeTestCommand extends AbstractCommand {
                     request.getParameter("quest" + i)
             );
             int lastIdQu = dao.getLastId();
-            adao.insertNew(
-                    String.valueOf(lastIdQu),
-                    request.getParameter(i + "-" + 1),
-                    "true"
-            );
+            if (!"".equals(request.getParameter(i + "-1.5"))) {
+                adao.insertNew(
+                        String.valueOf(lastIdQu),
+                        request.getParameter(i + "-" + 1) + "!webtest!" + request.getParameter(i + "-1.5"),
+                        "true"
+                );
+            } else {
+                adao.insertNew(
+                        String.valueOf(lastIdQu),
+                        request.getParameter(i + "-" + 1),
+                        "true"
+                );
+            }
             for (int j = 2; j <= 5; j++) {
                 String answer = request.getParameter(i + "-" + j);
                 if (answer == null) {

@@ -36,7 +36,6 @@ public class CommandController extends HttpServlet {
         String errorMessage = null;
         String cmdPerformMessage = null;
         try {
-            System.out.println(request.getParameter("command"));
             if (request.getParameter("command") != null
                     || request.getSession().getAttribute("needfwd") != null) {
                 AbstractCommand cmd;

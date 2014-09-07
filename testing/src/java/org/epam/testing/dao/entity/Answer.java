@@ -14,12 +14,20 @@ public class Answer extends AbstractEntity {
     private int questId;
     private boolean right;
     private String text;
+    private String textAdv;
+    private boolean ifCheckBox;
 
     public Answer(int id, int questId, boolean right, String text) {
         super(id);
         this.questId = questId;
         this.right = right;
-        this.text = text;
+        if (text.contains("!webtest!")) {
+            this.text = text.split("!webtest!")[0];
+            textAdv = text.split("!webtest!")[1];
+            ifCheckBox = true;
+        } else {
+            this.text = text;
+        }
     }
 
     public int getQuestId() {
@@ -33,4 +41,13 @@ public class Answer extends AbstractEntity {
     public String getText() {
         return text;
     }
+
+    public String getTextAdv() {
+        return textAdv;
+    }
+
+    public boolean isIfCheckBox() {
+        return ifCheckBox;
+    }
+
 }

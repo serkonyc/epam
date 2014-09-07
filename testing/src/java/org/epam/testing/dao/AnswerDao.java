@@ -40,7 +40,6 @@ public class AnswerDao extends AbstractDao {
                 while (resultSet.next()) {
                     isRight = !resultSet.getString("answer.isright").equals("0");
                     if (isRight) {
-                        //System.out.println(resultSet.getString("quest.test_id"));
                         returnList.add(
                                 new Answer(
                                         Integer.parseInt(resultSet.getString("answer.id")),

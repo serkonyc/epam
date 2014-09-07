@@ -14,42 +14,58 @@
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>JSP Page</title>
     </head>
-    <body>
-        <ul>
-            <table>
+    <body>      
+        <%@ include file="/jsp/includings/header.jsp"%>
+        <div id="usertable">
+            <table class="userdeal">
                 <c:forEach var="user" items="${users}">
-                    <form action="/testing/userdeal" method="post" id="form1" autocomplete="off">
-                        <tr>
+                    <tr>                    
+                        <td>
+                            ${user.id} 
+                        </td>
+                        <td>
+                            ${user.nick}  
+                        </td>
+                        <td>
+                            ${user.email}
+                        </td>
+                        <td>
+                            ${user.role}
+                        </td>                        
+                        <c:if test="${user.role != 'admin'}">                                                                          
+                        <form action="/testing/userdeal" method="post" autocomplete="off">
                             <td>
-                                &nbsp;&nbsp;&nbsp;${user.id} 
+                                <button name="command" value="upgradeuser">${local["GAupgrade"]}</button>
                             </td>
                             <td>
-                                &nbsp;&nbsp;&nbsp;${user.nick}  
+                                <button name="command" value="downgradeuser">${local["GBdowngrade"]}</button>
                             </td>
                             <td>
-                                &nbsp;&nbsp;&nbsp;${user.email}
+                                <button name="command" value="deleteuser">${local["GCdelete"]}</button>                            
+                                <input type="hidden" value=final name="progress">
+                                <input type="hidden" name="id" value="${user.id}">
+                                <input type="hidden" name="nick" value="${user.nick}">
+                                <input type="hidden" name="email" value="${user.email}">
+                                <input type="hidden" name="role" value="${user.role}">
+                            </td>
+                        </form>
+                    </c:if>
+                    <c:if test="${user.role == 'admin'}">                                                                          
+                        <form action="/testing/userdeal" method="post" autocomplete="off">
+                            <td>
+                                &nbsp;
                             </td>
                             <td>
-                                &nbsp;&nbsp;&nbsp;${user.role}
+                                &nbsp;
                             </td>
                             <td>
-                                <button name="command" value="upgradeuser">Повысить</button>
+                                &nbsp;                      
                             </td>
-                            <td>
-                                <button name="command" value="downgradeuser">Понизить</button>
-                            </td>
-                            <td>
-                                <button name="command" value="deleteuser">Удалить</button>
-                            </td>
-                        <input type="hidden" value=final name="progress">
-                        <input type="hidden" name="id" value="${user.id}">
-                        <input type="hidden" name="nick" value="${user.nick}">
-                        <input type="hidden" name="email" value="${user.email}">
-                        <input type="hidden" name="role" value="${user.role}">
-                        </tr>
-                    </form>
+                        </form>
+                    </c:if>                      
+                    </tr>
                 </c:forEach>
             </table>
-        </ul>
+        </div>
     </body>
 </html>

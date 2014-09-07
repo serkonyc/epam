@@ -20,6 +20,8 @@ public abstract class AbstractCommand {
     private static final org.apache.log4j.Logger LOGGER = org.apache.log4j.Logger.getLogger(CommandController.class.getSimpleName());
     protected static PropertyHandler flowPagePropertyHandler;
     protected static PropertyHandler localePropertyHandler;
+    protected static char[] lat = "ABCDEFGHIJGKLMNOPQRSTUVWXYZ".toCharArray();
+    protected static char[] kir = "АБВГДЕЁЖЗИЙКЛМНОПРСТУФХЦЧШЩЭЮЯ".toCharArray();
 
     static {
         try {

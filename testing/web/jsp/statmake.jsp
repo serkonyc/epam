@@ -6,6 +6,7 @@
 
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
+<%@taglib prefix="usertag" uri="/WEB-INF/tld/custom.tld"%>
 <!DOCTYPE html>
 <html>
     <head>
@@ -15,36 +16,32 @@
         <title>Statistics</title>
     </head>
     <body>
-        <div id="statistics">
-            <form id="form1">
-                <ul class='vertical-menu'>
-                    <c:forEach var="pass" items="${posttestlist}">
-                        <li>
-                            Тест номер ${pass.id} <br>
-                            &nbsp;
-                        </li>
-                    </c:forEach>                         
-                </ul>
-            </form>
+        <%@ include file="/jsp/includings/header.jsp"%>
+        <div id="statistics">      
+            <usertag:statmake-table testdata="${posttestlist}" rows='10' local="${local}">
+                &nbsp;
+            </usertag:statmake-table>
         </div>
-        <div id="statdetails">
-            <form action="/testing/enter" method="post" id="form1">
-                <ul class='vertical-menu'>
-                    <c:forEach var="test" items="${posttestlist}">
-                        <li>
-                            Предмет:&nbsp;&nbsp;${test.theme.subj.name} <br>
-                            Тема:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;${test.theme.name}
-                        </li>
-                    </c:forEach>                         
-                </ul>
-                <br/>
-                <br/>
-                <div id="statbutt">
-                    <button>Вернуться</button>   
-                    <input type="hidden" value=login name="command">
-                    <input type="hidden" value=final name="progress">
-                </div>
-            </form>
+        <div id="statdetails">      
+            <table>
+                <tr>
+                    <c:forEach var="test" items="${allpagesnum}">
+                        <td>
+                            <form action="/testing/statistics" method="post" id="form2">
+                                <c:choose>
+                                    <c:when test="${currpage == test}">
+                                        <button type="page" name="command" value="lookmakestat"><b>[${test}]</b></button>
+                                    </c:when>
+                                    <c:otherwise>
+                                        <button type="page" name="command" value="lookmakestat">[${test}]</button>
+                                    </c:otherwise>                                          
+                                </c:choose> 
+                                <input type="hidden" value="${test}" name="pagenum">
+                            </form>
+                        </td>
+                    </c:forEach>
+                </tr>
+            </table>
         </div>
     </body>
 </html>

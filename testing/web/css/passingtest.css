@@ -64,7 +64,7 @@ td {
 div{    
     position: absolute; /* Абсолютное позиционирование */
     left: 40%; /* Положение слоя от левого края */
-    top: 3%; /* Положение слоя от верхнего края */
+    top: 5%; /* Положение слоя от верхнего края */
 }
 #questlist {
     position: relative; 
@@ -156,6 +156,9 @@ div{
 #form1 input[type="radio"] {
     width: 20px;
 }
+#form1 input[type="checkbox"] {
+    width: 20px;
+}
 #form1 textarea {
     resize: none;
     height:240px;
@@ -173,12 +176,24 @@ div{
     font-family: Ubuntu;
 }
 #form1 button {
-    width:140px;
+    width: auto;
     height:37px;
     line-height:37px;
     border:none;
     background: no-repeat 0 0;
-    color:#495a85;
+    color: #495a85;
+    cursor:pointer;
+    text-align:center;
+    font-family: Ubuntu;
+    font-size: 120%;
+}
+#form1 button[type="auto"] {
+    width: auto;
+    height:auto;
+    line-height:37px;
+    border:none;
+    background: no-repeat 0 0;
+    color: #495a85;
     cursor:pointer;
     text-align:center;
     font-family: Ubuntu;

@@ -16,9 +16,45 @@ body{
     background-size: 117%;
     font-family: Ubuntu;
 }
+table {
 
+}
+.userdeal {
+    border-color:background;
+    border-style:dotted;
+    border-width: 2px;
+    width: 100%;
+    background-color:#f2f4fa;
+}
+.userdeal td {
+    border-color:background;
+    border-style:dotted;
+    border-width: 1px;
+}
+td{   
+    width: auto;
+    height: 35px;
+    text-align: center;
+}
+.userdeal button {
+    width:120%;
+    height:auto;
+    border:none;
+    background: no-repeat 0 0;
+    color:#495a85;
+    cursor:pointer;
+    text-align:center;
+    font-family: Ubuntu;
+    font-size: 85%;
+}
 div {
 
+}
+#usertable {
+    position: absolute; /* Абсолютное позиционирование */
+    left: 20%; /* Положение слоя от левого края */
+    top: 5%; /* Положение слоя от верхнего края */
+    width: 55%;
 }
 #sublist {
     position: absolute; /* Абсолютное позиционирование */
@@ -34,26 +70,28 @@ div {
     position: absolute; /* Абсолютное позиционирование */
     left: 20%; /* Положение слоя от левого края */
     top: 5%; /* Положение слоя от верхнего края */
+    width: 55%;
 }
 #statdetails {
     position: absolute; /* Абсолютное позиционирование */
-    left: 35%; /* Положение слоя от левого края */
-    top: 5%; /* Положение слоя от верхнего края */
-}
-#statbutt {
-    position: fixed; /* Абсолютное позиционирование */
-    left: 70%; /* Положение слоя от левого края */
-    top: 25%; /* Положение слоя от верхнего края */
+    left: 40%; /* Положение слоя от левого края */
+    top: 80%;
 }
 #label {
     position: absolute; /* Абсолютное позиционирование */
     left: 40%; /* Положение слоя от левого края */
     top: -120%; /* Положение слоя от верхнего края */
 }
-#button {
-    position: fixed; /* Абсолютное позиционирование */
-    left: 70%; /* Положение слоя от левого края */
-    top: 10%; /* Положение слоя от верхнего края */
+#choosepage {
+    width: 20%;
+    position: fixed;
+    left: 69%;
+    top: 10%;
+}
+#homebutt {
+    position: fixed;
+    left: 94%; 
+    top: 2%; 
 }
 
 h1{
@@ -79,7 +117,7 @@ td {
 div{    
     position: absolute; /* Абсолютное позиционирование */
     left: 40%; /* Положение слоя от левого края */
-    top: 3%; /* Положение слоя от верхнего края */
+    top: 5%; /* Положение слоя от верхнего края */
 }
 #questlist {
     position: relative; 
@@ -195,6 +233,28 @@ div{
     text-align:center;
     font-family: Ubuntu;
     font-size: 120%;
+}
+#form2 button {
+    width:auto;
+    height:auto;
+    border:none;
+    background: no-repeat 0 0;
+    color:#495a85;
+    cursor:pointer;
+    text-align:center;
+    font-family: Ubuntu;
+    font-size: 85%;
+}
+#form2 td {
+    vertical-align: top;
+    width: 100px;
+}
+#form2 tr[type="wall"] {
+    height: 20px;
+}
+#form3 input {
+    width: 30px;
+    height: 30px;
 }
 @font-face {
     font-family: Ubuntu;

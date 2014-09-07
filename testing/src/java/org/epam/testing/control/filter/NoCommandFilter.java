@@ -17,11 +17,12 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 import org.apache.log4j.Logger;
 import org.apache.log4j.xml.DOMConfigurator;
-import org.epam.testing.command.factory.CommandFactory;
 import org.epam.testing.command.common.AbstractCommand;
+import org.epam.testing.command.factory.CommandFactory;
 import org.epam.testing.exception.LogicException;
 import org.epam.testing.exception.TechException;
 import org.epam.testing.prophandler.PropertyHandler;
+import org.epam.testing.utils.I18nDealer;
 
 /**
  *
@@ -55,6 +56,7 @@ public class NoCommandFilter implements Filter {
                 }
             } else {
                 reqDispatch = request.getRequestDispatcher(session.getAttribute("jsppath").toString());
+                new I18nDealer("default").assignLocale((HttpServletRequest) request);
             }
             request.setAttribute("path", request.getServletContext().getContextPath());
             reqDispatch.forward(request, response);

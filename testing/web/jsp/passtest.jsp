@@ -15,6 +15,7 @@
         <title>Pass test</title>
     </head>
     <body>
+        <%@ include file="/jsp/includings/header.jsp"%>
         <div>
             <form action="/testing/passtest" method="post" id="form1" autocomplete="off">
                 <c:if test="${result == null}">
@@ -33,14 +34,42 @@
                                     <td>
                                     <td>
                                         <table>
-                                            <c:forEach var="ans" items="${dat.answers}">
-                                                <c:if test="${ans.text != ''}">
-                                                <tr>
-                                                    <td>
-                                                        <input type="radio" name="${ans.questId}" value="${ans.id}">${ans.text}
-                                                    </td>
-                                                </tr>
-                                                </c:if>
+                                            <c:set var="ifCheck" scope="page" value="no"/>   
+                                            <c:forEach var="ans" items="${dat.answers}">                                                                                             
+                                                <c:forEach var="secans" items="${dat.answers}">
+                                                    <c:if test="${ifCheck == 'no'}">
+                                                        <c:if test="${secans.ifCheckBox}">
+                                                            <c:set var="ifCheck" scope="page" value="yes"/>
+                                                        </c:if>
+                                                    </c:if>
+                                                </c:forEach>     
+                                                <c:choose>
+                                                    <c:when test="${ifCheck == 'yes'}">
+                                                        <c:if test="${ans.text != ''}">
+                                                            <tr>
+                                                                <td>
+                                                                    <input type="checkbox" name="${ans.questId}" value="${ans.id}">${ans.text}
+                                                                </td>
+                                                            </tr>
+                                                        </c:if>
+                                                        <c:if test="${ans.textAdv != '' && ans.textAdv!=null}">
+                                                            <tr>
+                                                                <td>
+                                                                    <input type="checkbox" name="${ans.questId}Adv" value="${ans.id}">${ans.textAdv}
+                                                                </td>
+                                                            </tr>
+                                                        </c:if>
+                                                    </c:when>
+                                                    <c:otherwise>
+                                                        <c:if test="${ans.text != ''}">
+                                                            <tr>
+                                                                <td>
+                                                                    <input type="radio" name="${ans.questId}" value="${ans.id}">${ans.text}
+                                                                </td>
+                                                            </tr>
+                                                        </c:if>
+                                                    </c:otherwise>
+                                                </c:choose>
                                             </c:forEach>
                                         </table>
                                     </td>
@@ -65,9 +94,9 @@
                     </div>   
                 </c:if>
                 <c:if test="${result != null}">
-                    ${result}
+                    ${local["DNresult"]} ${result}
                     <div div id='result'>
-                        <button>А я так и знал!</button>
+                        <button>${local["DOknowit"]}</button>
                         <input type="hidden" value=passtest name="command">
                         <input type="hidden" value=final name="progress">
                     </div>        

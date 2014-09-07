@@ -22,6 +22,10 @@ public class PassHistory extends AbstractEntity {
         this.result = (int) result;
     }
 
+    public PassHistory(int id) {
+        super(id);
+    }
+
     public int getTestId() {
         return testId;
     }

@@ -26,10 +26,13 @@ public class ChooseSubjectCommand extends AbstractCommand {
     public String perform(HttpServletRequest request) throws LogicException, TechException {
         new I18nDealer(this.getClass().getSimpleName()).assignLocale(request);
         int subjectId = 0;
-        if (request.getParameter("newsubject") == null) {
+        if (request.getParameter("additParam") == null || request.getParameter("letter") == null) {
             AbstractDao dao = new DaoFactory().getDaoByName("theme");
             ArrayList<Theme> themes = dao.selectAllByParameter(request.getParameter("input"));
             dao = new DaoFactory().getDaoByName("subject");
+            if (!dao.isExist(request.getParameter("input"))) {
+                dao.insertNew(request.getParameter("input"));
+            }
             ArrayList<Subject> subjects = dao.selectAll();
             for (Subject subject : subjects) {
                 if (subject.getName().equals(request.getParameter("input"))) {
@@ -44,14 +47,27 @@ public class ChooseSubjectCommand extends AbstractCommand {
             request.setAttribute("subjid", subjectId);
         } else {
             AbstractDao dao = new DaoFactory().getDaoByName("subject");
-            if (!dao.isExist(request.getParameter("input"))) {
-                dao.insertNew(request.getParameter("input"));
-            }
-            ArrayList<Subject> subjects = dao.selectAll();
+            ArrayList<Subject> subjects;
+            if (request.getParameter("letter") != null) {
+                ArrayList<Subject> earlySubjects = dao.selectAll();
+                String bigLetter = request.getParameter("letter").toUpperCase();
+                String litLetter = request.getParameter("letter").toLowerCase();
+                subjects = new ArrayList();
+                for (Subject subj : earlySubjects) {
+                    if (subj.getName().startsWith(bigLetter)
+                            || subj.getName().startsWith(litLetter)) {
+                        subjects.add(subj);
+                    }
+                }
 
-            request.setAttribute("wascommand", "prepare");
-            request.setAttribute("subjs", subjects);
+                request.setAttribute("subjs", subjects);
+                request.setAttribute("subnum", subjects.size());
+                request.setAttribute("wascommand", "prepare");
+            }
         }
+
+        request.setAttribute("latAB", lat);
+        request.setAttribute("kirAB", kir);
         return flowPagePropertyHandler.getPropertyValue(this.getClass().getSimpleName());
     }
 

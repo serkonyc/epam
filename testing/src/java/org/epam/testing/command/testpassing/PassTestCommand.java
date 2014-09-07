@@ -30,8 +30,16 @@ public class PassTestCommand extends AbstractCommand {
             float result = 1;
             for (Answer answer : answers) {
                 if (request.getParameter(String.valueOf(answer.getQuestId())) != null) {
-                    if (answer.getId() != Integer.parseInt(request.getParameter(String.valueOf(answer.getQuestId())))) {
-                        result = result - 1.0f / answers.size();
+                    if (answer.getTextAdv() == null) {
+                        if (answer.getId() != Integer.parseInt(request.getParameter(String.valueOf(answer.getQuestId())))) {
+                            result = result - 1.0f / answers.size();
+                        }
+                    } else {
+                        if (request.getParameter(String.valueOf(answer.getQuestId()) + "Adv") == null
+                                || answer.getId() != Integer.parseInt(request.getParameter(String.valueOf(answer.getQuestId())))
+                                || answer.getId() != Integer.parseInt(request.getParameter(String.valueOf(answer.getQuestId()) + "Adv"))) {
+                            result = result - 1.0f / answers.size();
+                        }
                     }
                 } else {
                     result = result - 1.0f / answers.size();
@@ -45,9 +53,7 @@ public class PassTestCommand extends AbstractCommand {
             );
 
             request.getSession().setAttribute("result",
-                    "Your result of passing test is "
-                    + String.format("%.2f", result * 100)
-                    + "%");
+                    String.format("%.2f", result * 100) + "%");
             return flowPagePropertyHandler.getPropertyValue(this.getClass().getSimpleName());
         } else {
             request.getSession().setAttribute("result", null);

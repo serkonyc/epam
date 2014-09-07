@@ -25,6 +25,7 @@ public class ThemeDao extends AbstractDao<Theme> {
     private final String SELECT_ALL_BY_SUBJECTNAME = "SELECT * FROM theme, subject WHERE subject.name = (?) AND theme.subject_id=subject.id";
     private final String MATCH_ONE = "SELECT * FROM theme WHERE name like (?)";
     private final String INSERT_ONE = "INSERT INTO theme(subject_id,name) VALUES (?,?)";
+    private final String DELETE_BY = "DELETE FROM theme WHERE theme.id = (?)";
 
     @Override
     public ArrayList selectAll() throws TechException {
@@ -122,7 +123,17 @@ public class ThemeDao extends AbstractDao<Theme> {
 
     @Override
     public void deleteByParameter(String deleteParameter) throws TechException {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        Connection connection = DbaseConnectionPool.getInstance().getConnection();
+        try (PreparedStatement preparedStatement = connection.prepareStatement(DELETE_BY)) {
+            preparedStatement.setString(1, deleteParameter);
+            preparedStatement.executeUpdate();
+
+        } catch (SQLException ex) {
+            throw new TechException("Exception in SQL in deleteByParameter", ex.getCause());
+        } finally {
+            // нет необходимости проверки на нул
+            DbaseConnectionPool.getInstance().releaseConnection(connection);
+        }
     }
 
     @Override

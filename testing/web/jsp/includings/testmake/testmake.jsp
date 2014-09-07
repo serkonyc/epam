@@ -37,6 +37,11 @@ x = ?"></textarea>
                                     </tr>
                                     <tr>
                                         <td>
+                                            <input type="text" placeholder="${local["DFcorrect"]}" name="${quest}-1.5">
+                                        </td>
+                                    </tr>        
+                                    <tr>
+                                        <td>
                                             <input type="text" placeholder="${local["DEincorr"]}" required name="${quest}-2">
                                         </td>
                                     </tr>

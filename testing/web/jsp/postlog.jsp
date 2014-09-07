@@ -17,7 +17,7 @@
     <body>
         <div align="center">
             <h1 class="header" align="center">
-                Hello ${nick}! Your id: ${id}.
+                Hello ${nick}! Your id: ${id}
             </h1>   
         </div>
         <div id='locale1'>

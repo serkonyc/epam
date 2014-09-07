@@ -8,10 +8,11 @@ package org.epam.testing.command.testmaking;
 import java.util.ArrayList;
 import javax.servlet.http.HttpServletRequest;
 import org.epam.testing.command.common.AbstractCommand;
-import org.epam.testing.dao.factory.DaoFactory;
 import org.epam.testing.dao.AbstractDao;
 import org.epam.testing.dao.entity.Subject;
 import org.epam.testing.dao.entity.Test;
+import org.epam.testing.dao.entity.Theme;
+import org.epam.testing.dao.factory.DaoFactory;
 import org.epam.testing.exception.LogicException;
 import org.epam.testing.exception.TechException;
 import org.epam.testing.utils.I18nDealer;
@@ -40,15 +41,31 @@ public class PrepareTestCommand extends AbstractCommand {
                 }
             }
             if (!ishastest) {
-                System.out.println(subject.getId());
                 dao.deleteByParameter(String.valueOf(subject.getId()));
             } else {
                 finalSubjects.add(subject);
             }
-        }        
+        }
+        dao = new DaoFactory().getDaoByName("theme");
+        ArrayList<Theme> themes = dao.selectAll();
+        for (Theme theme : themes) {
+            boolean ishastest = false;
+            for (Test test : tests) {
+                if (theme.getId() == test.getTheme().getId()) {
+                    ishastest = true;
+                    break;
+                }
+            }
+            if (!ishastest) {
+                dao.deleteByParameter(String.valueOf(theme.getId()));
+            }
+        }
 
         request.setAttribute("wascommand", "prepare");
         request.setAttribute("subjs", finalSubjects);
+        request.setAttribute("subnum", finalSubjects.size());
+        request.setAttribute("latAB", lat);
+        request.setAttribute("kirAB", kir);
         return flowPagePropertyHandler.getPropertyValue(this.getClass().getSimpleName());
     }
 
