@@ -10,31 +10,13 @@
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>JSP Page</title>
     </head>
     <body>
         <div id="choosepage"> 
             <form action="/testing/addtest" method="post" id="form2">
-                <table>
-                    <tr>
-                        <td>
-                            <c:forEach var="latin" items="${latAB}">
-                                <button name="letter" value="${latin}">${latin}</button>
-                            </c:forEach>
-                        </td>
-                    </tr>
-                    <tr type="wall">                        
-                    </tr>
-                    <tr>
-                        <td>
-                            <c:forEach var="kirill" items="${kirAB}">
-                                <button name="letter" value="${kirill}">${kirill}</button>
-                            </c:forEach> 
-                        </td>
-                    </tr>                
-                </table>    
-                <input type="hidden" value="yes" name="additParam">
-                <input type="hidden" name="command" value="choosesubject">
+                <%@ include file="includings/alphabet.jsp" %>
+                <input type="hidden" value="${subjid}" name="inputid">
+                <input type="hidden" value="choosesubject" name="command">
             </form>
         </div>
         <div id="label">
@@ -59,7 +41,6 @@
                         <input type="iftext" pattern="[A-я -]{2,16}" required placeholder="${local["DBinput"]}" name="input"> 
                         <input type="submit" value=${local["ZAadd"]}> 
                         <input type="hidden" value="choosesubject" name="command">
-                        <input type="hidden" value="yes" name="additParam">
                     </li>
                 </ul>
             </form>

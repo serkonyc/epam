@@ -21,24 +21,7 @@
         </div>
         <div id="choosepage"> 
             <form action="/testing/addtest" method="post" id="form2">
-                <table>
-                    <tr>
-                        <td>
-                            <c:forEach var="latin" items="${latAB}">
-                                <button name="letter" value="${latin}">${latin}</button>
-                            </c:forEach>
-                        </td>
-                    </tr>
-                    <tr type="wall">                        
-                    </tr>
-                    <tr>
-                        <td>
-                            <c:forEach var="kirill" items="${kirAB}">
-                                <button name="letter" value="${kirill}">${kirill}</button>
-                            </c:forEach> 
-                        </td>
-                    </tr>               
-                </table>    
+                <%@ include file="includings/alphabet.jsp" %>
                 <input type="hidden" value="${subjid}" name="inputid">
                 <input type="hidden" value="choosetheme" name="command">
                 <input type="hidden" value="${oldinput}" name="oldinput">
@@ -54,16 +37,7 @@
                     </c:forEach>
                     <c:if test="${fn:length(themes)!=0}">
                           <li>
-                              ${local["DDquestnum"]}&nbsp&nbsp&nbsp&nbsp<select name="questnum">
-                                  <option value="3">${local["E3"]}</option>
-                                  <option value="4">${local["E4"]}</option>
-                                  <option selected value="5">${local["E5"]}</option>
-                                  <option value="6">${local["E6"]}</option>
-                                  <option value="7">${local["E7"]}</option>
-                                  <option value="8">${local["E8"]}</option>
-                                  <option value="9">${local["E9"]}</option>
-                                  <option value="10">${local["E10"]}</option>
-                              </select>  
+                              <%@ include file="includings/numberlist.jsp" %>
                           </li>
                 </c:if>
             </ul>
@@ -78,16 +52,7 @@
                     <input type="hidden" value="${subjid}" name="inputid">
                     <input type="hidden" value="choosetheme" name="command">
                     <input type="hidden" value="${oldinput}" name="oldinput">
-                    ${local["DDquestnum"]}&nbsp&nbsp&nbsp&nbsp<select name="questnum">
-                        <option value="3">${local["E3"]}</option>
-                        <option value="4">${local["E4"]}</option>
-                        <option selected value="5">${local["E5"]}</option>
-                        <option value="6">${local["E6"]}</option>
-                        <option value="7">${local["E7"]}</option>
-                        <option value="8">${local["E8"]}</option>
-                        <option value="9">${local["E9"]}</option>
-                        <option value="10">${local["E10"]}</option>
-                    </select>
+                    <%@ include file="includings/numberlist.jsp" %>
                 </li>
             </ul>
         </form>

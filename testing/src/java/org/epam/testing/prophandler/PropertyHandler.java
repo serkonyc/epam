@@ -27,14 +27,10 @@ public class PropertyHandler {
 
     public PropertyHandler(String propertyFileName) throws TechException {
         try {
-            /* if(propertyFileName == null) {
-             throw new TechException("There is no filename!");
-             } */
             String localpath = path.concat(propertyFileName);
             input = new FileInputStream(localpath);
             prop = new Properties();
             prop.load(input);
-
         } catch (FileNotFoundException ex) {
             throw new TechException("Look for properties file!", ex);
         } catch (IOException ex) {
@@ -44,7 +40,7 @@ public class PropertyHandler {
                 try {
                     input.close();
                 } catch (IOException ex) {
-                    throw new TechException("Trouble with closing stream.", ex);
+                    input = null;
                 }
             }
         }

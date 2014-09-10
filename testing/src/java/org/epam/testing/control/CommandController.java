@@ -6,6 +6,7 @@
 package org.epam.testing.control;
 
 import java.io.IOException;
+import java.util.logging.Level;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletConfig;
 import javax.servlet.ServletException;
@@ -73,8 +74,12 @@ public class CommandController extends HttpServlet {
                 }
 
             } catch (ServletException | IOException ex) {
-                LOGGER.error(new TechException("Servlet exception with requestDispatcher", ex.getCause()));
-                request.getSession().setAttribute("errorMess", ex.getMessage());
+                try {
+                    LOGGER.error(new TechException("Servlet exception with requestDispatcher", ex.getCause()));
+                    response.sendRedirect("/testing/error");
+                } catch (IOException exep) {
+                    LOGGER.error(new TechException("Servlet exception with requestDispatcher", exep.getCause()));
+                }
             }
         }
     }

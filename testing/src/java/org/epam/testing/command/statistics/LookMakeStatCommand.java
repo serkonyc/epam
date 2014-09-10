@@ -9,11 +9,12 @@ import java.util.ArrayList;
 import java.util.Collections;
 import javax.servlet.http.HttpServletRequest;
 import org.epam.testing.command.common.AbstractCommand;
-import org.epam.testing.dao.factory.DaoFactory;
 import org.epam.testing.dao.AbstractDao;
 import org.epam.testing.dao.entity.Test;
+import org.epam.testing.dao.factory.DaoFactory;
 import org.epam.testing.exception.LogicException;
 import org.epam.testing.exception.TechException;
+import org.epam.testing.utils.ByPageReflector;
 import org.epam.testing.utils.I18nDealer;
 
 /**
@@ -47,20 +48,7 @@ public class LookMakeStatCommand extends AbstractCommand {
                 currpagenum = "1";
             }
             pagenum = Integer.parseInt(currpagenum);
-            if (pagenum > 6) {
-                allpagesnum.add(1);
-                allpagesnum.add("...");
-                for (int i = pagenum - 4; i < pagenum + 5 && i < posttestlist.size() / 10; i++) {
-                    allpagesnum.add(i);
-                }
-            } else {
-                for (int i = 1; i < posttestlist.size() / 10 + 1 && i < 10; i++) {
-                    allpagesnum.add(i);
-                }
-
-            }
-            allpagesnum.add("...");
-            allpagesnum.add(posttestlist.size() / 10);
+            ByPageReflector.makeOutput(allpagesnum, pagenum, posttestlist.size() / 10);
 
             request.setAttribute("currpage", pagenum);
             request.setAttribute("posttestlist", new ArrayList(posttestlist.subList(10 * pagenum - 10, 10 * (pagenum))));
