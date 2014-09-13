@@ -1,7 +1,6 @@
 /*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
+ * Copyright (C) 2014 Sergiusz
+ *
  */
 package org.epam.testing.dao.factory;
 
@@ -16,11 +15,19 @@ import org.epam.testing.dao.QuestDao;
 import org.epam.testing.exception.LogicException;
 
 /**
+ * Фабрика Dao-обработчиков.
  *
  * @author Sergiusz
  */
 public class DaoFactory {
 
+    /**
+     * Получение экземпляра DAO-класса по имени.
+     *
+     * @param daoName Название DAO.
+     * @return Экземпляр класса DAO, наследника AbstractDao
+     * @throws LogicException в случае отсутствия нужного класса в списке.
+     */
     public AbstractDao getDaoByName(String daoName) throws LogicException {
         try {
             switch (DaoType.valueOf(daoName.toUpperCase())) {

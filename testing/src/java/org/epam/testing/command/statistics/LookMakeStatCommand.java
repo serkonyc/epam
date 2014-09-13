@@ -1,7 +1,6 @@
 /*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
+ * Copyright (C) 2014 Sergiusz
+ *
  */
 package org.epam.testing.command.statistics;
 
@@ -18,11 +17,20 @@ import org.epam.testing.utils.ByPageReflector;
 import org.epam.testing.utils.I18nDealer;
 
 /**
- *
+ * Команда вывода таблицы статистики созданий тестов.
+ * 
  * @author Sergiusz
  */
 public class LookMakeStatCommand extends AbstractCommand {
 
+    /**
+     * Команда вывода таблицы статистики созданий тестов.
+     * 
+     * @param request Запрос, переданный с jsp-страницы.
+     * @return адрес страницы с содержимым или null в случае перехода на главную.
+     * @throws LogicException в случае проблем с i18nDealer.
+     * @throws TechException в случае технических проблем.
+     */
     @Override
     public String perform(HttpServletRequest request) throws LogicException, TechException {
         new I18nDealer(this.getClass().getSimpleName()).assignLocale(request);

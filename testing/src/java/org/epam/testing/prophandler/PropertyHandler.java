@@ -1,7 +1,6 @@
 /*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
+ * Copyright (C) 2014 Sergiusz
+ *
  */
 package org.epam.testing.prophandler;
 
@@ -15,6 +14,7 @@ import java.util.TreeSet;
 import org.epam.testing.exception.TechException;
 
 /**
+ * Класс работы с данными из properties.
  *
  * @author Sergiusz
  */
@@ -25,6 +25,12 @@ public class PropertyHandler {
 
     private Properties prop;
 
+    /**
+     * Конструктор обработчика свойств.
+     *
+     * @param propertyFileName Имя файла к открытию.
+     * @throws TechException в случае технических проблем.
+     */
     public PropertyHandler(String propertyFileName) throws TechException {
         try {
             String localpath = path.concat(propertyFileName);
@@ -46,6 +52,13 @@ public class PropertyHandler {
         }
     }
 
+    /**
+     * Метод получения определённого свойства из файлов.
+     *
+     * @param propName Название искомого свойства.
+     * @return Значение свойства.
+     * @throws TechException в случае технических ошибок.
+     */
     public String getPropertyValue(String propName) throws TechException {
         if (prop.getProperty(propName) != null) {
             return prop.getProperty(propName);
@@ -54,12 +67,22 @@ public class PropertyHandler {
         }
     }
 
+    /**
+     * Метод получения отсортированного множества ключей из файла.
+     *
+     * @return Множество неповторяющихся ключей.
+     */
     public Set getKeysSet() {
         TreeSet keys = new TreeSet();
         keys.addAll(prop.keySet());
         return keys;
     }
 
+    /**
+     * Метод установки пути к файлам.
+     *
+     * @param servPath Путь к папке проекта, переданный с сервлета.
+     */
     public static void setInput(String servPath) {
         path = servPath.substring(0, servPath.length() - 10).concat("\\src\\properties\\");
     }

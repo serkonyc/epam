@@ -1,7 +1,6 @@
 /*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
+ * Copyright (C) 2014 Sergiusz
+ *
  */
 package org.epam.testing.control.filter;
 
@@ -17,6 +16,7 @@ import org.apache.log4j.Logger;
 import org.epam.testing.exception.TechException;
 
 /**
+ * Фильтр применения необходимой кодировки.
  *
  * @author Sergiusz
  */
@@ -25,11 +25,23 @@ public class EncodeFilter implements Filter {
     private static final org.apache.log4j.Logger LOGGER = Logger.getLogger(EncodeFilter.class.getSimpleName());
     private String code;
 
+    /**
+     * Переопределённый метод от Filter. Инициализация фильтра.
+     *
+     * @param fConfig Конфигурация фильтра.
+     */
     @Override
     public void init(FilterConfig fConfig) {
         code = fConfig.getInitParameter("encoding");
     }
 
+    /**
+     * Метод выполнения непосредственной работы и обработки фильтра.
+     *
+     * @param request Запрос JSP-страницы.
+     * @param response Ответ отправки.
+     * @param chain Объект для доступа к цепи обработки.
+     */
     @Override
     public void doFilter(ServletRequest request,
             ServletResponse response, FilterChain chain) {
@@ -49,6 +61,9 @@ public class EncodeFilter implements Filter {
 
     }
 
+    /**
+     * Переопределённый метод от Filter. Уничтожение объекта фильтра.
+     */
     @Override
     public void destroy() {
         code = null;

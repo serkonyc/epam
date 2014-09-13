@@ -1,7 +1,6 @@
 /*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
+ * Copyright (C) 2014 Sergiusz
+ *
  */
 package org.epam.testing.dbconnection;
 
@@ -14,6 +13,7 @@ import org.epam.testing.exception.TechException;
 import org.epam.testing.prophandler.PropertyHandler;
 
 /**
+ * Пул соединений для связи с базой данных.
  *
  * @author Sergiusz
  */
@@ -65,10 +65,20 @@ public class DbaseConnectionPool {
 
     }
 
+    /**
+     * Метод получения единого экземпляра класса пула.
+     *
+     * @return @throws TechException в случае любых технических проблем.
+     */
     public static DbaseConnectionPool getInstance() throws TechException {
         return PoolHolder.getInstance();
     }
 
+    /**
+     * Метод получения соединения и его перемещения в список используемых.
+     *
+     * @return @throws TechException в случае любых технических проблем.
+     */
     public final Connection getConnection() throws TechException {
         try {
             Connection connection = allConnections.take();
@@ -79,6 +89,12 @@ public class DbaseConnectionPool {
         }
     }
 
+    /**
+     * Метод освобождения соединения и возвращения его в общий список.
+     *
+     * @param connection Соединение, отданное пользователем обратно в пул.
+     * @throws TechException в случае любых технических проблем.
+     */
     public final void releaseConnection(Connection connection) throws TechException {
         try {
             allConnections.put(connection);
@@ -88,6 +104,11 @@ public class DbaseConnectionPool {
         }
     }
 
+    /**
+     * Метод полной очистки пула от соединений.
+     *
+     * @throws TechException в случае любых технических проблем.
+     */
     public final void clearPool() throws TechException {
         Iterator<Connection> iterator = allConnections.iterator();
         while (iterator.hasNext()) {

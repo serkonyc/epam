@@ -1,0 +1,68 @@
+/*
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+*/
+/* 
+    Created on : Sep 3, 2014, 6:28:47 AM
+    Author     : Sergiusz
+*/
+
+body{
+    color: #16347a;
+    background-image: url(jpeg/backwork.jpg);
+    background-position: center;
+    background-attachment: fixed;
+    background-size: 117%;
+    font-family: Ubuntu;
+}
+table {
+    border-color:background;
+    border-style:dotted;
+    border-width: 2px;
+    width: 100%;
+    background-color:#f2f4fa;
+}
+td {
+    border-color:background;
+    border-style:dotted;
+    border-width: 1px;
+    width: auto;
+    height: 35px;
+    text-align: center;
+}
+button {
+    width:90%;
+    height:auto;
+    border:none;
+    background: no-repeat 0 0;
+    color:#495a85;
+    cursor:pointer;
+    text-align:center;
+    font-family: Ubuntu;
+    font-size: 85%;
+}
+div {
+
+}
+#locale1 {
+    position: fixed;
+    left: 2%; 
+    top: 3%; 
+}
+#locale2 {
+    position: fixed;
+    left: 4%; 
+    top: 3%; 
+}
+#usertable {
+    position: absolute;
+    left: 20%;
+    top: 5%;
+    width: 55%;
+}
+
+@font-face {
+    font-family: Ubuntu;
+    src: url("../fonts/ubuntu.ttf");
+}

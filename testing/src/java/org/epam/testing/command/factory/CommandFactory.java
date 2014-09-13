@@ -1,7 +1,6 @@
 /*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
+ * Copyright (C) 2014 Sergiusz
+ *
  */
 package org.epam.testing.command.factory;
 
@@ -14,11 +13,19 @@ import org.epam.testing.command.userdeal.*;
 import org.epam.testing.exception.LogicException;
 
 /**
- *
+ * Класс получения команды для выполнения по её имени.
+ * 
  * @author Sergiusz
  */
 public class CommandFactory {
 
+    /**
+     * Получение команды для выполнения по имени.
+     * 
+     * @param commandName Название команды
+     * @return инициализированный потомок AbstractCommand
+     * @throws LogicException при проблеме со списком допустимых команд.
+     */
     public static AbstractCommand getCommandByName(String commandName) throws LogicException {
         try {
             switch (CommandType.valueOf(commandName.toUpperCase())) {

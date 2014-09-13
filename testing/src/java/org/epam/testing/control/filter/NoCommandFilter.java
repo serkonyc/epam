@@ -1,7 +1,6 @@
 /*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
+ * Copyright (C) 2014 Sergiusz
+ *
  */
 package org.epam.testing.control.filter;
 
@@ -25,6 +24,7 @@ import org.epam.testing.prophandler.PropertyHandler;
 import org.epam.testing.utils.I18nDealer;
 
 /**
+ * Фильтр обработки запросов по адресу страницы без вызова команд.
  *
  * @author Sergiusz
  */
@@ -32,10 +32,22 @@ public class NoCommandFilter implements Filter {
 
     private static final org.apache.log4j.Logger LOGGER = Logger.getLogger(NoCommandFilter.class.getSimpleName());
 
+    /**
+     * Переопределённый метод от Filter. Инициализация фильтра.
+     *
+     * @param fConfig Конфигурация фильтра.
+     */
     @Override
     public void init(FilterConfig fConfig) {
     }
 
+    /**
+     * Метод выполнения непосредственной работы и обработки фильтра.
+     *
+     * @param request Запрос JSP-страницы.
+     * @param response Ответ отправки.
+     * @param chain Объект для доступа к цепи обработки.
+     */
     @Override
     public void doFilter(ServletRequest request,
             ServletResponse response, FilterChain chain) {
@@ -71,6 +83,9 @@ public class NoCommandFilter implements Filter {
         }
     }
 
+    /**
+     * Переопределённый метод от Filter. Уничтожение объекта фильтра.
+     */
     @Override
     public void destroy() {
     }

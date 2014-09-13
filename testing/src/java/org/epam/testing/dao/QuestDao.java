@@ -1,7 +1,6 @@
 /*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
+ * Copyright (C) 2014 Sergiusz
+ *
  */
 package org.epam.testing.dao;
 
@@ -16,6 +15,7 @@ import org.epam.testing.dbconnection.DbaseConnectionPool;
 import org.epam.testing.exception.TechException;
 
 /**
+ * Класс работы с сущностями вопросов.
  *
  * @author Sergiusz
  */
@@ -26,12 +26,25 @@ public class QuestDao extends AbstractDao {
     private final String INSERT_ONE = "INSERT INTO quest(test_id, text) VALUES (?,?)";
     private final String SELECT_ALL_BY_TESTID = "SELECT * FROM quest, answer WHERE quest.test_id = (?) AND quest.id=answer.quest_id";
     private final String UPDATE_ONE = "UPDATE quest SET quest.text = (?) WHERE quest.id = (?)";
-            
+
+    /**
+     * Метод получения полной выборки из базы данных. Не реализован.
+     *
+     * @return ArrayList всех элементов.
+     * @throws TechException в случае проблем с доступом к БД.
+     */
     @Override
     public ArrayList selectAll() throws TechException {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
+    /**
+     * Метод получения выборки из таблиц на основе параметра.
+     *
+     * @param compareParameter Параметр получения выборки: testId.
+     * @return ArrayList занчений из БД.
+     * @throws TechException в случае проблем с доступом к БД.
+     */
     @Override
     public ArrayList selectAllByParameter(String compareParameter) throws TechException {
         Connection connection = DbaseConnectionPool.getInstance().getConnection();
@@ -71,6 +84,12 @@ public class QuestDao extends AbstractDao {
         }
     }
 
+    /**
+     * Вставка нового элемента в таблицу.
+     *
+     * @param args Все необходимые аргументы новой записи: test_id, text.
+     * @throws TechException в случае проблем с доступом к БД.
+     */
     @Override
     public void insertNew(String... args) throws TechException {
         Connection connection = DbaseConnectionPool.getInstance().getConnection();
@@ -91,21 +110,46 @@ public class QuestDao extends AbstractDao {
         }
     }
 
+    /**
+     * Получение ответа, существует ли запись. Не реализован.
+     *
+     * @param argue Параметр для поиска. Различный для отличных классов.
+     * @return true, если запись существует, и false, если нет.
+     * @throws TechException в случае проблем с доступом к БД.
+     */
     @Override
     public boolean isExist(String argue) throws TechException {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
+    /**
+     * Получение идентификатора последней вставленной в БД записи.
+     *
+     * @return Числовой номер необходимой записи.
+     */
     @Override
     public int getLastId() {
         return lastInsertedId;
     }
 
+    /**
+     * Удаление по значению параметра. Не реализован.
+     *
+     * @param deleteParameter Параметр для удаления.
+     * @throws TechException в случае проблем с доступом к БД.
+     */
     @Override
     public void deleteByParameter(String deleteParameter) throws TechException {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
+    /**
+     * Обновление записи в таблице.
+     *
+     * @param updateParameter Параметр для обновления: id.
+     * @param args Новые значения вместо старых из БД: text.
+     * @throws TechException в случае проблем с доступом к БД.
+     */
     @Override
     public void updateByParameter(String updateParameter, String... args) throws TechException {
         Connection connection = DbaseConnectionPool.getInstance().getConnection();

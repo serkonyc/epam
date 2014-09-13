@@ -1,7 +1,6 @@
 /*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
+ * Copyright (C) 2014 Sergiusz
+ *
  */
 package org.epam.testing.command.testmaking;
 
@@ -18,11 +17,20 @@ import org.epam.testing.exception.TechException;
 import org.epam.testing.utils.I18nDealer;
 
 /**
+ * Команда подготовки создания теста и загрузки списка предметов.
  *
  * @author Sergiusz
  */
 public class PrepareTestCommand extends AbstractCommand {
 
+    /**
+     * Команда подготовки создания теста и загрузки списка предметов.
+     *
+     * @param request Запрос, переданный с jsp-страницы.
+     * @return адрес страницы для выбора предмета.
+     * @throws LogicException в случае проблем с i18nDealer или DaoFactory.
+     * @throws TechException в случае технических проблем.
+     */
     @Override
     public String perform(HttpServletRequest request) throws LogicException, TechException {
         new I18nDealer(this.getClass().getSimpleName()).assignLocale(request);

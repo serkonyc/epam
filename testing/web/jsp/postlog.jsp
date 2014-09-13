@@ -10,13 +10,14 @@
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <link rel="stylesheet" type="text/css" href="${path}/css/work.css">
+        <link rel="stylesheet" type="text/css" href="${path}/css/postlog.css">
         <link rel="shortcut icon" href="/testing/css/ico/icon.ico" >
         <title>Work Room</title>
     </head>
     <body>
-        <div align="center">
-            <h1 class="header" align="center">
+        <%@ include file="/jsp/includings/header.jsp"%>
+        <div>
+            <h1>
                 Hello ${nick}!
             </h1>   
         </div>

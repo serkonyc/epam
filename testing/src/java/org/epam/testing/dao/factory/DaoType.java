@@ -1,15 +1,42 @@
 /*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
+ * Copyright (C) 2014 Sergiusz
+ *
  */
 package org.epam.testing.dao.factory;
 
 /**
+ * Перечисление типов Dao.
  *
  * @author Sergiusz
  */
 public enum DaoType {
 
-    USER, SUBJECT, THEME, TEST, QUEST, ANSWER, PASSHISTORY
+    /**
+     * Доступ к управлению сущностями пользователя.
+     */
+    USER,
+    /**
+     * Доступ к управлению сущностями предмета.
+     */
+    SUBJECT,
+    /**
+     * Доступ к управлению сущностями темы.
+     */
+    THEME,
+    /**
+     * Доступ к управлению сущностями теста.
+     */
+    TEST,
+    /**
+     * Доступ к управлению сущностями вопроса.
+     */
+    QUEST,
+    /**
+     * Доступ к управлению сущностями ответа.
+     */
+    ANSWER,
+    /**
+     * Доступ к управлению сущностями истории.
+     */
+    PASSHISTORY
 }

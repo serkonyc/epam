@@ -50,6 +50,16 @@ td{
 div {
 
 }
+#locale1 {
+    position: fixed;
+    left: 2%; 
+    top: 3%; 
+}
+#locale2 {
+    position: fixed;
+    left: 4%; 
+    top: 3%; 
+}
 #usertable {
     position: absolute; /* Абсолютное позиционирование */
     left: 20%; /* Положение слоя от левого края */

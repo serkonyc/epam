@@ -1,7 +1,6 @@
 /*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
+ * Copyright (C) 2014 Sergiusz
+ *
  */
 package org.epam.testing.utils;
 
@@ -12,6 +11,7 @@ import org.epam.testing.exception.TechException;
 import org.epam.testing.prophandler.PropertyHandler;
 
 /**
+ * Класс, отвечающий за интернационализацию, выбор языка страниц.
  *
  * @author Sergiusz
  */
@@ -20,12 +20,25 @@ public class I18nDealer {
     private String commandName;
     private PropertyHandler localePropertyHandler;
 
+    /**
+     * Конструктор класса.
+     *
+     * @param commandName Имя команды, вызвавшей класс.
+     */
     public I18nDealer(String commandName) {
         this.commandName = commandName;
     }
 
+    /**
+     * Метод присваивания языковых данных объекту request.
+     * @param request Объект запроса, заполняемый данными.
+     * @throws TechException
+     * @throws LogicException
+     */
     public void assignLocale(HttpServletRequest request) throws TechException, LogicException {
-        if (request.getSession(true).getAttribute("lang") == null) {
+        if (request.getParameter("lang") != null) {
+            request.getSession().setAttribute("lang", request.getParameter("lang"));
+        } else if (request.getSession(true).getAttribute("lang") == null) {
             request.getSession().setAttribute("lang", "label_en");
         }
         localePropertyHandler = new PropertyHandler(

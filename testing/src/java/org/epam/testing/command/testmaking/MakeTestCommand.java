@@ -1,7 +1,6 @@
 /*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
+ * Copyright (C) 2014 Sergiusz
+ *
  */
 package org.epam.testing.command.testmaking;
 
@@ -13,11 +12,20 @@ import org.epam.testing.exception.LogicException;
 import org.epam.testing.exception.TechException;
 
 /**
+ * Команда окончательного создания нового теста.
  *
  * @author Sergiusz
  */
 public class MakeTestCommand extends AbstractCommand {
 
+    /**
+     * Команда окончательного создания нового теста.
+     *
+     * @param request Запрос, переданный с jsp-страницы.
+     * @return null для возвращения на главную.
+     * @throws LogicException в случае проблем с DaoFactory.
+     * @throws TechException в случае технических проблем.
+     */
     @Override
     public String perform(HttpServletRequest request) throws LogicException, TechException {
         int questNum = Integer.parseInt(request.getParameter("questnum"));

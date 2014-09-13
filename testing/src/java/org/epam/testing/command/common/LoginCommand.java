@@ -1,7 +1,6 @@
 /*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
+ * Copyright (C) 2014 Sergiusz
+ *
  */
 package org.epam.testing.command.common;
 
@@ -20,11 +19,23 @@ import org.epam.testing.exception.TechException;
 import org.epam.testing.utils.I18nDealer;
 
 /**
+ * Команда аутентификации, обрабатывающая ошибки и попытки войти в систему либо
+ * возвращающая пользователя на главную рабочую страницу.
  *
  * @author Sergiusz
  */
 public class LoginCommand extends AbstractCommand {
 
+    /**
+     * Команда аутентификации, обрабатывающая ошибки и попытки войти в систему
+     * либо возвращающая пользователя на главную рабочую страницу.
+     *
+     * @param request Запрос, переданный с jsp-страницы.
+     * @return String c адресом jsp либо null в случае сброса на главную
+     * страницу.
+     * @throws LogicException в случае проблем с логикой I18nDealer.
+     * @throws TechException в случае технических ошибок.
+     */
     @Override
     public String perform(HttpServletRequest request) throws LogicException, TechException {
         new I18nDealer(this.getClass().getSimpleName()).assignLocale(request);

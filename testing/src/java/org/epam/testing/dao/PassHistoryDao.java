@@ -1,7 +1,6 @@
 /*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
+ * Copyright (C) 2014 Sergiusz
+ *
  */
 package org.epam.testing.dao;
 
@@ -11,12 +10,11 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import org.epam.testing.dao.entity.PassHistory;
-import org.epam.testing.dao.entity.Subject;
-import org.epam.testing.dao.entity.Theme;
 import org.epam.testing.dbconnection.DbaseConnectionPool;
 import org.epam.testing.exception.TechException;
 
 /**
+ * Класс работы с сущностями истории прохождения.
  *
  * @author Sergiusz
  */
@@ -26,6 +24,12 @@ public class PassHistoryDao extends AbstractDao<PassHistory> {
     private final String INSERT_ONE = "INSERT INTO passhistory(test_id, user_id, result) VALUES (?,?,?)";
     private final String SELECT_ALL_BY_USERID = "SELECT * FROM passhistory WHERE passhistory.user_id = (?)";
 
+    /**
+     * Метод получения полной выборки из базы данных.
+     *
+     * @return ArrayList всех элементов.
+     * @throws TechException в случае проблем с доступом к БД.
+     */
     @Override
     public ArrayList selectAll() throws TechException {
         Connection connection = DbaseConnectionPool.getInstance().getConnection();
@@ -51,6 +55,13 @@ public class PassHistoryDao extends AbstractDao<PassHistory> {
         }
     }
 
+    /**
+     * Метод получения выборки из таблиц на основе параметра.
+     *
+     * @param compareParameter Параметр получения выборки: userId.
+     * @return ArrayList занчений из БД.
+     * @throws TechException в случае проблем с доступом к БД.
+     */
     @Override
     public ArrayList selectAllByParameter(String compareParameter) throws TechException {
         Connection connection = DbaseConnectionPool.getInstance().getConnection();
@@ -77,16 +88,36 @@ public class PassHistoryDao extends AbstractDao<PassHistory> {
         }
     }
 
+    /**
+     * Обновление записи в таблице. Не реализован.
+     *
+     * @param updateParameter Параметр для обновления.
+     * @param args Новые значения вместо старых из БД.
+     * @throws TechException в случае проблем с доступом к БД.
+     */
     @Override
     public void updateByParameter(String updateParameter, String... args) throws TechException {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
+    /**
+     * Удаление по значению параметра. Не реализован.
+     *
+     * @param deleteParameter Параметр для удаления.
+     * @throws TechException в случае проблем с доступом к БД.
+     */
     @Override
     public void deleteByParameter(String deleteParameter) throws TechException {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
+    /**
+     * Вставка нового элемента в таблицу.
+     *
+     * @param args Все необходимые аргументы новой записи: testId, userId,
+     * result.
+     * @throws TechException в случае проблем с доступом к БД.
+     */
     @Override
     public void insertNew(String... args) throws TechException {
         Connection connection = DbaseConnectionPool.getInstance().getConnection();
@@ -104,11 +135,24 @@ public class PassHistoryDao extends AbstractDao<PassHistory> {
         }
     }
 
+    /**
+     * Получение ответа, существует ли запись. Не реализован.
+     *
+     * @param argue Параметр для поиска. Различный для отличных классов.
+     * @return true, если запись существует, и false, если нет.
+     * @throws TechException в случае проблем с доступом к БД.
+     */
     @Override
     public boolean isExist(String argue) throws TechException {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
+    /**
+     * Получение идентификатора последней вставленной в БД записи. Не
+     * реализован.
+     *
+     * @return Числовой номер необходимой записи.
+     */
     @Override
     public int getLastId() {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.

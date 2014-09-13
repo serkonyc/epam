@@ -1,7 +1,6 @@
 /*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
+ * Copyright (C) 2014 Sergiusz
+ *
  */
 package org.epam.testing.command.testpassing;
 
@@ -17,11 +16,20 @@ import org.epam.testing.exception.TechException;
 import org.epam.testing.utils.I18nDealer;
 
 /**
+ * Команда выбора теста для прохождения.
  *
  * @author Sergiusz
  */
 public class ChooseTestCommand extends AbstractCommand {
 
+    /**
+     * Команда выбора теста для прохождения.
+     *
+     * @param request Запрос, переданный с jsp-страницы.
+     * @return String-адрес страницы прохожения.
+     * @throws LogicException в случае проблем с i18nDealer или DaoFactory.
+     * @throws TechException в случае технических проблем.
+     */
     @Override
     public String perform(HttpServletRequest request) throws LogicException, TechException {
         new I18nDealer(this.getClass().getSimpleName()).assignLocale(request);
@@ -31,11 +39,10 @@ public class ChooseTestCommand extends AbstractCommand {
         request.getSession().setAttribute("result", null);
         if (!bothQuestsAnswers.isEmpty()) {
             request.setAttribute("testid", bothQuestsAnswers.get(0).getTestId());
-            for(Quest quest: bothQuestsAnswers) {
+            for (Quest quest : bothQuestsAnswers) {
                 Collections.shuffle(quest.getAnswers());
             }
-        }
-        else {
+        } else {
             throw new LogicException("Test does not exist.");
         }
         request.setAttribute("data", bothQuestsAnswers);

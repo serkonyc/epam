@@ -16,6 +16,18 @@
     </head>
     <body>     
         <%@ include file="/jsp/includings/header.jsp"%>
+        <div id='locale1'>
+            <form method="post" id="form2" action="/testing/passtest">
+                <button value="preparetest" name="command">RU</button>
+                <input type="hidden" name="lang" value="label_ru">
+            </form>
+        </div>
+        <div id='locale2'>
+            <form method="post" id="form2" action="/testing/passtest">
+                <button value="preparetest" name="command">EN</button>
+                <input type="hidden" name="lang" value="label_en">
+            </form>
+        </div>
         <div>            
                 <c:if test="${wascommand == 'prepare'}"> 
                     <%@ include file="includings/testmake/subchoose.jsp" %>

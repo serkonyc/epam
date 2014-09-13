@@ -1,18 +1,25 @@
 /*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
+ * Copyright (C) 2014 Sergiusz
+ *
  */
 package org.epam.testing.utils;
 
 import java.util.ArrayList;
 
 /**
+ * Класс отображения списка страниц.
  *
  * @author Sergiusz
  */
 public class ByPageReflector {
 
+    /**
+     * Метод создания вывода списка страниц.
+     *
+     * @param source Источник с записями.
+     * @param pageNum Номер выбранной страницы.
+     * @param totalNum Номер всех страниц.
+     */
     public static void makeOutput(ArrayList source, int pageNum, int totalNum) {
         if (pageNum > 6) {
             source.add(1);

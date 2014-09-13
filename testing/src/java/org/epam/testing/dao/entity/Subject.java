@@ -1,11 +1,11 @@
 /*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
+ * Copyright (C) 2014 Sergiusz
+ *
  */
 package org.epam.testing.dao.entity;
 
 /**
+ * Сущность предмета.
  *
  * @author Sergiusz
  */
@@ -13,11 +13,22 @@ public class Subject extends AbstractEntity implements Comparable<Subject> {
 
     private String name;
 
+    /**
+     * Конструктор создания предмета.
+     *
+     * @param id Идентификатор сущности
+     * @param name Название предмета
+     */
     public Subject(int id, String name) {
         super(id);
         this.name = name;
     }
 
+    /**
+     * Получение названия предмета.
+     *
+     * @return Название
+     */
     public String getName() {
         return name;
     }

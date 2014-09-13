@@ -19,7 +19,7 @@
                         <li class='drop-link'>${subj.name}
                             <ul class='drop-block'>
                                 <c:forEach var="theme" items="${themes}">
-                                    <c:if test="${subj.id == theme.subjectId}"> 
+                                    <c:if test="${subj.id == theme.subj.id}"> 
                                         <li class='drop-link'>${theme.name}
                                             <ul class='drop-block'>
                                                 <li class='testlist'>
@@ -49,7 +49,7 @@
                 </form>
             </c:if>
             <form id="form1">
-                <button type="button"><b>${local["CCpass"]}</b></button>
+                <button type="button">&larr; <b>${local["CCpass"]}</b>&emsp;&emsp;&emsp;&emsp;</button>
             </form>  
             <c:if test="${role == 'tutor' || role == 'admin'}">
                 <form method="post" id="form1" action="${path}/chatest">

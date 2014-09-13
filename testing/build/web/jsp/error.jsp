@@ -10,7 +10,7 @@
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <link rel="stylesheet" type="text/css" href="/testing/css/poster.css">
+        <link rel="stylesheet" type="text/css" href="/testing/css/primary.css">
         <link rel="shortcut icon" href="/testing/css/ico/icon.ico" >
         <title>Error</title>
     </head>

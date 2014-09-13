@@ -1,35 +1,46 @@
 /*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
+ * Copyright (C) 2014 Sergiusz
+ *
  */
 package org.epam.testing.dao.entity;
 
 /**
+ * Сущность темы.
  *
  * @author Sergiusz
  */
 public class Theme extends AbstractEntity implements Comparable<Theme> {
 
-    private int subjectId;
     private String name;
     private Subject subj;
 
-    public Theme(Subject subj, int id, int subjectId, String name) {
+    /**
+     * Конструктор создания темы.
+     *
+     * @param subj Объект предмета, которому принадлежит тема
+     * @param id Идентификатор сущности
+     * @param name Название темы
+     */
+    public Theme(Subject subj, int id, String name) {
         super(id);
-        this.subjectId = subjectId;
         this.name = name;
         this.subj = subj;
     }
 
-    public int getSubjectId() {
-        return subjectId;
-    }
-
+    /**
+     * Получение названия темы.
+     *
+     * @return Название темы
+     */
     public String getName() {
         return name;
     }
 
+    /**
+     * Получение объекта предмета.
+     *
+     * @return Предмет, которому принадлежит тема.
+     */
     public Subject getSubj() {
         return subj;
     }

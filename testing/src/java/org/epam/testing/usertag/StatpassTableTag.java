@@ -1,7 +1,6 @@
 /*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
+ * Copyright (C) 2014 Sergiusz
+ *
  */
 package org.epam.testing.usertag;
 
@@ -15,6 +14,8 @@ import org.epam.testing.dao.entity.PassHistory;
 import org.epam.testing.dao.entity.Test;
 
 /**
+ * Класс пользовательского тега для отображения таблицы статистики прохождений
+ * тестов
  *
  * @author Sergiusz
  */
@@ -25,28 +26,54 @@ public class StatpassTableTag extends TagSupport {
     private int count, rows;
     private HashMap local;
 
+    /**
+     * Сеттер для локали.
+     *
+     * @param local Параметр настроек языка.
+     */
     public void setLocal(HashMap local) {
         this.local = local;
     }
 
+    /**
+     * Сеттер для отображаемых данных тестов.
+     *
+     * @param testdata Список тестов.
+     */
     public void setTestdata(ArrayList<Test> testdata) {
         this.testdata = testdata;
     }
 
+    /**
+     * Сеттер для отображаемых данных результатов.
+     *
+     * @param passdata Список результатов.
+     */
     public void setPassdata(ArrayList<PassHistory> passdata) {
         this.passdata = passdata;
     }
 
+    /**
+     * Сеттер количества выведенных строк.
+     *
+     * @param rows Число строк (10).
+     */
     public void setRows(int rows) {
         this.rows = rows;
     }
 
+    /**
+     * Переопределённый метод вывода при инициализации тега.
+     *
+     * @return число из интерфейса Tag
+     * @throws JspTagException в случае технической проблемы.
+     */
     @Override
     public int doStartTag() throws JspTagException {
         try {
             count = 0;
             JspWriter out = pageContext.getOut();
-            out.write("<table class='userdeal'>");
+            out.write("<table class=\"contentPart\">");
             out.write("<tr><td>" + local.get("FDtestnumber")
                     + "</td><td>" + local.get("FCresult")
                     + "</td><td>" + local.get("FAsubject")
@@ -58,6 +85,12 @@ public class StatpassTableTag extends TagSupport {
         return EVAL_BODY_INCLUDE;
     }
 
+    /**
+     * Переопределённый метод вывода после очередного элемента данных.
+     *
+     * @return число из интерфейса Tag
+     * @throws JspTagException в случае технической проблемы.
+     */
     @Override
     public int doAfterBody() throws JspTagException {
         if (count < rows) {
@@ -83,6 +116,12 @@ public class StatpassTableTag extends TagSupport {
         }
     }
 
+    /**
+     * Переопределённый метод вывода при окончании выполнения тега.
+     *
+     * @return число из интерфейса Tag
+     * @throws JspTagException в случае технической проблемы.
+     */
     @Override
     public int doEndTag() throws JspTagException {
         try {

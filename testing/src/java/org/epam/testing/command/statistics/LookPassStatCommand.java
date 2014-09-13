@@ -1,7 +1,6 @@
 /*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
+ * Copyright (C) 2014 Sergiusz
+ *
  */
 package org.epam.testing.command.statistics;
 
@@ -19,11 +18,21 @@ import org.epam.testing.utils.ByPageReflector;
 import org.epam.testing.utils.I18nDealer;
 
 /**
+ * Команда вывода таблицы статистики прохождений тестов.
  *
  * @author Sergiusz
  */
 public class LookPassStatCommand extends AbstractCommand {
 
+    /**
+     * Команда вывода таблицы статистики прохождений тестов.
+     *
+     * @param request Запрос, переданный с jsp-страницы.
+     * @return адрес страницы с содержимым или null в случае перехода на
+     * главную.
+     * @throws LogicException в случае проблем с i18nDealer.
+     * @throws TechException в случае технических проблем.
+     */
     @Override
     public String perform(HttpServletRequest request) throws LogicException, TechException {
         new I18nDealer(this.getClass().getSimpleName()).assignLocale(request);
@@ -58,7 +67,7 @@ public class LookPassStatCommand extends AbstractCommand {
             }
             pagenum = Integer.parseInt(currpagenum);
             ByPageReflector.makeOutput(allpagesnum, pagenum, posttestlist.size() / 10);
-            
+
             request.setAttribute("currpage", pagenum);
             request.setAttribute("posttestlist", new ArrayList(posttestlist.subList(10 * pagenum - 10, 10 * (pagenum))));
             request.setAttribute("allpagesnum", allpagesnum);

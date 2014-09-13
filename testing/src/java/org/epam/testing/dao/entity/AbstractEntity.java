@@ -1,11 +1,11 @@
 /*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
+ * Copyright (C) 2014 Sergiusz
+ *
  */
 package org.epam.testing.dao.entity;
 
 /**
+ * Абстрактная сущность.
  *
  * @author Sergiusz
  */
@@ -13,10 +13,20 @@ public abstract class AbstractEntity {
 
     private int id;
 
+    /**
+     * Конструктор с одним числовым параметром.
+     *
+     * @param id Идентификатор записи из БД.
+     */
     protected AbstractEntity(int id) {
         this.id = id;
     }
 
+    /**
+     * Получение id сущности.
+     *
+     * @return Идентификатор сущности
+     */
     public int getId() {
         return this.id;
     }

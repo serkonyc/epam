@@ -1,12 +1,10 @@
 /*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
+ * Copyright (C) 2014 Sergiusz
+ *
  */
 package org.epam.testing.control;
 
 import java.io.IOException;
-import java.util.logging.Level;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletConfig;
 import javax.servlet.ServletException;
@@ -21,6 +19,7 @@ import org.epam.testing.exception.LogicException;
 import org.epam.testing.exception.TechException;
 
 /**
+ * Сервлет, обрабатывающий запросы с JSP и выполняющий соответствующие команды.
  *
  * @author Sergiusz
  */
@@ -28,10 +27,19 @@ public class CommandController extends HttpServlet {
 
     private static final Logger LOGGER = Logger.getLogger(CommandController.class.getSimpleName());
 
+    /**
+     * Конструктор класса, наследующего HttpServlet
+     */
     public CommandController() {
         super();
     }
 
+    /**
+     * Метод обработки запросов, назначающий выполнение необходимых команд.
+     *
+     * @param request Запрос с jsp-страницы.
+     * @param response Ответ отправки.
+     */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response) {
         RequestDispatcher reqDispatch = null;
         String errorMessage = null;
@@ -84,27 +92,57 @@ public class CommandController extends HttpServlet {
         }
     }
 
+    /**
+     * Переопределённый метод от HttpServlet
+     *
+     * @param request Запрос с jsp-страницы.
+     * @param response Ответ отправки.
+     * @throws ServletException в случае проблем внутри сервлета.
+     * @throws IOException в случае ошибок ввода/вывода.
+     */
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         processRequest(request, response);
     }
 
+    /**
+     * Переопределённый метод от HttpServlet
+     *
+     * @param request Запрос с jsp-страницы.
+     * @param response Ответ отправки.
+     * @throws ServletException в случае проблем внутри сервлета.
+     * @throws IOException в случае ошибок ввода/вывода.
+     */
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         processRequest(request, response);
     }
 
+    /**
+     * Переопределённый метод от HttpServlet
+     *
+     * @return String-описание сервлета.
+     */
     @Override
     public String getServletInfo() {
         return "Short description";
     }
 
+    /**
+     * Переопределённый метод от HttpServlet. Инициализация сервлета.
+     *
+     * @param config
+     */
     @Override
     public void init(ServletConfig config) {
     }
 
+    /**
+     * Переопределённый метод от HttpServlet. Уничтожение сервлета, очищение
+     * пула соединений.
+     */
     @Override
     public void destroy() {
         super.destroy();

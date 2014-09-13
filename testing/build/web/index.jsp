@@ -10,7 +10,7 @@
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <link rel="stylesheet" type="text/css" href="/testing/css/poster.css">
+        <link rel="stylesheet" type="text/css" href="/testing/css/primary.css">
         <link rel="stylesheet" type="text/css" href="${css}">
         <link rel="shortcut icon" href="/testing/css/ico/icon.ico" >
         <title>Welcome!</title>
@@ -18,16 +18,32 @@
     <body>
         <div id='locale1'>
             <form method="post" id="form1" action="/testing/enter">
-                <button value="changelocale" name="command">RU</button>
-                <input type="hidden" name="lang" value="label_ru">
-                <input type="hidden" name="progress" value="final">
+                <c:choose>
+                    <c:when test="${logorreg == 'register'}">
+                        <button value="needregister" name="command">RU</button>
+                        <input type="hidden" name="lang" value="label_ru">
+                    </c:when>
+                    <c:otherwise>
+                        <button value="needlogin" name="command">RU</button>
+                        <input type="hidden" name="lang" value="label_ru">
+                        <input type="hidden" name="progress" value="final">
+                    </c:otherwise>
+                </c:choose>
             </form>
         </div>
         <div id='locale2'>
             <form method="post" id="form1" action="/testing/enter">
-                <button value="changelocale" name="command">EN</button>
-                <input type="hidden" name="lang" value="label_en">
-                <input type="hidden" name="progress" value="final">
+                <c:choose>
+                    <c:when test="${logorreg == 'register'}">
+                        <button value="needregister" name="command">EN</button>
+                        <input type="hidden" name="lang" value="label_en">
+                    </c:when>
+                    <c:otherwise>
+                        <button value="needlogin" name="command">EN</button>
+                        <input type="hidden" name="lang" value="label_en">
+                        <input type="hidden" name="progress" value="final">
+                    </c:otherwise>
+                </c:choose>
             </form>
         </div>
         <table align="center">

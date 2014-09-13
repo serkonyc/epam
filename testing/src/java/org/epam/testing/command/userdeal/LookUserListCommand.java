@@ -1,9 +1,7 @@
 /*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
+ * Copyright (C) 2014 Sergiusz
+ *
  */
-
 package org.epam.testing.command.userdeal;
 
 import java.util.ArrayList;
@@ -16,20 +14,29 @@ import org.epam.testing.exception.TechException;
 import org.epam.testing.utils.I18nDealer;
 
 /**
+ * Команда просмотра таблицы пользователей.
  *
  * @author Sergiusz
  */
-public class LookUserListCommand extends AbstractCommand{
+public class LookUserListCommand extends AbstractCommand {
 
+    /**
+     * Команда просмотра таблицы пользователей.
+     *
+     * @param request Запрос, переданный с jsp-страницы.
+     * @return String-адрес определённой в свойствах страницы.
+     * @throws LogicException в случае проблем с i18nDealer или DaoFactory.
+     * @throws TechException в случае технических проблем.
+     */
     @Override
     public String perform(HttpServletRequest request) throws LogicException, TechException {
         new I18nDealer(this.getClass().getSimpleName()).assignLocale(request);
         AbstractDao dao = new DaoFactory().getDaoByName("user");
         ArrayList users = dao.selectAll();
-        
+
         request.setAttribute("smartredir", "userdeal");
         request.setAttribute("users", users);
-        return "jsp/userdeal.jsp";
+        return flowPagePropertyHandler.getPropertyValue(this.getClass().getSimpleName());
     }
-    
+
 }

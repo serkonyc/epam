@@ -9,15 +9,27 @@
 <!DOCTYPE html>
 <html>
     <head>
-        <link rel="stylesheet" type="text/css" href="/testing/css/addingtest.css">
+        <link rel="stylesheet" type="text/css" href="/testing/css/userdeal.css">
         <link rel="shortcut icon" href="/testing/css/ico/icon.ico" >
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>JSP Page</title>
     </head>
     <body>      
         <%@ include file="/jsp/includings/header.jsp"%>
+        <div id='locale1'>
+            <form method="post" action="/testing/passtest">
+                <button value="userdeal" name="command">RU</button>
+                <input type="hidden" name="lang" value="label_ru">
+            </form>
+        </div>
+        <div id='locale2'>
+            <form method="post" action="/testing/passtest">
+                <button value="userdeal" name="command">EN</button>
+                <input type="hidden" name="lang" value="label_en">
+            </form>
+        </div>
         <div id="usertable">
-            <table class="userdeal">
+            <table>
                 <c:forEach var="user" items="${users}">
                     <tr>                    
                         <td>

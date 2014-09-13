@@ -1,11 +1,11 @@
 /*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
+ * Copyright (C) 2014 Sergiusz
+ *
  */
 package org.epam.testing.dao.entity;
 
 /**
+ * Сущность пользователя.
  *
  * @author Sergiusz
  */
@@ -16,6 +16,12 @@ public class User extends AbstractEntity {
     private String role;
     private String pass;
 
+    /**
+     * Конструктор создания объекта пользователя.
+     *
+     * @param id идентификатор сущности БД
+     * @param args Параметры создания пользователя: nick, email, role, password.
+     */
     public User(int id, String... args) {
         super(id);
         this.nick = args[0];
@@ -24,35 +30,40 @@ public class User extends AbstractEntity {
         this.pass = args[3];
     }
 
+    /**
+     * Получение псевдонима пользователя.
+     *
+     * @return Псевдоним пользователя
+     */
     public String getNick() {
         return nick;
     }
 
-    public void setNick(String nick) {
-        this.nick = nick;
-    }
-
+    /**
+     * Получение электронного почтового адреса пользователя.
+     *
+     * @return Эмеил пользователя.
+     */
     public String getEmail() {
         return email;
     }
 
-    public void setEmail(String email) {
-        this.email = email;
-    }
-
+    /**
+     * Получение роли пользователя.
+     *
+     * @return Роль пользователя (admin, tutor, student)
+     */
     public String getRole() {
         return role;
     }
 
-    public void setRole(String role) {
-        this.role = role;
-    }
-
+    /**
+     * Получение пароль пользователя.
+     *
+     * @return Пароль в виде md5-записи
+     */
     public String getPass() {
         return pass;
     }
 
-    public void setPass(String pass) {
-        this.pass = pass;
-    }
 }

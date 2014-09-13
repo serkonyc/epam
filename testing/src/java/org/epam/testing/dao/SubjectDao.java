@@ -1,7 +1,6 @@
 /*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
+ * Copyright (C) 2014 Sergiusz
+ *
  */
 package org.epam.testing.dao;
 
@@ -15,6 +14,7 @@ import org.epam.testing.dbconnection.DbaseConnectionPool;
 import org.epam.testing.exception.TechException;
 
 /**
+ * Класс работы с сущностями предмета.
  *
  * @author Sergiusz
  */
@@ -25,6 +25,12 @@ public class SubjectDao extends AbstractDao<Subject> {
     private final String INSERT_ONE = "INSERT INTO subject(name) VALUES (?)";
     private final String DELETE_BY = "DELETE FROM subject WHERE subject.id = (?)";
 
+    /**
+     * Метод получения полной выборки из базы данных.
+     *
+     * @return ArrayList всех элементов.
+     * @throws TechException в случае проблем с доступом к БД.
+     */
     @Override
     public ArrayList selectAll() throws TechException {
         Connection connection = DbaseConnectionPool.getInstance().getConnection();
@@ -48,6 +54,12 @@ public class SubjectDao extends AbstractDao<Subject> {
         }
     }
 
+    /**
+     * Вставка нового элемента в таблицу.
+     *
+     * @param args Все необходимые аргументы новой записи: name.
+     * @throws TechException в случае проблем с доступом к БД.
+     */
     @Override
     public void insertNew(String... args) throws TechException {
         Connection connection = DbaseConnectionPool.getInstance().getConnection();
@@ -63,6 +75,13 @@ public class SubjectDao extends AbstractDao<Subject> {
         }
     }
 
+    /**
+     * Получение ответа, существует ли запись.
+     *
+     * @param argue Параметр для поиска: name.
+     * @return true, если запись существует, и false, если нет.
+     * @throws TechException в случае проблем с доступом к БД.
+     */
     @Override
     public boolean isExist(String argue) throws TechException {
         Connection connection = DbaseConnectionPool.getInstance().getConnection();
@@ -79,16 +98,36 @@ public class SubjectDao extends AbstractDao<Subject> {
         }
     }
 
+    /**
+     * Метод получения выборки из таблиц на основе параметра. Не реализован.
+     *
+     * @param compareParameter Параметр получения выборки, определяемый для
+     * каждого класса в отдельности.
+     * @return ArrayList занчений из БД.
+     * @throws TechException в случае проблем с доступом к БД.
+     */
     @Override
     public ArrayList<Subject> selectAllByParameter(String compareParameter) throws TechException {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
+    /**
+     * Получение идентификатора последней вставленной в БД записи. Не
+     * реализован.
+     *
+     * @return Числовой номер необходимой записи.
+     */
     @Override
     public int getLastId() {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
+    /**
+     * Удаление по значению параметра.
+     *
+     * @param deleteParameter Параметр для удаления: id.
+     * @throws TechException в случае проблем с доступом к БД.
+     */
     @Override
     public void deleteByParameter(String deleteParameter) throws TechException {
         Connection connection = DbaseConnectionPool.getInstance().getConnection();
@@ -104,6 +143,13 @@ public class SubjectDao extends AbstractDao<Subject> {
         }
     }
 
+    /**
+     * Обновление записи в таблице. Не реализован.
+     *
+     * @param updateParameter Параметр для обновления.
+     * @param args Новые значения вместо старых из БД.
+     * @throws TechException в случае проблем с доступом к БД.
+     */
     @Override
     public void updateByParameter(String updateParameter, String... args) throws TechException {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
