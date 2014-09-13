@@ -25,12 +25,12 @@ div{
 #locale1 {
     position: fixed;
     left: 2%; 
-    top: 2%; 
+    top: 0%; 
 }
 #locale2 {
     position: fixed;
     left: 4%; 
-    top: 2%; 
+    top: 0%; 
 }
 #result {
     position: absolute;
@@ -98,6 +98,17 @@ div{
     text-align: center;
     font-family: Ubuntu;
     font-size: 80%;
+}
+#form1 input{
+    width: 400px;
+    border:1px solid #ddd;
+    -moz-border-radius:.3em;
+    -webkit-border-radius:.3em;
+    border-radius:.3em;
+    background:#fff repeat-x;
+    padding:3px;
+    cursor:pointer;
+    font-family: Ubuntu;
 }
 @font-face {
     font-family: Ubuntu;

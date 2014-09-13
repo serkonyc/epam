@@ -29,12 +29,12 @@ div{
 #locale1 {
     position: fixed;
     left: 2%; 
-    top: 0%; 
+    top: -2%; 
 }
 #locale2 {
     position: fixed;
     left: 4%; 
-    top: 0%; 
+    top: -2%; 
 }
 #menu-subblock {
     position: relative;

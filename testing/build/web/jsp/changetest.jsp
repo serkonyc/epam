@@ -16,6 +16,20 @@
     </head>
     <body>
         <%@ include file="/jsp/includings/header.jsp"%>
+        <div id='locale1'>
+            <form method="post" id="form1" action="/testing/passtest">
+                <button value="changechosentest" name="command" type="auto">RU</button>
+                <input type="hidden" name="lang" value="label_ru">
+                <input type="hidden" value="${testid}" name="data">
+            </form>
+        </div>
+        <div id='locale2'>
+            <form method="post" id="form1" action="/testing/passtest">
+                <button value="changechosentest" name="command" type="auto">EN</button>
+                <input type="hidden" name="lang" value="label_en">
+                <input type="hidden" value="${testid}" name="data">
+            </form>
+        </div>
         <div>
             <form action="/testing/passtest" method="post" id="form1" autocomplete="off">
                 <div id='questlist'>

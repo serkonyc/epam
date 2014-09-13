@@ -17,27 +17,27 @@
     <body>     
         <%@ include file="/jsp/includings/header.jsp"%>
         <div id='locale1'>
-            <form method="post" id="form2" action="/testing/passtest">
-                <button value="preparetest" name="command">RU</button>
+            <form method="post" id="form1" action="/testing/passtest">
+                <button value="preparetest" name="command" type="auto">RU</button>
                 <input type="hidden" name="lang" value="label_ru">
             </form>
         </div>
         <div id='locale2'>
-            <form method="post" id="form2" action="/testing/passtest">
-                <button value="preparetest" name="command">EN</button>
+            <form method="post" id="form1" action="/testing/passtest">
+                <button value="preparetest" name="command" type="auto">EN</button>
                 <input type="hidden" name="lang" value="label_en">
             </form>
         </div>
         <div>            
-                <c:if test="${wascommand == 'prepare'}"> 
-                    <%@ include file="includings/testmake/subchoose.jsp" %>
-                </c:if>    
-                <c:if test="${wascommand == 'themes'}"> 
-                    <%@ include file="includings/testmake/themechoose.jsp" %>
-                </c:if>
-                <c:if test="${wascommand == 'questions'}"> 
-                    <%@ include file="includings/testmake/testmake.jsp" %>             
-                </c:if>                
+            <c:if test="${wascommand == 'prepare'}"> 
+                <%@ include file="includings/testmake/subchoose.jsp" %>
+            </c:if>    
+            <c:if test="${wascommand == 'themes'}"> 
+                <%@ include file="includings/testmake/themechoose.jsp" %>
+            </c:if>
+            <c:if test="${wascommand == 'questions'}"> 
+                <%@ include file="includings/testmake/testmake.jsp" %>             
+            </c:if>                
         </div>
     </body>
 </html>
