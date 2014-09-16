@@ -32,23 +32,23 @@ x = ?"></textarea>
                                 <table>
                                     <tr>
                                         <td>
-                                            <input type="text" placeholder="${local["DFcorrect"]}" required name="${quest}-1">
+                                            <input type="text" pattern="[A-я\w\s\d]{1,36}" placeholder="${local["DFcorrect"]}" required name="${quest}-1">
                                         </td>
                                     </tr>
                                     <tr>
                                         <td>
-                                            <input type="text" placeholder="${local["DFcorrect"]}" name="${quest}-1.5">
+                                            <input type="text" pattern="[A-я\w\s\d]{1,36}" placeholder="${local["DFcorrect"]}" name="${quest}-1.5">
                                         </td>
                                     </tr>        
                                     <tr>
                                         <td>
-                                            <input type="text" placeholder="${local["DEincorr"]}" required name="${quest}-2">
+                                            <input type="text" pattern="[A-я\w\s\d]{1,36}" placeholder="${local["DEincorr"]}" required name="${quest}-2">
                                         </td>
                                     </tr>
                                     <c:forEach var="test" begin="3" end="5">
                                         <tr>
                                             <td>
-                                                <input type="text" placeholder="${local["DEincorr"]}" name="${quest}-${test}">
+                                                <input type="text" pattern="[A-я\w\s\d]{1,36}" placeholder="${local["DEincorr"]}" name="${quest}-${test}">
                                             </td>
                                         </tr>
                                     </c:forEach>

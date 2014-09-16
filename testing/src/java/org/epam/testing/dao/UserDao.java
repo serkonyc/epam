@@ -26,6 +26,7 @@ public class UserDao extends AbstractDao<User> {
     private final String INSERT_ONE = "INSERT INTO user(nick, email, role, pass) VALUES (?, ?, ?, ?)";
     private final String DELETE_BY = "DELETE FROM user WHERE user.id = (?)";
     private final String UPDATE_ONE = "UPDATE user SET user.nick = (?), user.email = (?), user.role = (?) WHERE user.id = (?)";
+    private final String UPDATE_ONE_PASS = "UPDATE user SET user.pass = (?) WHERE user.id = (?)";
 
     /**
      * Метод получения полной выборки из базы данных.
@@ -156,18 +157,32 @@ public class UserDao extends AbstractDao<User> {
     @Override
     public void updateByParameter(String updateParameter, String... args) throws TechException {
         Connection connection = DbaseConnectionPool.getInstance().getConnection();
-        try (PreparedStatement preparedStatement = connection.prepareStatement(UPDATE_ONE)) {
-            preparedStatement.setInt(4, Integer.parseInt(updateParameter));
-            preparedStatement.setString(1, args[0]);
-            preparedStatement.setString(2, args[1]);
-            preparedStatement.setString(3, args[2]);
-            preparedStatement.executeUpdate();
+        if (args.length > 1) {
+            try (PreparedStatement preparedStatement = connection.prepareStatement(UPDATE_ONE)) {
+                preparedStatement.setInt(4, Integer.parseInt(updateParameter));
+                preparedStatement.setString(1, args[0]);
+                preparedStatement.setString(2, args[1]);
+                preparedStatement.setString(3, args[2]);
+                preparedStatement.executeUpdate();
 
-        } catch (SQLException ex) {
-            throw new TechException("Exception in SQL in insertNew", ex.getCause());
-        } finally {
-            // нет необходимости проверки на нул
-            DbaseConnectionPool.getInstance().releaseConnection(connection);
+            } catch (SQLException ex) {
+                throw new TechException("Exception in SQL in insertNew", ex.getCause());
+            } finally {
+                // нет необходимости проверки на нул
+                DbaseConnectionPool.getInstance().releaseConnection(connection);
+            }
+        } else {
+            try (PreparedStatement preparedStatement = connection.prepareStatement(UPDATE_ONE_PASS)) {
+                preparedStatement.setInt(2, Integer.parseInt(updateParameter));
+                preparedStatement.setString(1, args[0]);
+                preparedStatement.executeUpdate();
+
+            } catch (SQLException ex) {
+                throw new TechException("Exception in SQL in insertNew", ex.getCause());
+            } finally {
+                // нет необходимости проверки на нул
+                DbaseConnectionPool.getInstance().releaseConnection(connection);
+            }
         }
     }
 

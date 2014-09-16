@@ -9,6 +9,8 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import org.epam.testing.dao.entity.Subject;
 import org.epam.testing.dao.entity.Test;
 import org.epam.testing.dao.entity.Theme;
@@ -86,7 +88,7 @@ public class TestDao extends AbstractDao<Test> {
                 lastInsertedId = some.getInt(1);
             }
         } catch (SQLException ex) {
-            throw new TechException("Exception in SQL in insertNew", ex.getCause());
+            Logger.getLogger(TestDao.class.getName()).log(Level.SEVERE, null, ex);
         } finally {
             // нет необходимости проверки на нул
             DbaseConnectionPool.getInstance().releaseConnection(connection);

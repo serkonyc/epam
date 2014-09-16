@@ -170,3 +170,5 @@
 2014-09-13 16:04:30,574 [ERROR] NoCommandFilter org.epam.testing.exception.TechException: Problem with servlet or input/output at org.epam.testing.control.filter.NoCommandFilter.doFilter(NoCommandFilter.java:84)
 2014-09-13 16:06:20,503 [ERROR] NoCommandFilter org.epam.testing.exception.TechException: Problem with servlet or input/output at org.epam.testing.control.filter.NoCommandFilter.doFilter(NoCommandFilter.java:84)
 2014-09-13 16:06:26,905 [ERROR] NoCommandFilter org.epam.testing.exception.TechException: Problem with servlet or input/output at org.epam.testing.control.filter.NoCommandFilter.doFilter(NoCommandFilter.java:84)
+2014-09-14 15:40:56,601 [ERROR] NoCommandFilter org.epam.testing.exception.TechException: Some trouble with loading properties. at org.epam.testing.control.filter.NoCommandFilter.doFilter(NoCommandFilter.java:80)
+2014-09-16 09:07:20,570 [ERROR] NoCommandFilter org.epam.testing.exception.TechException: Some trouble with loading properties. at org.epam.testing.control.filter.NoCommandFilter.doFilter(NoCommandFilter.java:79)

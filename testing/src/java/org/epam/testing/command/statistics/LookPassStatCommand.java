@@ -54,7 +54,7 @@ public class LookPassStatCommand extends AbstractCommand {
             }
             Collections.reverse(history);
             Collections.reverse(posttestlist);
-            for (int i = 0; i < 9; i++) {
+            for (int i = 0; i < 10; i++) {
                 history.add(history.size(), new PassHistory(0));
                 posttestlist.add(posttestlist.size(), new Test(0));
             }

@@ -13,6 +13,7 @@ import org.epam.testing.dao.AbstractDao;
 import org.epam.testing.dao.entity.Subject;
 import org.epam.testing.dao.entity.Test;
 import org.epam.testing.dao.entity.Theme;
+import org.epam.testing.dao.factory.DaoType;
 import org.epam.testing.exception.LogicException;
 import org.epam.testing.exception.TechException;
 import org.epam.testing.utils.I18nDealer;
@@ -35,7 +36,7 @@ public class DeleteTestCommand extends AbstractCommand {
     @Override
     public String perform(HttpServletRequest request) throws LogicException, TechException {
         new I18nDealer(this.getClass().getSimpleName()).assignLocale(request);
-        AbstractDao dao = new DaoFactory().getDaoByName("test");
+        AbstractDao dao = new DaoFactory().getDaoByName(DaoType.TEST.name());
         ArrayList<Test> tests = dao.selectAll();
         TreeSet<Subject> subjs = new TreeSet<>();
         TreeSet<Theme> themes = new TreeSet<>();

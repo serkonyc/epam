@@ -61,7 +61,7 @@
                             <form method="post" id="form1" type="err" action="/testing/enter" autocomplete="off">
                                 <input type="text" pattern="[A-Za-z0-9_]{4,16}" required placeholder="${local["ACnickherror"]}" name="login">
                                 <br>
-                                <input type="password" required placeholder="${local["ABpassholder"]}" name="pass">
+                                <input type="password" pattern="[A-Za-z0-9_]{4,20}" required placeholder="${local["ABpassholder"]}" name="pass">
                                 <br>
                                 <button value="login" name="command"><b>${local["AEsignin"]}</b></button>   
                             </form>
@@ -75,7 +75,7 @@
                             <form method="post" id="form1" type="err" action="/testing/enter" autocomplete="off">
                                 <input type="text" pattern="[A-Za-z0-9_]{4,16}" required value="${nick}" name="login">
                                 <br>
-                                <input type="password" required placeholder="${local["ADpassherror"]}" name="pass">
+                                <input type="password" pattern="[A-Za-z0-9_]{4,20}" required placeholder="${local["ADpassherror"]}" name="pass">
                                 <br>
                                 <button value="login" name="command"><b>${local["AEsignin"]}</b></button>    
                             </form>
@@ -90,8 +90,8 @@
                                 <input type="text" pattern="[A-Za-z0-9_]{4,16}" required placeholder="${local["BEnickherror"]}" name="login">
                                 <input type="email" placeholder="${local["BBemail"]}" name="email">
                                 <br>
-                                <input type="password" required placeholder="${local["BCpassholder"]}" name="pass1">
-                                <input type="password" required placeholder="${local["BDreppassholder"]}" name="pass2">
+                                <input type="password" pattern="[A-Za-z0-9_]{4,20}" required placeholder="${local["BCpassholder"]}" name="pass1">
+                                <input type="password" pattern="[A-Za-z0-9_]{4,20}" required placeholder="${local["BDreppassholder"]}" name="pass2">
                                 <br>
                                 <button value="register" name="command"><b>${local["BGsignup"]}</b></button>
                             </form>
@@ -106,8 +106,8 @@
                                 <input type="text" pattern="[A-Za-z0-9_]{4,16}" required placeholder="${local["BAnickholder"]}" name="login">
                                 <input type="email" placeholder="${local["BBemail"]}" name="email">
                                 <br>
-                                <input type="password" required placeholder="${local["BCpassholder"]}" name="pass1">
-                                <input type="password" required placeholder="${local["BDreppassholder"]}" name="pass2">
+                                <input type="password" pattern="[A-Za-z0-9_]{4,20}" required placeholder="${local["BCpassholder"]}" name="pass1">
+                                <input type="password" pattern="[A-Za-z0-9_]{4,20}" required placeholder="${local["BDreppassholder"]}" name="pass2">
                                 <br>
                                 <button value="register" name="command"><b>${local["BGsignup"]}</b></button>
                             </form>
@@ -121,7 +121,7 @@
                             <form method="post" id="form1" action="/testing/enter" autocomplete="off">
                                 <input type="text" pattern="[A-Za-z0-9_]{4,16}" required placeholder="${local["AAnickholder"]}" name="login">
                                 <br>
-                                <input type="password" required placeholder="${local["ABpassholder"]}" name="pass">
+                                <input type="password" pattern="[A-Za-z0-9_]{4,20}" required placeholder="${local["ABpassholder"]}" name="pass">
                                 <br>
                                 <button value="login" name="command"><b>${local["AEsignin"]}</b></button>     
                             </form>

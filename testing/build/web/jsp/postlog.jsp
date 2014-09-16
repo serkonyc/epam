@@ -65,5 +65,22 @@
                 </form>
             </c:if>
         </div>
+        <div id="changepass">
+            <form method="post" id="form1" action="/testing/enter"> 
+                <c:if test="${changed == 'yes'}">
+                    &emsp;${local["CPsuccesspass"]} <br>
+                </c:if>
+                <c:if test="${changed == 'no'}">
+                    &emsp;${local["COerrchapass"]} <br>
+                </c:if>
+                <c:if test="${changed == null}">
+                    &emsp;${local["CNchangepasslabel"]} <br>
+                </c:if>                
+                <input type="password" pattern="[A-Za-z0-9_]{4,20}" required placeholder="${local["CJoldpass"]}" name="oldpass"> <br>
+                <input type="password" pattern="[A-Za-z0-9_]{4,20}" required placeholder="${local["CKnewpass"]}" name="newpass"> <br>
+                <input type="password" pattern="[A-Za-z0-9_]{4,20}" required placeholder="${local["CLnewpassch"]}" name="newpasscheck"> <br>
+                <button type="local" name="command" value="changepass">&emsp;&emsp;&emsp;${local["CMchangepassbutt"]}&emsp;&emsp;&emsp;</button>
+            </form>
+        </div>
     </body>
 </html>

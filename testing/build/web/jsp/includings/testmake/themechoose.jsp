@@ -16,7 +16,7 @@
     <body>
         <div id="label">
             <form id="form1">  
-                <button type="button">${local["DCchtheme"]}</button>
+                <button type="button">${local["DCchtheme"]} &larr; ${oldinput}</button>
             </form>
         </div>
         <div id="choosepage"> 
@@ -30,33 +30,33 @@
         <div id="themelist">
             <form action="/testing/maketest" method="post" id="form1" autocomplete="off">                                                
                 <ul class='vertical-menu'>
+                    <c:if test="${fn:length(themes)!=0}">
+                        <li>
+                            <%@ include file="includings/numberlist.jsp" %>
+                        </li>
+                    </c:if>
                     <c:forEach var="theme" items="${themes}">
                         <li>
                             <input type="submit" value="${theme.name}" name="input">                            
                         </li>
-                    </c:forEach>
-                    <c:if test="${fn:length(themes)!=0}">
-                          <li>
-                              <%@ include file="includings/numberlist.jsp" %>
-                          </li>
-                </c:if>
-            </ul>
-            <input type="hidden" value="${subjid}" name="inputid">
-            <input type="hidden" value="choosetheme" name="command">
-        </form>
-        <form action="/testing/maketest" method="post" id="form1" autocomplete="off">
-            <ul class='vertical-menu'>
-                <li>
-                    <input type="text" pattern="[A-я -]{4,24}" required placeholder="${local["DBinput"]}" name="input"> 
-                    <input type="submit" value="${local["ZAadd"]}"> 
-                    <input type="hidden" value="${subjid}" name="inputid">
-                    <input type="hidden" value="choosetheme" name="command">
-                    <input type="hidden" value="${oldinput}" name="oldinput">
-                    <%@ include file="includings/numberlist.jsp" %>
-                </li>
-            </ul>
-        </form>
-    </div>
-    <br/>  
-</body>
+                    </c:forEach>                    
+                </ul>
+                <input type="hidden" value="${subjid}" name="inputid">
+                <input type="hidden" value="choosetheme" name="command">
+            </form>
+            <form action="/testing/maketest" method="post" id="form1" autocomplete="off">
+                <ul class='vertical-menu'>
+                    <li>
+                        <%@ include file="includings/numberlist.jsp" %>
+                        <input type="text" pattern="[A-я -]{2,24}" required placeholder="${local["DBinput"]}" name="input"> 
+                        <input type="submit" value="${local["ZAadd"]}"> 
+                        <input type="hidden" value="${subjid}" name="inputid">
+                        <input type="hidden" value="choosetheme" name="command">
+                        <input type="hidden" value="${oldinput}" name="oldinput">                    
+                    </li>
+                </ul>
+            </form>
+        </div>
+        <br/>  
+    </body>
 </html>

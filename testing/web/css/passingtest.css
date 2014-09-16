@@ -18,9 +18,7 @@ body{
 }
 
 div{    
-    position: absolute;
-    left: 40%; 
-    top: 5%; 
+    
 }
 #locale1 {
     position: fixed;
@@ -34,26 +32,26 @@ div{
 }
 #result {
     position: absolute;
-    left: 50px;
-    top: 235%;
+    left: 45%;
+    top: 25%;
 }
 #questlist {
-    position: relative; 
-    left: -60%; 
-    top: 6%;
+    position: absolute; 
+    left: 24%; 
+    top: 18%;
 }
 #bottom {
     position: fixed;
-    left: 70%;
-    top: 35%;
+    left: 80%;
+    top: 6%;
 }
 #help {
-    position: fixed;
-    left: 66%; 
-    top: 14%;
+    position: absolute;
+    left: 20%; 
+    top: 4%;
     font-size: 90%;
     text-align: justify;
-    width: 32%;
+    width: 55%;
 }
 #form1 textarea {
     resize: none;

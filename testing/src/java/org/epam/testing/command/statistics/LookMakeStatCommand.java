@@ -46,7 +46,7 @@ public class LookMakeStatCommand extends AbstractCommand {
                 }
             }
             Collections.reverse(posttestlist);
-            for (int i = 0; i < 9; i++) {
+            for (int i = 0; i < 10; i++) {
                 posttestlist.add(posttestlist.size(), new Test(0));
             }
             int pagenum;

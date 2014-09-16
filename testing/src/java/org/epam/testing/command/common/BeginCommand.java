@@ -11,14 +11,14 @@ import org.epam.testing.utils.I18nDealer;
 
 /**
  * Команда возвращения к неидентифицированному пользователю.
- * 
+ *
  * @author Sergiusz
  */
 public class BeginCommand extends AbstractCommand {
 
     /**
      * Команда возвращения к неидентифицированному пользователю.
-     * 
+     *
      * @param request Запрос, переданный с jsp-страницы.
      * @return null, по которому осуществится перенаправление с помощью фильтра.
      * @throws LogicException в случае проблем с логикой I18nDealer.

@@ -119,6 +119,11 @@ public enum CommandType {
     /**
      * Удаление пользователя к чертям собачьим.
      */
-    DELETEUSER
+    DELETEUSER,
+    
+    /**
+     * CСмена пароля пользователя
+     */
+    CHANGEPASS
 
 }

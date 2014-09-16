@@ -10,7 +10,7 @@
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <link rel="stylesheet" type="text/css" href="/testing/css/passingtest.css">
+        <link rel="stylesheet" type="text/css" href="/testing/css/addingtest.css">
         <link rel="shortcut icon" href="/testing/css/ico/icon.ico" >
         <title>Pass test</title>
     </head>
@@ -51,26 +51,26 @@
                                             <c:if test="${status.index+1 == 1}">
                                                 <tr>
                                                     <td>
-                                                        <input type="text" placeholder="${local["DFcorrect"]}" name="answer${ans.id}" value="${ans.text}" required>
+                                                        <input type="text" pattern="[A-я\w\s\d]{1,36}" placeholder="${local["DFcorrect"]}" name="answer${ans.id}" value="${ans.text}" required>
                                                     </td>
                                                 </tr>
                                                 <tr>
                                                     <td>
-                                                        <input type="text" placeholder="${local["DFcorrect"]}" name="answer${ans.id}-1.5" value="${ans.textAdv}">
+                                                        <input type="text" pattern="[A-я\w\s\d]{1,36}" placeholder="${local["DFcorrect"]}" name="answer${ans.id}-1.5" value="${ans.textAdv}">
                                                     </td>
                                                 </tr>    
                                             </c:if>
                                             <c:if test="${status.index+1 == 2}">
                                                 <tr>
                                                     <td>
-                                                        <input type="text" placeholder="${local["DEincorr"]}" name="answer${ans.id}" value="${ans.text}" required>
+                                                        <input type="text" pattern="[A-я\w\s\d]{1,36}" placeholder="${local["DEincorr"]}" name="answer${ans.id}" value="${ans.text}" required>
                                                     </td>
                                                 </tr>
                                             </c:if>
                                             <c:if test="${status.index+1 > 2}"> 
                                                 <tr>
                                                     <td>
-                                                        <input type="text" placeholder="${local["DEincorr"]}" name="answer${ans.id}" value="${ans.text}" >
+                                                        <input type="text" pattern="[A-я\w\s\d]{1,36}" placeholder="${local["DEincorr"]}" name="answer${ans.id}" value="${ans.text}" >
                                                     </td>
                                                 </tr>
                                             </c:if>

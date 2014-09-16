@@ -38,7 +38,7 @@
             <form action="/testing/addtest" method="post" id="form1" autocomplete="off">
                 <ul class='vertical-menu' >
                     <li>
-                        <input type="iftext" pattern="[A-я -]{2,16}" required placeholder="${local["DBinput"]}" name="input"> 
+                        <input type="iftext" pattern="[A-я -]{2,24}" required placeholder="${local["DBinput"]}" name="input"> 
                         <input type="submit" value=${local["ZAadd"]}> 
                         <input type="hidden" value="choosesubject" name="command">
                     </li>

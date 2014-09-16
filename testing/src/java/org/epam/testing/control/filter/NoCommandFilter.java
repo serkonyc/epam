@@ -51,10 +51,9 @@ public class NoCommandFilter implements Filter {
     @Override
     public void doFilter(ServletRequest request,
             ServletResponse response, FilterChain chain) {
-
+       
         DOMConfigurator.configure(request.getServletContext().getRealPath("\\logger\\log4j.xml"));
         PropertyHandler.setInput(request.getServletContext().getRealPath(""));
-
         try {
             HttpServletRequest filterRequest = (HttpServletRequest) request;
             HttpSession session = filterRequest.getSession(true);

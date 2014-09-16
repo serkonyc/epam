@@ -5,6 +5,8 @@
 package org.epam.testing.command.common;
 
 import javax.servlet.http.HttpServletRequest;
+import org.epam.testing.dao.AbstractDao;
+import org.epam.testing.dao.factory.DaoFactory;
 
 /**
  * Команда смены локали.

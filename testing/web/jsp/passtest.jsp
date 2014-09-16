@@ -109,8 +109,10 @@
                         ${local["DIpassadv"]}
                     </div>   
                 </c:if>
-                <c:if test="${result != null}">
-                    ${local["DNresult"]} ${result}
+                <c:if test="${result != null}">   
+                    <div id='questlist'>
+                        ${local["DNresult"]} ${result}
+                    </div>
                     <div div id='result'>
                         <button>${local["DOknowit"]}</button>
                         <input type="hidden" value=passtest name="command">

@@ -46,6 +46,8 @@ public class CommandController extends HttpServlet {
         String cmdPerformMessage = null;
         try {
             if (request.getParameter("command") != null
+                    && (request.getSession().getAttribute("id") != null
+                    || request.getRequestURI().endsWith("enter"))
                     || request.getSession().getAttribute("needfwd") != null) {
                 AbstractCommand cmd;
                 if (request.getParameter("command") != null) {
@@ -133,7 +135,7 @@ public class CommandController extends HttpServlet {
     /**
      * Переопределённый метод от HttpServlet. Инициализация сервлета.
      *
-     * @param config
+     * @param config Объект конфигурации сервлета.
      */
     @Override
     public void init(ServletConfig config) {

@@ -73,6 +73,8 @@ public class CommandFactory {
                     return new DownGradeUserCommand();
                 case DELETEUSER:
                     return new DeleteUserCommand();
+                case CHANGEPASS:
+                    return new ChangePassCommand();
                 default:
                     throw new LogicException("Trouble with CommandList enum");
             }
